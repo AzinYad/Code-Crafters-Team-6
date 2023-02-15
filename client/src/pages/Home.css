@@ -1,11 +1,153 @@
-.logo {
+/* .logo {
 	width: 100px;
 }
 
 .message {
-	color: blue;
+	color: rgb(0, 0, 255);
 }
 
 .message:hover {
 	background-color: yellow;
+} */
+*{  
+	margin: 0;
+	font-size: 1.1rem;
+}
+.main-page{
+	margin:0 3em;
+}
+/* ========
+   NAvbar
+=========== */
+
+.nav-bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin:2em 0;
+	height:5.5vh;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+}
+
+.magnifier{
+	width: 1em;
+	margin-right:.5em;
+	margin-left: 3em;
+}
+
+.login-icon{
+	width:2em;
+	margin-right: .5em;
+}
+
+.login{
+	display: flex;
+	justify-content:flex-start;
+	align-items: center;
+	margin-right: 3em;
+}
+
+.page {
+	color: black;
+	margin: .8em;
+}
+
+.create-energiser{
+	padding: .5em 2em;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+}
+.search-input{
+	background-image: url('./logo/magnifying-glass.svg');
+	text-align:center;
+	border-style: none;
+}
+
+/* ========
+   Main
+=========== */
+/* Our-Faves */
+.faves-title,
+.Whats-New-title{
+	font-size: 1.5rem;
+	margin-bottom: 1em;
+	text-align: center;
+}
+
+.Whats-New-title{
+	font-size: 1.8rem;
+	margin-top: 2em;
+}
+.whats-new-name{
+	margin-top: 1em;
+}
+.energiser-info-sec{
+	height: 30%;
+	border-top: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+.our-faves{
+	/* margin:0 3em; */
+	display:flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+.energiser-box{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 20em;
+	height: 22em;
+	border:2px solid black;
+	border-radius: 15px;
+}
+.whats-new{
+	display: flex;
+	justify-content:center;
+	align-items: center;
+	gap:2em;
+}
+
+.whats-new-box{
+	/* margin: 3em; */
+	width: 39em;
+	height: 30em;
+	border: 2px solid black;
+	border-radius: 15px;
+}
+
+.new-energiser-and-name-box h2{
+	font-size: 1.5rem;
+	text-align: center;
+}
+
+/* ========
+   Footer
+=========== */
+.footer {
+	margin: 3em 0;
+	height: 11vh;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.social-media{
+	margin-top:1em;
+}
+.social-media-logo{
+	width: 2em;
+	margin: 0 .2em;
+}
+.sec2-footer{
+
+	padding:.2em 2em;
+	border-right:2px solid black;
+	border-left: 2px solid black;
 }
