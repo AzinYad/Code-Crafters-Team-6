@@ -9,58 +9,69 @@
 .message:hover {
 	background-color: yellow;
 } */
-*{  
+* {
 	margin: 0;
 	font-size: 1.1rem;
 }
-.main-page{
-	margin:0 3em;
+.main-page {
+	text-align: center;
+	margin: 0 3em;
 }
 /* ========
    NAvbar
 =========== */
+.logo {
+	width: 10em;
+}
+.logo-sec {
+	width: 16em;
+	margin: 0 auto 1em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 
 .nav-bar {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin:2em 0;
-	height:5.5vh;
+	height: 5.5vh;
 	border-top: 2px solid black;
 	border-bottom: 2px solid black;
 }
 
-.magnifier{
+.magnifier {
 	width: 1em;
-	margin-right:.5em;
+	margin-right: 0.5em;
 	margin-left: 3em;
 }
 
-.login-icon{
-	width:2em;
-	margin-right: .5em;
+.login-icon {
+	width: 2em;
+	margin-right: 0.5em;
 }
 
-.login{
+.login {
 	display: flex;
-	justify-content:flex-start;
+	justify-content: flex-start;
 	align-items: center;
 	margin-right: 3em;
 }
 
 .page {
 	color: black;
-	margin: .8em;
+	margin: 0.8em;
 }
 
-.create-energiser{
-	padding: .5em 2em;
+.create-energiser {
+	padding: 0.5em 2em;
 	border-left: 2px solid black;
 	border-right: 2px solid black;
 }
-.search-input{
-	background-image: url('./logo/magnifying-glass.svg');
-	text-align:center;
+.search-input {
+	background-image: url("./logo/magnifying-glass.svg");
+	text-align: center;
 	border-style: none;
 }
 
@@ -69,20 +80,16 @@
 =========== */
 /* Our-Faves */
 .faves-title,
-.Whats-New-title{
-	font-size: 1.5rem;
-	margin-bottom: 1em;
+.Whats-New-title {
+	font-size: 1.8rem;
+	margin: 2em 0;
 	text-align: center;
 }
 
-.Whats-New-title{
-	font-size: 1.8rem;
-	margin-top: 2em;
-}
-.whats-new-name{
+.whats-new-name {
 	margin-top: 1em;
 }
-.energiser-info-sec{
+.energiser-info-sec {
 	height: 30%;
 	border-top: 1px solid black;
 	display: flex;
@@ -90,29 +97,29 @@
 	justify-content: space-around;
 	align-items: center;
 }
-.our-faves{
+.our-faves {
 	/* margin:0 3em; */
-	display:flex;
+	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
 }
-.energiser-box{
+.energiser-box {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	width: 20em;
 	height: 22em;
-	border:2px solid black;
+	border: 2px solid black;
 	border-radius: 15px;
 }
-.whats-new{
+.whats-new {
 	display: flex;
-	justify-content:center;
+	justify-content: center;
 	align-items: center;
-	gap:2em;
+	gap: 2em;
 }
 
-.whats-new-box{
+.whats-new-box {
 	/* margin: 3em; */
 	width: 39em;
 	height: 30em;
@@ -120,7 +127,7 @@
 	border-radius: 15px;
 }
 
-.new-energiser-and-name-box h2{
+.new-energiser-and-name-box h2 {
 	font-size: 1.5rem;
 	text-align: center;
 }
@@ -130,7 +137,7 @@
 =========== */
 .footer {
 	margin: 3em 0;
-	height: 11vh;
+	height: 13vh;
 	border-top: 2px solid black;
 	border-bottom: 2px solid black;
 	display: flex;
@@ -138,16 +145,15 @@
 	align-items: center;
 }
 
-.social-media{
-	margin-top:1em;
+.social-media {
+	margin-top: 1em;
 }
-.social-media-logo{
+.social-media-logo {
 	width: 2em;
-	margin: 0 .2em;
+	margin: 0 0.2em;
 }
-.sec2-footer{
-
-	padding:.2em 2em;
-	border-right:2px solid black;
+.sec2-footer {
+	padding: 0.2em 2em;
+	border-right: 2px solid black;
 	border-left: 2px solid black;
 }
