@@ -1,0 +1,61 @@
+* {
+	margin: 0;
+	font-size: 1.1rem;
+}
+.main-page {
+	text-align: center;
+	margin: 0 3em;
+}
+
+.create-form {
+    padding: 3em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 60%;
+	height: 70vh;
+	margin: 3em auto;
+	background-color: rgb(220, 180, 180);
+	border-radius: 15px;
+}
+.flex-sec {
+	width: 65%;
+	margin-top: 2em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.description label{
+    align-self:flex-start;
+}
+textarea {
+	height: 15em;
+	padding: 1em;
+    border:1.5px solid black;
+}
+
+form input,
+textarea {
+	width: 19em;
+	border-radius: 5px;
+}
+input{
+    text-indent: .3em;
+    padding: .3em;
+}
+
+form button{
+    width: auto;
+    font-size: 1.3rem;
+    padding: .6em;
+    border-radius: 10px;
+    margin:3em;
+    background-color:#965050;
+    align-self: flex-start;
+}
+form label{
+    font-size: 1.3rem;
+    font-weight: bold;
+}

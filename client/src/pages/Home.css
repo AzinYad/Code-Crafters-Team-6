@@ -1,14 +1,4 @@
-/* .logo {
-	width: 100px;
-}
 
-.message {
-	color: rgb(0, 0, 255);
-}
-
-.message:hover {
-	background-color: yellow;
-} */
 * {
 	margin: 0;
 	font-size: 1.1rem;
@@ -21,6 +11,7 @@
    NAvbar
 =========== */
 .logo {
+	margin-top: 2em;
 	width: 10em;
 }
 .logo-sec {
@@ -43,8 +34,6 @@
 
 .magnifier {
 	width: 1em;
-	margin-right: 0.5em;
-	margin-left: 3em;
 }
 
 .login-icon {
@@ -56,7 +45,7 @@
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	margin-right: 3em;
+	margin-right: 5.5em;
 }
 
 .page {
@@ -70,11 +59,15 @@
 	border-right: 2px solid black;
 }
 .search-input {
-	background-image: url("./logo/magnifying-glass.svg");
-	text-align: center;
 	border-style: none;
 }
 
+.search-input:focus{
+	outline: 0;
+}
+.search-wrapper{
+	margin-left: 1em;
+}
 /* ========
    Main
 =========== */
@@ -86,8 +79,11 @@
 	text-align: center;
 }
 
-.whats-new-name {
-	margin-top: 1em;
+.whats-new-name ,
+.info-sec-name{
+	font-size: 1.4rem;
+	margin-top:.5em;
+	text-decoration: none;
 }
 .energiser-info-sec {
 	height: 30%;
@@ -98,7 +94,6 @@
 	align-items: center;
 }
 .our-faves {
-	/* margin:0 3em; */
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
@@ -112,6 +107,7 @@
 	border: 2px solid black;
 	border-radius: 15px;
 }
+
 .whats-new {
 	display: flex;
 	justify-content: center;
@@ -119,12 +115,14 @@
 	gap: 2em;
 }
 
+
 .whats-new-box {
 	/* margin: 3em; */
 	width: 39em;
 	height: 30em;
 	border: 2px solid black;
 	border-radius: 15px;
+	margin-bottom: 1em;
 }
 
 .new-energiser-and-name-box h2 {
