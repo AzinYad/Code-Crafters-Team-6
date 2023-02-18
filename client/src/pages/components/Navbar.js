@@ -22,9 +22,9 @@ function Navbar() {
                     <Link className="page create-energiser" to="/create-energiser">Create Energiser</Link>
                     <Link className="page" to="/energisers">Energisers</Link>
                 </div>
-                <div className="login">
+                <Link className="login" to="/login">
                     <img className="login-icon" src={Login} alt="login icon" />
-                    Log in</div>
+                    Log in</Link>
             </nav>
         </div>
     );

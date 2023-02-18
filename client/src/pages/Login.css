@@ -1,0 +1,131 @@
+
+* {
+	margin: 0;
+	font-size: 1.1rem;
+}
+.main-page {
+	text-align: center;
+	margin: 0 3em;
+}
+
+h1{
+ font-size: 1.6rem;
+ margin-top: 1em;
+}
+
+.login-form{
+	width: 60%;
+	height: 80vh;
+	margin: 3em auto;
+    background-color: rgb(223, 193, 193);
+	border-radius: 15px;
+	border:1px solid black;
+}
+
+h3{
+	margin-top:.5em;
+	font-weight:lighter;
+}
+
+span{
+	color: rgb(34, 34, 189);
+	font-weight: bold;
+}
+.columns-wrapper{
+	width: 90%;
+	display: flex;
+	margin: 1em auto;
+}
+
+.column1{
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items:flex-end;
+	gap: 1em;
+	width: 50%;
+	height: 50vh;
+}
+
+.or{
+	color:gray;
+	font-size: 1.1rem;
+	font-weight: bold;
+	margin-right: -.5em;
+	padding: 0;
+	align-self: flex-end;
+}
+.column2{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	height: 50vh;
+}
+.divider{
+	gap:1.7em;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 80%;
+	height: 30%;
+	border-right:2px solid gray;
+}
+.d1{
+	justify-content: flex-end;
+}
+.d2{
+	justify-content: flex-start;
+}
+
+.icon{
+	text-align: center;
+	padding:.4em;
+	width: 1.5em;
+	border-right: 2px solid black;
+}
+
+.signin-btn{
+	margin: 1em auto;
+	width: 70%;
+	display:flex;
+	justify-content:flex-start;
+	align-items: center;
+	padding: 0;
+	font-size: 1rem;
+	background-color: white;
+	cursor: pointer;
+}
+p{
+	padding: .5em;
+}
+
+.login-input{
+	width:75%;
+}
+
+
+.btn-wrapper{
+	margin: 0 auto;
+	width: 90%;
+	display: flex;
+	justify-content: flex-start;
+}
+.sign-in-btn{
+	cursor: pointer;
+	text-align:center;
+	width: 6em;
+	height: 2em;
+	margin-top: 0;
+	border-style:solid;
+}
+.check-frame{
+	margin-top: 1em;
+	width: 1em;
+}
+.check-text{
+	font-size: 1.2rem;
+	font-weight: lighter;
+}
