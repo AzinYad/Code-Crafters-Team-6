@@ -39,6 +39,24 @@ commonly use:
 - `lint`: runs ESLint and Prettier against all the code in the project.
 - `serve`: builds and starts the app in production mode locally.
 
+### Database
+
+You can run a local PostgreSQL database instance using Docker. Run a container like this:
+
+`docker run --name cyf-postgres -p 5432:5432 -e POSTGRES_DB=cyf -e POSTGRES_PASSWORD=cyf -d postgres`
+
+To run `psql` and access the database, you can use the same Docker image like this:
+
+`docker run -it --rm --network host -e PGPASSWORD=cyf postgres psql -h localhost -U postgres cyf`
+
+knex is being used to manage database migrations (to update the database schema). Here is a guide to the main commands:
+
+- `npx knex migrate:up` - will update the local environment to the most recent schema
+
+- `npx knex migrate:make 001_label` - to create a new database migration in `migrations/`. Make sure to increment the 001 to a new available index and use a descriptive label.
+
+For creating migration, please read knex https://knexjs.org/guide/schema-builder.html
+
 ### Debugging
 
 While running the dev mode using `npm run dev`, you can attach the Node debugger to the server process via port 9229.
