@@ -9,9 +9,4 @@ router.get("/", (_, res) => {
 	res.json({ message: "Hello, world!" });
 });
 
-router.get("/", (req, res) => {
-	logger.debug("Welcoming everyone");
-	res.json({ message: "What is this" });
-});
-
 export default router;
