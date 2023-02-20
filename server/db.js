@@ -12,16 +12,16 @@ const pool = new Pool({
 });
 
 export const connectDb = async () => {
-	let client;
-	try {
-		client = await pool.connect();
-	} catch (err) {
-		logger.error("%O", err);
-		process.exit(1);
-	}
-	logger.info("Postgres connected to %s", client.database);
-	client.release();
-};
+	// let client;
+// 	try {
+// 		client = await pool.connect();
+// 	} catch (err) {
+// 		logger.error("%O", err);
+// 		process.exit(1);
+// 	}
+// 	logger.info("Postgres connected to %s", client.database);
+// 	client.release();
+ };
 
 export const disconnectDb = () => pool.end();
 
