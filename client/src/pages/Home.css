@@ -1,11 +1,197 @@
+html{
+	width: 97%;
+	margin: 0 auto;
+}
+
+body{
+	width: 100%;
+}
+
+* {
+	font-size: 1.1rem;
+}
+
+.main-page {
+	width:95%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+/* ========
+   NAvbar
+=========== */
+
+/* logo of the App */
 .logo {
-	width: 100px;
+	margin-top: 1em;
+	width: 10em;
+}
+.logo-sec {
+	width: 11em;
+	margin: 0 auto;
 }
 
-.message {
-	color: blue;
+
+/* Nav bar Section */
+.nav-bar {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	height:auto;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
 }
 
-.message:hover {
-	background-color: yellow;
+.nav-sub-wrapper{
+	width: 30%;
+}
+
+
+.pages-wrapper{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.page {
+	color: black;
+	margin: 0.5em;
+}
+.create-energiser {
+	padding: 0.5em 2em;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+}
+
+/* Search Bar */
+
+.magnifier {
+	width: 1em;
+	height: 1em;
+	margin-right: 0.5em;
+}
+.search-input {
+	border-style: none;
+}
+
+.search-input:focus {
+	outline: 0;
+}
+
+.login-wrapper,
+.search-wrapper {
+	display: flex;
+	justify-content:center;
+	align-items: center;
+	text-decoration: none;
+	color: black;
+}
+
+.login-icon {
+	width: 1.5em;
+	height: 1.5em;
+	margin-right: 0.5em;
+	color: black;
+}
+
+/* =========================
+   Main Section of HomePage
+============================ */
+
+/* Titles */
+.faves-title,
+.Whats-New-title {
+	font-size: 1.8rem;
+	margin: 2em 0;
+	text-align: center;
+}
+
+.whats-new-name,
+.info-sec-name {
+	font-size: 1.4rem;
+	margin-top: 0.5em;
+	text-decoration: none;
+	color: #000;
+}
+
+.our-faves {
+	width: 95%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.fave-energiser-box {
+	width: 23%;
+	height: 22em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border: 2px solid black;
+	border-radius: 15px;
+}
+
+.fave-energiser-info {
+	height: 30%;
+	border-top: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.whats-new {
+	width: 95%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2em;
+}
+
+.most-recent-new-wrapper{
+	width: 50%;
+}
+
+.most-recent-new-energiser {
+	height: 30em;
+	margin-bottom: 1em;
+	border-radius: 15px;
+	border: 2px solid black;
+}
+
+
+/* ========
+   Footer
+=========== */
+.footer {
+	height: 13vh;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	margin-top: 3em;
+}
+
+.social-media {
+	margin-top: 1em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.social-media-logo {
+	width: 1.5em;
+	height: 1.5em;
+	margin: 0 0.2em;
+	border-radius: 50%;
+}
+.twitter {
+	width: 1.8em;
+	height: 1.8em;
+}
+.sec2-footer {
+	padding: 0.2em 2em;
+	border-right: 2px solid black;
+	border-left: 2px solid black;
 }
