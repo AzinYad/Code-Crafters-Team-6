@@ -1,5 +1,5 @@
 import React from "react";
-//import Logo from "../logo/logo.png";
+import Logo from "../Logo/logo.png";
 import { Link } from "react-router-dom";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
 
