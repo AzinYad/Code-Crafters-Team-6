@@ -3,6 +3,12 @@ import { Pool } from "pg";
 import config from "./utils/config";
 import logger from "./utils/logger";
 
+
+
+
+
+
+
 const pool = new Pool({
 	connectionString: config.dbUrl,
 	connectionTimeoutMillis: 5000,

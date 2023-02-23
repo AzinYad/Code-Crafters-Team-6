@@ -3,6 +3,7 @@ import Footer from "./components/Footer";
 import FavesCard from "./components/FavesCard";
 import WhatsNewCard from "./components/WhatsNewCard";
 import "./Home.css";
+import Description from "../commponet/description";
 
 export function Home() {
 	return (
@@ -19,6 +20,7 @@ export function Home() {
 			<div className="whats-new">
 				<WhatsNewCard />
 				<WhatsNewCard />
+				<Description />
 			</div>
 		<Footer />
 	</main>

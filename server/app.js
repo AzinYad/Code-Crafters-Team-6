@@ -13,19 +13,23 @@ import {
 const apiRoot = "/api";
 
 const app = express();
+const bodyParser = require("body-parser");
+
 
 app.use(express.json());
 app.use(configuredHelmet());
 app.use(configuredMorgan());
+app.use(bodyParser.json());
 
 if (config.production) {
 	app.enable("trust proxy");
 	app.use(httpsOnly());
 }
-
+// app.use(bodyParser.json());
 app.use(apiRoot, apiRouter);
 app.use("/health", (_, res) => res.sendStatus(200));
 app.use(clientRouter(apiRoot));
+
 
 app.use(logErrors());
 
