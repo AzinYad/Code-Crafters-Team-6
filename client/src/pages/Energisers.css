@@ -21,3 +21,13 @@
     align-items: center;
     justify-content: center;
 }
+
+.energiser-box {
+    width: auto;
+    height: 22em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid black;
+    border-radius: 15px;
+}
