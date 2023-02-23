@@ -22,4 +22,20 @@ router.get("/energizers", async (_, res) => {
 	}
 });
 
+router.post("/energizers", (req, res) => {
+	let name = req.query.name;
+	let description = req.query.description;
+
+	const insertQuery = "INSERT INTO energizers(name, description) VALUES($1, $2)";
+	db.query(insertQuery, [name, description])
+		.then(() => {
+			res
+				.status(201)
+				.json({ message: "The energizer was succesfully uploaded" });
+		})
+		.catch((error) => {
+			res.status(500).send(error);
+		});
+});
+
 export default router;
