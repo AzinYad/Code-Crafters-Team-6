@@ -1,0 +1,74 @@
+* {
+	margin: 0;
+	font-size: 1.1rem;
+}
+.main-page {
+	text-align: center;
+	margin: 0 3em;
+}
+
+.energiser-name {
+	margin-top: 2em;
+	font-size: 1.9rem;
+}
+
+.columns-sec {
+	width: 90%;
+	display: flex;
+	justify-content: center;
+	gap: 1em;
+	height: 70vh;
+	margin: 1em auto 0;
+}
+
+.energiser-preview ,
+.instruction{
+	margin: 1em auto 0;
+	width: 80%;
+	height: 60%;
+	border: 2px solid black;
+	border-radius: 15px;
+}
+
+.episode-sec {
+	width: 35%;
+	height: 50vh;
+	align-self: flex-start;
+}
+
+.instruction-sec {
+	width: 30%;
+	height: 57vh;
+	align-self: center;
+}
+
+.star-icon,
+.heart-icon,
+.share-icon{
+	width: 1em;
+}
+
+.rating-sec,
+.favorite-sec,
+.share-sec{
+	margin-top: 1em;
+	width:40%;
+	display:flex;
+	justify-content:space-between;
+	align-items: center;
+	margin-left: 3em;
+	gap: 1em;
+}
+.stars-sec{
+	display: flex;
+	align-items: center;
+}
+
+.instruction-title{
+	font-size: 1.4rem;
+}
+.instruction{
+	height: 75%;
+	background-color: rgb(195, 199, 202);
+	border:1px solid lightgray;
+}
