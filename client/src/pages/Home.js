@@ -31,8 +31,6 @@ export function Home() {
 					return (
 						<div key={item.id}>
 							<FavesCard item={item} />
-							{/* <h3>{item.name}</h3>
-							<p>{item.description}</p> */}
 						</div>
 					);
 				})}
