@@ -64,11 +64,21 @@
 	align-items: center;
 }
 
+
 .instruction-title{
 	font-size: 1.4rem;
 }
 .instruction{
-	height: 75%;
-	background-color: rgb(195, 199, 202);
-	border:1px solid lightgray;
+	padding:2em 0.2em;
+	height:auto;
+	border:none;
+}
+
+.share-btn{
+	border: none;
+	cursor: pointer;
+	background-color: transparent;
+}
+.share-btn:hover{
+	color:rgb(55, 2, 2);
 }

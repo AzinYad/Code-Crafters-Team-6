@@ -1,12 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import EnergiserDetail from "./pages/EnergiserDetail.js";
+import Energisers from "./pages/Energisers.js";
+import EnergiserDetail from "./pages/EnergiserDetail";
 
 const App = () => (
 	<Routes>
-		<Route path="/" element={<Home />} />
-		<Route path="/energiser-detail" element={<EnergiserDetail />} />
+		<Route path="/home" element={<Home />} />
+		<Route path="/energiser-detail/:id" element={<EnergiserDetail />} />
+		<Route path="/energisers" element={<Energisers />} />
 	</Routes>
 );
-
 export default App;

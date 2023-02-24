@@ -1,0 +1,40 @@
+* {
+	margin: 0;
+	font-size: 1.1rem;
+}
+.main-page {
+	text-align: center;
+	margin: 0 3em;
+}
+.card-sec {
+	margin: 2em;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-template-rows: auto;
+	gap: 2em;
+}
+
+
+.energiser-box {
+	margin-top: 3em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 70%;
+	height: 30vh;
+	padding: 1em;
+	border-radius: 15px;
+    cursor: pointer;
+	border: 2px solid black;
+}
+
+.energiser-info-sec {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 70%;
+	height: 30%;
+	justify-self: flex-end;
+	border-top: 1px solid black;
+}
