@@ -3,7 +3,6 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer.js";
 import EnergisersCard from "./components/EnergisersCard.js";
 import "./Energisers.css";
-// import NumberOfPages from "./components/NumberOfPages";
 import { useState, useEffect } from "react";
 
 function Energisers() {
@@ -35,7 +34,6 @@ function Energisers() {
 					);
 				})}
 			</section>
-			{/* <NumberOfPages /> */}
 			<Footer />
 		</main>
 	);

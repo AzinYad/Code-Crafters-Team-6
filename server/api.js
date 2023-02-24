@@ -13,7 +13,7 @@ router.get("/", (_, res) => {
 
 router.get("/energizers", async (_, res) => {
 	logger.debug("Welcoming everyone...");
-	const query = "select * from energizers";
+	const query = "SELECT * FROM energizers";
 	try {
 		const result = await db.query(query);
 		res.json(result.rows);
@@ -21,6 +21,8 @@ router.get("/energizers", async (_, res) => {
 		res.status(500).send(error);
 	}
 });
+
+//I have only created this POST endpoint to update my database, its very incomplete as it lacks any validation, but it works and can be used as a base
 
 router.post("/energizers", (req, res) => {
 	let name = req.query.name;
