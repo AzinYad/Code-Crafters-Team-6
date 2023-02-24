@@ -7,7 +7,7 @@ function Navbar() {
     return (
         <div>
             <section className="logo-sec">
-                <img className="logo" src={Logo} alt="logo" />
+                <img className="logo" src="" alt="logo" />
             </section>
             <nav className="nav-bar">
                 <div className="search-wrapper nav-sub-wrapper">
