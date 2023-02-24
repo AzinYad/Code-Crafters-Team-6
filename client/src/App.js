@@ -6,7 +6,7 @@ const App = () => (
 	<Routes>
 		<Route path="/" element={<Home />} />
 		<Route path="/home" element={<Home />} />
-		<Route path="/energisers" element={<Energisers />} />
+		<Route path="/energizers" element={<Energisers />} />
 	</Routes>
 );
 export default App;

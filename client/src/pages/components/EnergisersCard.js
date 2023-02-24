@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 function EnergisersCard({ item }) {
 	return (
-		<div className="energiser-box">
-			<section className="energiser">{item.description}</section>
-			<section className="energiser-info-sec">
-				<Link to="/energiser-detail" className="info-sec-name">
+		<div className="energizer-box">
+			<section className="energizer">{item.description}</section>
+			<section className="energizer-info-sec">
+				<Link to="/energizer-detail" className="info-sec-name">
 					{item.name}
 				</Link>
 				<p>Rate</p>

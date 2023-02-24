@@ -7,7 +7,7 @@ function Navbar() {
     return (
         <div>
             <section className="logo-sec">
-                <img className="logo" src="" alt="logo" />
+                <img className="logo" src={Logo} alt="logo" />
             </section>
             <nav className="nav-bar">
                 <div className="search-wrapper nav-sub-wrapper">
@@ -16,8 +16,8 @@ function Navbar() {
                 </div>
                 <div className="pages-wrapper nav-sub-wrapper">
                     <Link className="page" to="/home">Home</Link>
-                    <Link className="page create-energiser" to="/create-energiser">Create Energiser</Link>
-                    <Link className="page" to="/energisers">Energisers</Link>
+                    <Link className="page create-energizer" to="/create-energizer">Create Energizer</Link>
+                    <Link className="page" to="/energizers">Energizers</Link>
                 </div>
                 <Link className="login-wrapper nav-sub-wrapper" to="/login">
                     <FaUserCircle className="login-icon" />

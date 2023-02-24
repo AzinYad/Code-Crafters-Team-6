@@ -15,7 +15,7 @@ function EnergiserDetail() {
     const [item, setItem] = useState(null);
 
     useEffect(() => {
-        fetch(`/api/energiser-detail/${id}`)
+        fetch(`/api/energizer-detail/${id}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error(res.statusText);
@@ -54,10 +54,10 @@ function EnergiserDetail() {
     return (
         <main className="main-page">
             <Navbar />
-            <h1 className="energiser-name">{item.name}</h1>
+            <h1 className="energizer-name">{item.name}</h1>
             <section className="columns-sec">
                 <div className="episode-sec">
-                    <div className="energiser-preview"></div>
+                    <div className="energizer-preview"></div>
                     <div className="rating-sec">
                         <div className="stars-sec">
                             <BsStarFill />
