@@ -5,21 +5,22 @@ exports.up = function (knex) {
         { name: "5-hour Energy", description: "Energy Shot uiguif biuhoiuj yitg uitgwef ov fiu fr iuy" },
         { name: "Rockstar", description: "Helloooo uef  oihoihwgf piuiuf  'oih'oh'ohf o';ouh;ef Energy Drink" },
         { name: "Bang", description: "Hi gyuigwef honey ;uhf 'oihoihw ef iuh;ugfw Energy Drink" },
-    ])
-        .then(function () {
+      ],["id"])
+        .then(function (rows) {
             return knex("energizer_ratings").insert([
-                { energizer_id: 1, rating: 4 },
-                { energizer_id: 2, rating: 3 },
-                { energizer_id: 3, rating: 5 },
-                { energizer_id: 4, rating: 2 },
-                { energizer_id: 5, rating: 4 },
+                { energizer_id: rows[0].id , rating: 4 },
+                { energizer_id: rows[1].id, rating: 3 },
+                { energizer_id: rows[2].id, rating: 5 },
+                { energizer_id: rows[3].id, rating: 2 },
+                { energizer_id: rows[4].id, rating: 4 },
+                { energizer_id: rows[0].id, rating: 1 },
             ]);
         });
 };
 
-exports.down = function (knex) {
-    return knex("energizers").whereIn("name", ["Red Bull", "Monster", "5-hour Energy", "Rockstar", "Bang"]).del()
-        .then(function () {
-            return knex("energizer_ratings").del();
-        });
+exports.down = function (knex){
+    return knex("energizer_ratings").delete()
+    .then(()=>{
+        return knex("energizers").delete();
+    });
 };

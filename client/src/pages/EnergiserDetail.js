@@ -12,10 +12,11 @@ import "./EnergiserDetail.css";
 
 function EnergiserDetail() {
     const { id } = useParams();
+    console.log(id);
     const [item, setItem] = useState(null);
 
     useEffect(() => {
-        fetch(`/api/energizer-detail/${id}`)
+        fetch(`/api/energizers/${id}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error(res.statusText);
