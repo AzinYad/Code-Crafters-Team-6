@@ -1,33 +1,41 @@
 * {
-    margin: 0;
-    font-size: 1.1rem;
+	margin: 0;
+	font-size: 1.1rem;
 }
 
 .main-page {
-    text-align: center;
-    margin: 0 3em;
+	text-align: center;
+	margin: 0 3em;
 }
 
 .card-sec {
-    margin: 2em;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-template-rows: auto;
-    gap: 2em;
+	margin: 2em;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-template-rows: auto;
+	gap: 2em;
 }
 
-.numbers-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.energizer-box {
+	margin-top: 3em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 70%;
+	height: 30vh;
+	padding: 1em;
+	border-radius: 15px;
+	cursor: pointer;
+	border: 2px solid black;
 }
 
-.energiser-box {
-    width: auto;
-    height: 35em;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border: 2px solid black;
-    border-radius: 15px;
+.energizer-info-sec {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 70%;
+	height: 30%;
+	justify-self: flex-end;
+	border-top: 1px solid black;
 }
