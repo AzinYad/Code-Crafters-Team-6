@@ -61,7 +61,7 @@ router.post("/energizers", (req, res) => {
 		.then(() => {
 			res
 				.status(201)
-				.json({ message: "The energizer was succesfully uploaded" });
+				.json({ message: "The energizer was successfully uploaded" });
 		})
 		.catch((error) => {
 			res.status(500).send(error);

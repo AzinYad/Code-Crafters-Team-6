@@ -5,6 +5,7 @@ import { BsStar } from "react-icons/bs";
 import { BsStarHalf } from "react-icons/bs";
 import { BsStarFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { FaShare } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -48,6 +49,21 @@ function EnergiserDetail() {
         );
     };
 
+    const FavouriteButton = () => {
+        const handleClick = (e) => {
+            e.preventDefault();
+
+        };
+        return (
+					<div className="favorite-sec">
+						<button className="fav-btn" onClick={handleClick}>
+							<FaRegHeart />
+						</button>
+						<p>Add To Favourite</p>
+					</div>
+				);
+    };
+
     if (!item) {
         return <div>Loading...</div>;
     }
@@ -69,10 +85,7 @@ function EnergiserDetail() {
                         </div>
                         <p className="rate">{item.rating}</p>
                     </div>
-                    <div className="favorite-sec">
-                        <FaRegHeart />
-                        <p>Add To Favourite </p>
-                    </div>
+                    <FavouriteButton />
                     <ShareButton />
                 </div>
                 <div className="instruction-sec">
