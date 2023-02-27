@@ -24,7 +24,7 @@ router.get("/energizers", async (_, res) => {
 
 //I have only created this POST endpoint to update my database, its very incomplete as it lacks any validation, but it works and can be used as a base
 
-router.post("/energizers", (req, res) => {
+router.post("api/energizers", (req, res) => {
 	let name = req.query.name;
 	let description = req.query.description;
 

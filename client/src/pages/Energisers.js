@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 
 function Energisers() {
 	const [allEnergizers, setAllEnergizers] = useState([]);
+
 	useEffect(() => {
 		fetch("/api/energizers")
 			.then((res) => {
@@ -25,7 +26,8 @@ function Energisers() {
 	return (
 		<main className="main-page">
 			<Navbar />
-			<section className="card-sec">
+
+	<section className="card-sec">
 				{allEnergizers.map((item) => {
 					return (
 						<div key={item.id}>

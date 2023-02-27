@@ -3,6 +3,8 @@ import Logo from "../Logo/logo.png";
 import { Link } from "react-router-dom";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
 
+
+
 function Navbar() {
     return (
         <div>
