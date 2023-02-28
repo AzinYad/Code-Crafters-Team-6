@@ -52,20 +52,29 @@ router.get("/energizers/:id", async (req, res) => {
 
 //I have only created this POST endpoint to update my database, its very incomplete as it lacks any validation, but it works and can be used as a base
 
-router.post("/energizers", (req, res) => {
-	let name = req.query.name;
-	let description = req.query.description;
 
-	const insertQuery = "INSERT INTO energizers(name, description) VALUES($1, $2)";
-	db.query(insertQuery, [name, description])
-		.then(() => {
-			res
-				.status(201)
-				.json({ message: "The energizer was succesfully uploaded" });
-		})
-		.catch((error) => {
-			res.status(500).send(error);
-		});
+router.post("/energizers", async (req, res) => {
+	const { name, description } = req.body;
+
+	if (!name || !description) {
+		return res.status(400).json({ error: "Missing required fields" });
+	}
+
+	try {
+		await db.query(
+			"INSERT INTO energizers( name, description) VALUES ($1, $2)",
+			[ name, description]
+		);
+		const result = await db.query("SELECT * FROM energizers");
+		res.status(201).send(result.rows);
+	} catch (error) {
+		logger.error(error);
+		res.status(500).json({ error: "Failed to create energiser" });
+	}
 });
+
+
+
+
 
 export default router;
