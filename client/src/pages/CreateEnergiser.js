@@ -4,21 +4,17 @@ import Footer from "./components/Footer";
 import "./CreateEnergiser.css";
 
 
- const CreateEnergiser = () =>{
-const [addingEnergiser, setAddingEnergiser] = useState(false);
-//const [energiserData, setEneriserData] = useState(null);
-
-const [energisername, setEnergiserName] = useState("");
-const [enrgiserdescription, setEnergiserDescription] = useState("");
-
+const CreateEnergiser = () =>{
+// const [addingEnergiser, setAddingEnergiser] = useState(false);
+const [energiserName, setEnergiserName] = useState("");
+const [enrgiserDescription, setEnergiserDescription] = useState("");
 
 const handleEnergiserAdder = (e) => {
     e.preventDefault();
 
-
-        let energizer = {
-      name: energisername,
-      description: enrgiserdescription,
+    let energizer = {
+      name: energiserName,
+      description: enrgiserDescription,
     };
 
      fetch("/api/energizers",{
@@ -31,9 +27,8 @@ const handleEnergiserAdder = (e) => {
             console.log(data);
           }).
           catch((error)=> {
-        console.log(error.message);
+        console.warn(error);
     });
-    //setEneriserData([...energiserData, energiser ]);
     setEnergiserName("");
     setEnergiserDescription("");
 };
@@ -42,12 +37,13 @@ const handleEnergiserAdder = (e) => {
 return (
   <main className="main-page">
     <Navbar />
-      <form className="create-form">
+      <form className="create-form" onSubmit={handleEnergiserAdder}>
           <section className="flex-sec fullname">
               <label htmlFor="fullname">Creator’s Name :</label>
               <input
               onChange={(e) => setEnergiserName(e.target.value)}
                   type="text"
+                  value={energiserName}
                   placeholder="Full Name"
                   name="energisername"
               />
@@ -56,6 +52,7 @@ return (
               <label htmlFor="url-input">Insert a URL:</label>
               <input
                   type="text"
+                  // value={}
                   placeholder="Insert a URL"
                   name="urlInput"
               />
@@ -64,18 +61,15 @@ return (
               <label htmlFor="description">Energiser Description:</label>
               <textarea
               onChange={(e) => setEnergiserDescription(e.target.value)}
+                  type="text"
+                  value={enrgiserDescription}
                   placeholder="Add some description about this energiser..."
                   name="enrgiserdescription"
               />
           </section>
-          <button onClick={handleEnergiserAdder}
+          <button
             type="submit">
             Submit
-          </button>
-          <button
-            onClick={() => setAddingEnergiser(!addingEnergiser)}
-            type="cancel">
-            Cancel
           </button>
       </form>
       <Footer />
