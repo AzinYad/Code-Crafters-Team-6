@@ -50,7 +50,7 @@ router.get("/energizers/:id", async (req, res) => {
 	}
 });
 
-//I have only created this POST endpoint to update my database, its very incomplete as it lacks any validation, but it works and can be used as a base
+
 
 
 router.post("/energizers", async (req, res) => {
@@ -59,14 +59,19 @@ router.post("/energizers", async (req, res) => {
 	if (!name || !description) {
 		return res.status(400).json({ error: "Missing required fields" });
 	}
+    if(name.length > 50){
+        return res.status(400).json({ error: "Name has to be less or equal to 50 characters" });
+    }
 
 	try {
 		await db.query(
 			"INSERT INTO energizers( name, description) VALUES ($1, $2)",
 			[ name, description]
 		);
-		const result = await db.query("SELECT * FROM energizers");
-		res.status(201).send(result.rows);
+		const result = await db.query(`SELECT energizers.id, energizers.name, energizers.description, ROUND(AVG(energizer_ratings.rating), 1)  AS rating
+        FROM  energizers 
+        LEFT JOIN energizer_ratings ON energizers.id = energizer_ratings.energizer_id GROUP BY energizers.id`);
+        res.json(result.rows);
 	} catch (error) {
 		logger.error(error);
 		res.status(500).json({ error: "Failed to create energiser" });
