@@ -2,13 +2,9 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = async function (knex) {
-    if (await knex.schema.hasTable("energizers")) {
-        return;
-    }
-
+exports.up = function (knex) {
     return knex("energizers").insert([
-        { name: "Red Bull", description: " Morning Energypiugpyifgyuvuyhvjhvjhbc EYGC liugqd  uigigas iugigf",submission_date: new Date("2022-01-01") },
+        { name: "Red Bull", description: " Morning Energypiugpyifgyuvuyhvjhvjhbc EYGC liugqd  uigigas iugigf", submission_date: new Date("2022-01-01") },
         { name: "Monster", description: "Rise and shine jhgaef POIUOIUJR ;UH iugf oih g ihi jh", submission_date: new Date("2022-11-05") },
         { name: "5-hour Energy", description: "Energy Shot uiguif biuhoiuj yitg uitgwef ov fiu fr iuy", submission_date: new Date("2022-02-02") },
         { name: "Rockstar", description: "Helloooo uef  oihoihwgf piuiuf  'oih'oh'ohf o';ouh;ef Energy Drink", submission_date: new Date("2022-05-01") },
@@ -41,7 +37,7 @@ exports.up = async function (knex) {
                 { energizer_id: rows[12].id, rating: 4 },
                 { energizer_id: rows[13].id, rating: 3 },
                 { energizer_id: rows[14].id, rating: 5 },
-                { energizer_id: rows[15].id, rating: 2 },
+                { energizer_id: rows[1].id, rating: 2 },
                 { energizer_id: rows[4].id, rating: 4 },
                 { energizer_id: rows[5].id, rating: 1 },
                 { energizer_id: rows[0].id, rating: 4 },
@@ -55,7 +51,7 @@ exports.up = async function (knex) {
                 { energizer_id: rows[2].id, rating: 5 },
                 { energizer_id: rows[3].id, rating: 2 },
                 { energizer_id: rows[14].id, rating: 4 },
-                { energizer_id: rows[15].id, rating: 1 },
+                { energizer_id: rows[5].id, rating: 1 },
                 { energizer_id: rows[0].id, rating: 4 },
                 { energizer_id: rows[1].id, rating: 4 },
                 { energizer_id: rows[2].id, rating: 5 },
