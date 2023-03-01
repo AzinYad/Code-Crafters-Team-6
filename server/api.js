@@ -11,12 +11,14 @@ router.get("/", (_, res) => {
 	res.json({ message: "Hello, world!" });
 });
 
-// I have edited this code so I could have access to ratings
 router.get("/energizers", async (_, res) => {
 	const query = `
-SELECT energizers.id, energizers.name,energizers.submission_date, energizers.description, ROUND(AVG(energizer_ratings.rating), 1)  AS rating
-	FROM  energizers 
-	LEFT JOIN energizer_ratings ON energizers.id = energizer_ratings.energizer_id GROUP BY energizers.id`;
+        SELECT energizers.id, energizers.name, energizers.submission_date, energizers.description, ROUND(AVG(energizer_ratings.rating), 1) AS rating
+        FROM energizers
+        LEFT JOIN energizer_ratings ON energizers.id = energizer_ratings.energizer_id
+        GROUP BY energizers.id
+        ORDER BY energizers.submission_date DESC
+    `;
 	try {
 		const result = await db.query(query);
 		res.json(result.rows);
