@@ -50,31 +50,31 @@ function EnergiserDetail() {
 	};
 
 	const FavouriteButton = () => {
-		const [favourite, setFavourite] = useState([]);
+		//console.log(favourite);
+		const [favourite, setFavourite] = useState(() => {
+			const localData = localStorage.getItem("favourite");
+			return localData ? JSON.parse(localData) : [];
+		});
 		console.log(favourite);
-		const checkIfIsFav = favourite.find(({ id }) => id === id);
-
-		const handleClick = (e) => {
-			e.preventDefault();
-			e.stopPropagation();
+		useEffect(() => {
+			localStorage.setItem("favourite", JSON.stringify(favourite));
+		}, [favourite]);
+		const checkIfIsFav = favourite.find((i) => i.id === id);
+		const handleClick = () => {
+			console.log(id);
 			console.log(checkIfIsFav);
-			if (!checkIfIsFav) {
-				setFavourite([...favourite, item]);
+			if (checkIfIsFav) {
+				setFavourite(favourite.filter((i) => i.id !== id));
 			} else {
-				setFavourite(favourite.filter(({ id }) => id !== id));
+				setFavourite([...favourite, item]);
 			}
 
 			console.log(favourite);
 		};
+
 		return (
 			<div className="favorite-sec">
-				<button
-					className="fav-btn"
-					onClick={(e) => {
-						e.persist();
-						handleClick(e);
-					}}
-				>
+				<button className="fav-btn" onClick={handleClick}>
 					<FaRegHeart />
 				</button>
 				<p>Add To Favourite</p>

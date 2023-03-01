@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function FavesCard() {
+function FavesCard({ item }) {
 	return (
 		<div className="fave-energizer-box">
-			<section className="fave-energizer"></section>
+			<section className="fave-energizer">{item.description}</section>
 			<section className="fave-energizer-info">
-				<Link to="/energizer-detail" className="info-sec-name">
-					Name
+				<Link to={`/energizers/${item.id}`} className="info-sec-name">
+					{item.name}
 				</Link>
-				<p>More Details</p>
+				<p>rating</p>
 			</section>
 		</div>
 	);
