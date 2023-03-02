@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 
 function FavesCard({ item }) {
 	return (
-		<div className="fave-energizer-box">
+		<Link to={`/energizers/${item.id}`} className="fave-energizer-box" style={{ textDecoration: "none", color: "inherit" }}>
 			<section className="fave-energizer">{item.description}</section>
 			<section className="fave-energizer-info">
-				<Link to="/energizer/${item.id}" className="info-sec-name">
+				<h2 className="info-sec-name">
 					{item.Name}
-				</Link>
+				</h2>
 				<p>More Details</p>
 			</section>
-		</div>
+		</Link>
 	);
 }
 export default FavesCard;
