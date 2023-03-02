@@ -81,7 +81,6 @@ function EnergiserDetail() {
 			<div className="favorite-sec">
 				<button className="fav-btn" onClick={(e) => handleClick(e)}>
 					<FaRegHeart />
-					{/* <FaHeart /> */}
 				</button>
 				<p>Add To Favourite</p>
 			</div>
