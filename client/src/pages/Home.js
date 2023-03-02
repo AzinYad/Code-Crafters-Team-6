@@ -7,6 +7,7 @@ import "./Home.css";
 
 export function Home() {
 	const [mostRecentEnergizers, setMostRecentEnergizers] = useState([]);
+	let favouriteEnergizers = JSON.parse(localStorage.getItem("favouriteEnergizers")) || [];
 
 	useEffect(() => {
 		// Make API call to fetch list of energizers
@@ -29,10 +30,13 @@ export function Home() {
 			<Navbar />
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">
-				<FavesCard />
-				<FavesCard />
-				<FavesCard />
-				<FavesCard />
+				{favouriteEnergizers.map((item) => {
+					return (
+						<div key={item.id}>
+							<FavesCard item={item} />
+						</div>
+					);
+				})}
 			</div>
 			<h1 className="Whats-New-title">What's New</h1>
 			<div className="whats-new">

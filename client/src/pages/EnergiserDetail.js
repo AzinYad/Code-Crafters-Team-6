@@ -11,6 +11,7 @@ function EnergiserDetail() {
     const { id } = useParams();
     const [item, setItem] = useState(null);
     const [isFavourite, setIsFavourite] = useState(false);
+    const [favouriteEnergizersArr, setFavouriteEnergizersArr] = useState([]);
 
     useEffect(() => {
         fetch(`/api/energizers/${id}`)
@@ -30,14 +31,31 @@ function EnergiserDetail() {
         const favouriteStatus = localStorage.getItem(id);
         setIsFavourite(favouriteStatus ? JSON.parse(favouriteStatus) : false);
         console.log("favourite status:", favouriteStatus);
-    }, [id]);
+
+        const favourites = JSON.parse(localStorage.getItem("favouriteEnergizers")) || [];
+        setFavouriteEnergizersArr(favourites);
+        console.log("favouriteEnergizers:", favourites);
+    }, [id, setFavouriteEnergizersArr]);
 
     const toggleFavourite = () => {
         const newFavouriteStatus = !isFavourite;
         setIsFavourite(newFavouriteStatus);
         localStorage.setItem(id, newFavouriteStatus.toString());
         console.log("new favourite status:", newFavouriteStatus);
+
+        setFavouriteEnergizersArr((prevFavouriteEnergizersArr) => {
+            const updatedArr = newFavouriteStatus
+                ? [...prevFavouriteEnergizersArr, item]
+                : prevFavouriteEnergizersArr.filter((e) => e.id !== item.id);
+
+            localStorage.setItem("favouriteEnergizers", JSON.stringify(updatedArr));
+            console.log(updatedArr);
+
+            return updatedArr;
+        });
     };
+
+
 
     const ShareButton = () => {
         const handleShare = () => {
