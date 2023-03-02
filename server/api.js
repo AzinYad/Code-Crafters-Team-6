@@ -11,14 +11,12 @@ router.get("/", (_, res) => {
 	res.json({ message: "Hello, world!" });
 });
 
+// I have edited this code so I could have access to ratings
 router.get("/energizers", async (_, res) => {
 	const query = `
-        SELECT energizers.id, energizers.name, energizers.submission_date, energizers.description, ROUND(AVG(energizer_ratings.rating), 1) AS rating
-        FROM energizers
-        LEFT JOIN energizer_ratings ON energizers.id = energizer_ratings.energizer_id
-        GROUP BY energizers.id
-        ORDER BY energizers.submission_date DESC
-    `;
+SELECT energizers.id, energizers.name, energizers.description, ROUND(AVG(energizer_ratings.rating), 1)  AS rating
+	FROM  energizers 
+	LEFT JOIN energizer_ratings ON energizers.id = energizer_ratings.energizer_id GROUP BY energizers.id`;
 	try {
 		const result = await db.query(query);
 		res.json(result.rows);
@@ -40,17 +38,10 @@ router.get("/energizers/:id", async (req, res) => {
 				"id": row.id,
 				"name": row.name,
 				"description": row.description,
-				"submission_date":row["submission_date"],
 				"ratings": [],
-				"average_rate":0,
 			};
 			const result2 = await db.query("SELECT * FROM energizer_ratings WHERE energizer_id=$1", [row.id]);
 			energizer.ratings = result2.rows.map((row) => parseInt(row.rating));
-			energizer.average_rate = (() => {
-				const sum = energizer.ratings.reduce((acc, curr) => acc + curr, 0);
-				const avg = (sum / energizer.ratings.length).toFixed(1);
-				return avg;
-			})();
 			res.json(energizer);
 		}
 	} catch (error) {
