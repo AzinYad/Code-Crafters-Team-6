@@ -7,7 +7,8 @@ import "./Home.css";
 
 export function Home() {
 	const [mostRecentEnergizers, setMostRecentEnergizers] = useState([]);
-	let favouriteEnergizers = JSON.parse(localStorage.getItem("favouriteEnergizers")) || [];
+	let favouriteEnergizers = localStorage.getItem("favouriteEnergizers");
+	favouriteEnergizers = JSON.parse(favourites_array);
 
 	useEffect(() => {
 		// Make API call to fetch list of energizers
