@@ -92,34 +92,37 @@ function EnergiserDetail() {
 		return <div>Loading...</div>;
 	}
 
-	return (
-		<main className="main-page">
-			<Navbar />
-			<h1 className="energizer-name">{item.name}</h1>
-			<section className="columns-sec">
-				<div className="episode-sec">
-					<div className="energizer-preview"></div>
-					<div className="rating-sec">
-						<div className="stars-sec">
-							<BsStarFill />
-							<BsStarFill />
-							<BsStarFill />
-							<BsStarHalf />
-							<BsStar />
-						</div>
-						<p className="rate">{item.rating}</p>
-					</div>
-					<FavouriteButton />
-					<ShareButton />
-				</div>
-				<div className="instruction-sec">
-					<h5 className="instruction-title">How to play</h5>
-					<div className="instruction">{item.description}</div>
-				</div>
-			</section>
-			<Footer />
-		</main>
-	);
+    return (
+        <main className="main-page">
+            <Navbar />
+            <h1 className="energizer-name">{item.name}</h1>
+            <section className="columns-sec">
+                <div className="episode-sec">
+                    <div className="energizer-preview"></div>
+                    <div className="rating-sec">
+                        <div className="stars-sec">
+                            <BsStarFill />
+                            <BsStarFill />
+                            <BsStarFill />
+                            <BsStarHalf />
+                            <BsStar />
+                        </div>
+                        <p className="rate">{item.rating}</p>
+                    </div>
+                    <div className="favorite-sec">
+                        <FaRegHeart />
+                        <p>Add To Favourite </p>
+                    </div>
+                    <ShareButton />
+                </div>
+                <div className="instruction-sec">
+                    <h5 className="instruction-title">How to play</h5>
+                    <div className="instruction">{item.description}</div>
+                </div>
+            </section>
+            <Footer />
+        </main>
+    );
 }
 
 export default EnergiserDetail;

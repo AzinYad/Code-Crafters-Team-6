@@ -2,10 +2,24 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FavesCard from "./components/FavesCard";
 import WhatsNewCard from "./components/WhatsNewCard";
-
+import React, { useState, useEffect } from "react";
 import "./Home.css";
 
 export function Home() {
+	const [mostRecentEnergizers, setMostRecentEnergizers] = useState([]);
+
+	useEffect(() => {
+		fetch("/api/energizers?sort_by=desc")
+			.then((response) => response.json())
+			.then((energizers) => {
+				const mostRecentEnergizers = energizers.slice(0, 2);
+				setMostRecentEnergizers(mostRecentEnergizers);
+			})
+			.catch((error) => {
+				console.error("Error fetching energizers", error);
+			});
+	}, []);
+
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
@@ -30,8 +44,14 @@ export function Home() {
 			</div>
 			<h1 className="Whats-New-title">What's New</h1>
 			<div className="whats-new">
-				<WhatsNewCard />
-				<WhatsNewCard />
+				{mostRecentEnergizers.map((energizer) => (
+					<WhatsNewCard
+						key={energizer.id}
+						id={energizer.id}
+						name={energizer.name}
+						description={energizer.description}
+					/>
+				))}
 			</div>
 			<Footer />
 		</main>
