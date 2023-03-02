@@ -11,13 +11,9 @@ export function Home() {
 	favouriteEnergizers = JSON.parse(favourites_array);
 
 	useEffect(() => {
-		// Make API call to fetch list of energizers
-		fetch("/api/energizers")
+		fetch("/api/energizers?sort_by=desc")
 			.then((response) => response.json())
 			.then((energizers) => {
-				// Sort energizers by date, most recent first
-				energizers.sort((a, b) => new Date(b.submission_date) - new Date(a.submission_date));
-				// Get the two most recent energizers
 				const mostRecentEnergizers = energizers.slice(0, 2);
 				setMostRecentEnergizers(mostRecentEnergizers);
 			})

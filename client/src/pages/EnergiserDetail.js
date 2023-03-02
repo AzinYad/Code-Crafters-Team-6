@@ -93,7 +93,7 @@ function EnergiserDetail() {
                             <BsStarHalf />
                             <BsStar />
                         </div>
-                        <p className="rate">{item.rating}</p>
+                        <p className="rate">{item.average_rate}</p>
                     </div>
                     <div className="favorite-sec">
                         {isFavourite ? (
