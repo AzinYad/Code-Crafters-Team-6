@@ -1,19 +1,16 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { BsStar } from "react-icons/bs";
-import { BsStarHalf } from "react-icons/bs";
-import { BsStarFill } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
-import { FaShare } from "react-icons/fa";
+import { BsStar, BsStarHalf, BsStarFill } from "react-icons/bs";
+import { FaRegHeart, FaHeart, FaShare } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./EnergiserDetail.css";
 
 function EnergiserDetail() {
     const { id } = useParams();
-    console.log(id);
     const [item, setItem] = useState(null);
+    const [isFavourite, setIsFavourite] = useState(false);
 
     useEffect(() => {
         fetch(`/api/energizers/${id}`)
@@ -29,7 +26,18 @@ function EnergiserDetail() {
             .catch((err) => {
                 console.error(err);
             });
+
+        const favouriteStatus = localStorage.getItem(id);
+        setIsFavourite(favouriteStatus ? JSON.parse(favouriteStatus) : false);
+        console.log("favourite status:", favouriteStatus);
     }, [id]);
+
+    const toggleFavourite = () => {
+        const newFavouriteStatus = !isFavourite;
+        setIsFavourite(newFavouriteStatus);
+        localStorage.setItem(id, newFavouriteStatus.toString());
+        console.log("new favourite status:", newFavouriteStatus);
+    };
 
     const ShareButton = () => {
         const handleShare = () => {
@@ -70,7 +78,11 @@ function EnergiserDetail() {
                         <p className="rate">{item.rating}</p>
                     </div>
                     <div className="favorite-sec">
-                        <FaRegHeart />
+                        {isFavourite ? (
+                            <FaHeart onClick={toggleFavourite} />
+                        ) : (
+                            <FaRegHeart onClick={toggleFavourite} />
+                        )}
                         <p>Add To Favourite </p>
                     </div>
                     <ShareButton />
