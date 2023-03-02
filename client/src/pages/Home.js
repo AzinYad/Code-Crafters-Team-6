@@ -23,12 +23,12 @@ export function Home() {
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
-	//removes duplicate items from array of objects
-	const uniqueFavourites_array = Array.from(new Set(favourites_array.map((a) => a.id))).map(
-		(id) => {
-			return favourites_array.find((a) => a.id === id);
-		}
-	);
+	//removes duplicate items from array of objects if any
+	const uniqueFavourites_array = Array.from(
+		new Set(favourites_array.map((a) => a.id))
+	).map((id) => {
+		return favourites_array.find((a) => a.id === id);
+	});
 	return (
 		<main className="main-page">
 			<Navbar />
