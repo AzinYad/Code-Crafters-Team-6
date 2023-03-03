@@ -70,9 +70,10 @@ function EnergiserDetail() {
 			if (checkIfIsFav) {
 				let newArr = favourite.filter((i) => i.id != id);
 				setFavourite(newArr);
+				alert("Energizer has been removed from your favourites");
 			} else {
 				setFavourite([...favourite, item]);
-				console.log(favourite);
+				alert("Energizer has been added to your favourites");
 			}
 			localStorage.setItem("favourite", JSON.stringify(favourite));
 		};
