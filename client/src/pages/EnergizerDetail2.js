@@ -1,20 +1,16 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { BsStar } from "react-icons/bs";
-import { BsStarHalf } from "react-icons/bs";
-import { BsStarFill } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
-import { FaShare } from "react-icons/fa";
+import { BsStar, BsStarHalf, BsStarFill } from "react-icons/bs";
+import { FaRegHeart, FaHeart, FaShare } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./EnergiserDetail.css";
-
 function EnergiserDetail() {
 	const { id } = useParams();
 	const [item, setItem] = useState(null);
-
+	const [isFavourite, setIsFavourite] = useState(false);
+	const [favouriteEnergizersArr, setFavouriteEnergizersArr] = useState([]);
 	useEffect(() => {
 		fetch(`/api/energizers/${id}`)
 			.then((res) => {
@@ -29,15 +25,34 @@ function EnergiserDetail() {
 			.catch((err) => {
 				console.error(err);
 			});
-	}, [id]);
-
+		const favouriteStatus = localStorage.getItem(id);
+		setIsFavourite(favouriteStatus ? JSON.parse(favouriteStatus) : false);
+		console.log("favourite status:", favouriteStatus);
+		const favourites =
+			JSON.parse(localStorage.getItem("favouriteEnergizers")) || [];
+		setFavouriteEnergizersArr(favourites);
+		console.log("favouriteEnergizers:", favourites);
+	}, [id, setFavouriteEnergizersArr]);
+	const toggleFavourite = () => {
+		const newFavouriteStatus = !isFavourite;
+		setIsFavourite(newFavouriteStatus);
+		localStorage.setItem(id, newFavouriteStatus.toString());
+		console.log("new favourite status:", newFavouriteStatus);
+		setFavouriteEnergizersArr((prevFavouriteEnergizersArr) => {
+			const updatedArr = newFavouriteStatus
+				? [...prevFavouriteEnergizersArr, item]
+				: prevFavouriteEnergizersArr.filter((e) => e.id !== item.id);
+			localStorage.setItem("favouriteEnergizers", JSON.stringify(updatedArr));
+			console.log(updatedArr);
+			return updatedArr;
+		});
+	};
 	const ShareButton = () => {
 		const handleShare = () => {
 			const shareUrl = window.location.href;
 			navigator.clipboard.writeText(shareUrl);
 			window.alert("Link copied to clipboard!");
 		};
-
 		return (
 			<div className="share-sec">
 				<button className="share-btn" onClick={handleShare}>
@@ -47,50 +62,9 @@ function EnergiserDetail() {
 			</div>
 		);
 	};
-
-	const FavouriteButton = () => {
-		const [favourite, setFavourite] = useState(() => {
-			const localData = localStorage.getItem("favourite");
-			return localData ? JSON.parse(localData) : [];
-		});
-
-		useEffect(() => {
-			localStorage.setItem("favourite", JSON.stringify(favourite));
-		}, [favourite]);
-
-		const handleClick = (e) => {
-			e.persist();
-			e.preventDefault();
-
-			const checkIfIsFav = favourite.find((i) => {
-				return i.id === +id;
-			});
-
-			console.log(checkIfIsFav);
-			if (checkIfIsFav) {
-				let newArr = favourite.filter((i) => i.id != id);
-				setFavourite(newArr);
-			} else {
-				setFavourite([...favourite, item]);
-				console.log(favourite);
-			}
-			localStorage.setItem("favourite", JSON.stringify(favourite));
-		};
-
-		return (
-			<div className="favorite-sec">
-				<button className="fav-btn" onClick={(e) => handleClick(e)}>
-					<FaRegHeart />
-				</button>
-				<p>Add To Favourite</p>
-			</div>
-		);
-	};
-
 	if (!item) {
 		return <div>Loading...</div>;
 	}
-
 	return (
 		<main className="main-page">
 			<Navbar />
@@ -106,9 +80,16 @@ function EnergiserDetail() {
 							<BsStarHalf />
 							<BsStar />
 						</div>
-						<p className="rate">{item.average_rate}</p>
+						<p className="rate">{item.rating}</p>
 					</div>
-					<FavouriteButton />
+					<div className="favorite-sec">
+						{isFavourite ? (
+							<FaHeart onClick={toggleFavourite} />
+						) : (
+							<FaRegHeart onClick={toggleFavourite} />
+						)}
+						<p>Add To Favourite </p>
+					</div>
 					<ShareButton />
 				</div>
 				<div className="instruction-sec">
@@ -120,5 +101,4 @@ function EnergiserDetail() {
 		</main>
 	);
 }
-
 export default EnergiserDetail;
