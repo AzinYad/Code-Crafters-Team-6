@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 
+
 function SearchEnergizers({ energizers }) {
-  const [search,  setSearchTerm] = useState("");
-  [filteredEnergizers, setFilteredEnergizers] = useState(energizers);
+  const [ setSearchTerm ] = useState("");
+  const [filteredEnergizers, setFilteredEnergizers] = useState(energizers);
 
   const handleSearch = (event) => {
     const term = event.target.value.toLowerCase();
     const filtered = energizers.filter((energizer) =>
-      energizer.name.toLowerCase().includes(term)
+      energizer.name.toLowerCase().includes(term) ||
+      energizer.description.toLowerCase().includes(term)
     );
     setFilteredEnergizers(filtered);
     setSearchTerm(term);

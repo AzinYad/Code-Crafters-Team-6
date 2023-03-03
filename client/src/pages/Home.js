@@ -16,7 +16,7 @@ export function Home() {
 				<FavesCard />
 				<FavesCard />
 			</div>
-			<h1 className="Whats-New-title">What's New</h1>
+			<h1 className="Whats-New-title">What is New</h1>
 			<div className="whats-new">
 				<WhatsNewCard />
 				<WhatsNewCard />
