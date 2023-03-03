@@ -35,12 +35,15 @@ router.get("/energizers/:id", async (req, res) => {
 		} else {
 			const row = result.rows[0];
 			const energizer = {
-				"id": row.id,
-				"name": row.name,
-				"description": row.description,
-				"ratings": [],
+				id: row.id,
+				name: row.name,
+				description: row.description,
+				ratings: [],
 			};
-			const result2 = await db.query("SELECT * FROM energizer_ratings WHERE energizer_id=$1", [row.id]);
+			const result2 = await db.query(
+				"SELECT * FROM energizer_ratings WHERE energizer_id=$1",
+				[row.id]
+			);
 			energizer.ratings = result2.rows.map((row) => parseInt(row.rating));
 			res.json(energizer);
 		}
@@ -50,22 +53,29 @@ router.get("/energizers/:id", async (req, res) => {
 	}
 });
 
-//I have only created this POST endpoint to update my database, its very incomplete as it lacks any validation, but it works and can be used as a base
+router.post("/energizers", async (req, res) => {
+	const { name, description } = req.body;
 
-router.post("/energizers", (req, res) => {
-	let name = req.query.name;
-	let description = req.query.description;
-
-	const insertQuery = "INSERT INTO energizers(name, description) VALUES($1, $2)";
-	db.query(insertQuery, [name, description])
-		.then(() => {
-			res
-				.status(201)
-				.json({ message: "The energizer was successfully uploaded" });
-		})
-		.catch((error) => {
-			res.status(500).send(error);
-		});
+	if (!name || !description) {
+		return res.status(400).json({ error: "Missing required fields" });
+	}
+	if (name.length > 50) {
+		return res
+			.status(400)
+			.json({ error: "Name has to be less or equal to 50 characters" });
+	}
+	const query = `
+	  INSERT INTO energizers (name, description) 
+	  VALUES ($1, $2)
+	  RETURNING id, name, description
+	`;
+	try {
+		const result = await db.query(query, [name, description]);
+		res.json(result.rows[0]);
+	} catch (error) {
+		logger.error(error);
+		res.status(500).send("Internal server error");
+	}
 });
 
 export default router;
