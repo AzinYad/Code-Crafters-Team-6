@@ -21,6 +21,7 @@ function EnergizerDeleteButton({ energizerId }) {
       setIsDeleting(false);
     }
   };
+  window.location.herf ="/energiser";
 
   return (
     <form onSubmit={handleDelete}>
