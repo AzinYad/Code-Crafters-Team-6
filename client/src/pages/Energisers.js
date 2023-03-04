@@ -4,7 +4,6 @@ import Footer from "./components/Footer.js";
 import EnergisersCard from "./components/EnergisersCard.js";
 import "./Energisers.css";
 import { useState, useEffect } from "react";
-import EnergizerDeleteButton from "./EnergizerDeleteButton";
 
 function Energisers() {
 	const [allEnergizers, setAllEnergizers] = useState([]);
@@ -31,7 +30,7 @@ function Energisers() {
 					return (
 						<div key={item.id}>
 							<EnergisersCard item={item} />
-							<EnergizerDeleteButton energizerId={item.id} />
+							{/* <EnergizerDeleteButton energizerId={item.id} /> */}
 						</div>
 					);
 				})}
