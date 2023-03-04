@@ -1,8 +1,9 @@
-this is our wireframes designed on Figma at first sprint
+this is our wireframes designed on Figma at first sprint:
 
+Home page , Energisers page and Energiser-Detail page:
 https://www.figma.com/file/FBvvVO1VL5GLueK8Z5a6jt?node-id=0%3A1&fuid=1031319103329822795
 
-
+Create-Energiser page , Log in and Sign Up page:
 https://www.figma.com/file/3ObG61vnz2xPc8KCzvUjPB/Create-energiser?node-id=0%3A1&t=JhYHYr4Xo33TmHRy-0
 
 
