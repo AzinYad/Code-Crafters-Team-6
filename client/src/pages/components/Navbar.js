@@ -1,8 +1,12 @@
-import React from "react";
+import React  from "react";
 import Logo from "../Logo/logo.png";
 import { Link } from "react-router-dom";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
+import SearchFilter from "../components/SearchFilter";
+
 function Navbar() {
+
+
 
     return (
         <div>
@@ -12,12 +16,13 @@ function Navbar() {
             <nav className="nav-bar">
                 <div className="search-wrapper nav-sub-wrapper">
                     <FaSearch className="magnifier" />
-                    <input className="search-input" type="search" placeholder="Search..." />
+                    <input className="search-input" type="search" placeholder="Search..."  />
                 </div>
                 <div className="pages-wrapper nav-sub-wrapper">
                     <Link className="page" to="/home">Home</Link>
                     <Link className="page create-energizer" to="/create-energizer">Create Energizer</Link>
                     <Link className="page" to="/energizers">Energizers</Link>
+
                 </div>
                 <Link className="login-wrapper nav-sub-wrapper" to="/login">
                     <FaUserCircle className="login-icon" />
@@ -25,6 +30,6 @@ function Navbar() {
             </nav>
         </div>
     );
-}
+    }
 
 export default Navbar;

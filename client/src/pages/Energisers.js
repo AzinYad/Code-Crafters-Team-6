@@ -4,7 +4,6 @@ import Footer from "./components/Footer.js";
 import EnergisersCard from "./components/EnergisersCard.js";
 import "./Energisers.css";
 import { useState, useEffect } from "react";
-
 function Energisers() {
 	const [allEnergizers, setAllEnergizers] = useState([]);
 	useEffect(() => {
@@ -34,6 +33,7 @@ function Energisers() {
 					);
 				})}
 			</section>
+
 			<Footer />
 		</main>
 	);

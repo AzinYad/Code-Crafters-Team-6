@@ -74,11 +74,14 @@
 	border:none;
 }
 
-.share-btn{
+.share-btn,
+.fav-btn{
 	border: none;
 	cursor: pointer;
 	background-color: transparent;
 }
-.share-btn:hover{
+
+.share-btn:hover,
+.fav-btn:hover{
 	color:rgb(55, 2, 2);
 }
