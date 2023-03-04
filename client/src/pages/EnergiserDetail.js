@@ -5,7 +5,6 @@ import { BsStar } from "react-icons/bs";
 import { BsStarHalf } from "react-icons/bs";
 import { BsStarFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
 import { FaShare } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";

@@ -14,7 +14,7 @@
 	align-items: center;
 	justify-content: space-between;
 	width: 60%;
-	height: 70vh;
+	height: 75vh;
 	margin: 3em auto;
 	background-color: #f6e6e6;
 	border-radius: 15px;
@@ -60,4 +60,13 @@ form button {
 form label{
     font-size: 1.3rem;
     font-weight: bold;
+}
+
+select {
+  width: 4em;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  border: 2px solid black;
 }

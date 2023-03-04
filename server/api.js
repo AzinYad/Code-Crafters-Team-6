@@ -70,9 +70,9 @@ router.get("/energizers/:id", async (req, res) => {
 });
 
 router.post("/energizers", async (req, res) => {
-	const { name, description } = req.body;
+	const { name, description, rating } = req.body;
 
-	if (!name || !description) {
+	if (!name || !description || !rating) {
 		return res.status(400).json({ error: "Missing required fields" });
 	}
 	if (name.length > 50) {
@@ -86,8 +86,19 @@ router.post("/energizers", async (req, res) => {
 	  RETURNING id, name, description
 	`;
 	try {
+		// Insert energizer into energizers table
 		const result = await db.query(query, [name, description]);
-		res.json(result.rows[0]);
+
+		// Insert rating into Energizer_ratings table
+		const ratingQuery = `
+		  INSERT INTO Energizer_ratings (energizer_id, rating) 
+		  VALUES ($1, $2)
+		  RETURNING id, energizer_id, rating
+		`;
+
+		const ratingResult = await db.query(ratingQuery, [result.rows[0].id, rating]);
+
+		res.json({ energizer: result.rows[0], rating: ratingResult.rows[0] });
 	} catch (error) {
 		logger.error(error);
 		res.status(500).send("Internal server error");
