@@ -11,12 +11,23 @@ router.get("/", (_, res) => {
 	res.json({ message: "Hello, world!" });
 });
 
-// I have edited this code so I could have access to ratings
-router.get("/energizers", async (_, res) => {
-	const query = `
-SELECT energizers.id, energizers.name, energizers.description, ROUND(AVG(energizer_ratings.rating), 1)  AS rating
-	FROM  energizers 
-	LEFT JOIN energizer_ratings ON energizers.id = energizer_ratings.energizer_id GROUP BY energizers.id`;
+
+router.get("/energizers", async (req, res) => {
+	const sortBy = req.query.sort_by; // get the sort_by parameter from the query string
+
+	let query = `
+    SELECT energizers.id, energizers.name, energizers.description, ROUND(AVG(energizer_ratings.rating), 1) AS rating
+    FROM energizers
+    LEFT JOIN energizer_ratings ON energizers.id = energizer_ratings.energizer_id
+    GROUP BY energizers.id
+  `;
+
+	if (sortBy === "desc") { // if sort_by parameter is "desc", sort by descending order of rating
+		query += `
+      ORDER BY rating DESC
+    `;
+	}
+
 	try {
 		const result = await db.query(query);
 		res.json(result.rows);
@@ -25,6 +36,7 @@ SELECT energizers.id, energizers.name, energizers.description, ROUND(AVG(energiz
 		res.status(500).send("Internal server error");
 	}
 });
+
 
 router.get("/energizers/:id", async (req, res) => {
 	const id = req.params.id;

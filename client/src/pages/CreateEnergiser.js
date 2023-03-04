@@ -36,7 +36,7 @@ const CreateEnergiser = () => {
 			<Navbar />
 			<form className="create-form" onSubmit={handleEnergiserAdder}>
 				<section className="flex-sec fullname">
-					<label htmlFor="fullname">Creator’s Name :</label>
+					<label htmlFor="fullname">Energiser’s Name :</label>
 					<input
 						onChange={(e) => setEnergiserName(e.target.value)}
 						type="text"
@@ -46,10 +46,9 @@ const CreateEnergiser = () => {
 					/>
 				</section>
 				<section className="flex-sec url-input">
-					<label htmlFor="url-input">Insert a URL:</label>
+					<label htmlFor="url-input">Image Or Video URL:</label>
 					<input
 						type="text"
-						// value={}
 						placeholder="Insert a URL"
 						name="urlInput"
 					/>
