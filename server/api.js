@@ -13,16 +13,20 @@ router.get("/", (_, res) => {
 
 
 router.get("/energizers", async (req, res) => {
-	const sortBy = req.query.sort_by; // get the sort_by parameter from the query string
+	const sortBy = req.query.sort_by;
 
 	let query = `
-    SELECT energizers.id, energizers.name, energizers.description, ROUND(AVG(energizer_ratings.rating), 1) AS rating
+    SELECT energizers.id, energizers.name, energizers.description, energizers.submission_date, ROUND(AVG(energizer_ratings.rating), 1) AS rating
     FROM energizers
     LEFT JOIN energizer_ratings ON energizers.id = energizer_ratings.energizer_id
     GROUP BY energizers.id
   `;
 
-	if (sortBy === "desc") { // if sort_by parameter is "desc", sort by descending order of rating
+	if (sortBy === "recent") {
+		query += `
+      ORDER BY energizers.submission_date DESC
+    `;
+	} else if (sortBy === "rating") {
 		query += `
       ORDER BY rating DESC
     `;

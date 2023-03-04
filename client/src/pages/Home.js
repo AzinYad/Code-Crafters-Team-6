@@ -9,7 +9,7 @@ export function Home() {
 	const [mostRecentEnergizers, setMostRecentEnergizers] = useState([]);
 
 	useEffect(() => {
-		fetch("/api/energizers?sort_by=desc")
+		fetch("/api/energizers?sort_by=recent")
 			.then((response) => response.json())
 			.then((energizers) => {
 				const mostRecentEnergizers = energizers.slice(0, 2);
