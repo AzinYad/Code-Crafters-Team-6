@@ -30,6 +30,7 @@ function Energisers() {
 					return (
 						<div key={item.id}>
 							<EnergisersCard item={item} />
+							{/* <EnergizerDeleteButton energizerId={item.id} /> */}
 						</div>
 					);
 				})}

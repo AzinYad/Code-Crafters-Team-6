@@ -9,7 +9,7 @@ import { FaShare } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./EnergiserDetail.css";
-
+import EnergizerDeleteButton from "./components/EnergizerDeleteButton";
 function EnergiserDetail() {
 	const { id } = useParams();
 	const [item, setItem] = useState(null);
@@ -114,6 +114,7 @@ function EnergiserDetail() {
 				<div className="instruction-sec">
 					<h5 className="instruction-title">How to play</h5>
 					<div className="instruction">{item.description}</div>
+					<EnergizerDeleteButton energizerId={item.id} />
 				</div>
 			</section>
 			<Footer />

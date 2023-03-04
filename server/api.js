@@ -109,4 +109,19 @@ router.post("/energizers", async (req, res) => {
 	}
 });
 
+router.delete("/energizers/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+      const result = await db.query("DELETE FROM energizers WHERE id=$1", [id]);
+      if (result.rowCount === 0) {
+        res.status(404).send("Energizer not found");
+      } else {
+        res.sendStatus(204);
+      }
+    } catch (error) {
+      logger.error(error);
+      res.status(500).send("Internal server error");
+    }
+  });
+
 export default router;
