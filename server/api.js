@@ -35,16 +35,20 @@ router.get("/energizers/:id", async (req, res) => {
 		} else {
 			const row = result.rows[0];
 			const energizer = {
-				id: row.id,
-				name: row.name,
-				description: row.description,
-				ratings: [],
+				"id": row.id,
+				"name": row.name,
+				"description": row.description,
+				"submission_date": row["submission_date"],
+				"ratings": [],
+				"average_rate": 0,
 			};
-			const result2 = await db.query(
-				"SELECT * FROM energizer_ratings WHERE energizer_id=$1",
-				[row.id]
-			);
+			const result2 = await db.query("SELECT * FROM energizer_ratings WHERE energizer_id=$1", [row.id]);
 			energizer.ratings = result2.rows.map((row) => parseInt(row.rating));
+			energizer.average_rate = (() => {
+				const sum = energizer.ratings.reduce((acc, curr) => acc + curr, 0);
+				const avg = (sum / energizer.ratings.length).toFixed(1);
+				return avg;
+			})();
 			res.json(energizer);
 		}
 	} catch (error) {
