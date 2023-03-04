@@ -2,7 +2,7 @@ import React  from "react";
 import Logo from "../Logo/logo.png";
 import { Link } from "react-router-dom";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
-import SearchFilter from "../components/SearchFilter";
+
 
 function Navbar() {
 

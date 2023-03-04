@@ -6,12 +6,12 @@ import React, { useState, useEffect } from "react";
 import "./Home.css";
 import SearchFilter from "./components/SearchFilter";
 
+
 export function Home() {
 	const [mostRecentEnergizers, setMostRecentEnergizers] = useState([]);
 
 	useEffect(() => {
 		fetch("/api/energizers?sort_by=desc")
-			.then((response) => response.json())
 			.then((energizers) => {
 				const mostRecentEnergizers = energizers.slice(0, 2);
 				setMostRecentEnergizers(mostRecentEnergizers);
@@ -34,8 +34,10 @@ export function Home() {
 	return (
 		<main className="main-page">
 			<Navbar />
+			
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">
+
 				{favourites_array ? favourites_array.map((item) => {
 					return (
 						<div key={item.id}>
