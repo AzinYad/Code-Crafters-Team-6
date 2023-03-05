@@ -11,7 +11,12 @@ export function Home() {
 	const [mostRecentEnergizers, setMostRecentEnergizers] = useState([]);
 
 	useEffect(() => {
+<<<<<<< HEAD
 		fetch("/api/energizers?sort_by=desc")
+=======
+		fetch("/api/energizers?sort_by=recent")
+			.then((response) => response.json())
+>>>>>>> main
 			.then((energizers) => {
 				const mostRecentEnergizers = energizers.slice(0, 2);
 				setMostRecentEnergizers(mostRecentEnergizers);
@@ -24,13 +29,7 @@ export function Home() {
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
-	//removes duplicate items from array of objects if any
-	// const uniqueFavourites_array = Array.from(
-	// 	new Set(favourites_array.map((a) => a.id))
-	// )
-	// .map((id) => {
-	// 	return favourites_array.find((a) => a.id === id);
-	// });
+		
 	return (
 		<main className="main-page">
 			<Navbar />
