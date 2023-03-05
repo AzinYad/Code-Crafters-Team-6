@@ -4,20 +4,16 @@ import FavesCard from "./components/FavesCard";
 import WhatsNewCard from "./components/WhatsNewCard";
 import React, { useState, useEffect } from "react";
 import "./Home.css";
-import SearchFilter from "./components/SearchFilter";
 
 
 export function Home() {
 	const [mostRecentEnergizers, setMostRecentEnergizers] = useState([]);
 
 	useEffect(() => {
-<<<<<<< HEAD
-		fetch("/api/energizers?sort_by=desc")
-=======
+
 		fetch("/api/energizers?sort_by=recent")
 			.then((response) => response.json())
->>>>>>> main
-			.then((energizers) => {
+	.then((energizers) => {
 				const mostRecentEnergizers = energizers.slice(0, 2);
 				setMostRecentEnergizers(mostRecentEnergizers);
 			})
@@ -29,11 +25,11 @@ export function Home() {
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
-		
+
 	return (
 		<main className="main-page">
 			<Navbar />
-			
+
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">
 
