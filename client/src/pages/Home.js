@@ -23,19 +23,23 @@ export function Home() {
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
-	
+
 	return (
 		<main className="main-page">
 			<Navbar />
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">
-				{favourites_array ? favourites_array.map((item) => {
-					return (
-						<div key={item.id}>
-							<FavesCard item={item} />
-						</div>
-					);
-				}) : <h3>Add some favourites to your energizers</h3>}
+				{favourites_array ? (
+					favourites_array.map((item) => {
+						return (
+							<div key={item.id}>
+								<FavesCard item={item} />
+							</div>
+						);
+					})
+				) : (
+					<h3>Add some favourites to your energizers</h3>
+				)}
 			</div>
 			<h1 className="Whats-New-title">What's New</h1>
 			<div className="whats-new">
