@@ -100,7 +100,8 @@ router.post("/energizers", async (req, res) => {
 		  RETURNING id, energizer_id, rating
 		`;
 
-		const ratingResult = await db.query(ratingQuery, [result.rows[0].id, rating]);
+		const ratingResult = await db.query(ratingQuery, [result.rows[0].id, rating,
+		]);
 
 		res.json({ energizer: result.rows[0], rating: ratingResult.rows[0] });
 	} catch (error) {
@@ -112,11 +113,13 @@ router.post("/energizers", async (req, res) => {
 router.delete("/energizers/:id", async (req, res) => {
     const id = req.params.id;
     try {
-      const result = await db.query("DELETE FROM energizers WHERE id=$1", [id]);
+	await db.query("DELETE FROM energizer_ratings WHERE energizer_id=$1", [id]);
+	const result = await db.query("DELETE FROM energizers WHERE id=$1", [id]);
+
       if (result.rowCount === 0) {
         res.status(404).send("Energizer not found");
       } else {
-        res.sendStatus(204);
+        res.status(204).json({ message: "Energizer deleted successfully" });
       }
     } catch (error) {
       logger.error(error);
