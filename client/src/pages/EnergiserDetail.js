@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./EnergiserDetail.css";
 import EnergizerDeleteButton from "./components/EnergizerDeleteButton";
+
 function EnergiserDetail() {
 	const { id } = useParams();
 	const [item, setItem] = useState(null);
