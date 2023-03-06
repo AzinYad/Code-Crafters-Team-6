@@ -41,7 +41,7 @@ export function Home() {
 					<h3>Add some favourites to your energizers</h3>
 				)}
 			</div>
-			<h1 className="Whats-New-title">What's New</h1>
+			<h1 className="Whats-New-title">What is New</h1>
 			<div className="whats-new">
 				{mostRecentEnergizers.map((energizer) => (
 					<WhatsNewCard
