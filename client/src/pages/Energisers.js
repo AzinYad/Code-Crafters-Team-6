@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 
 function Energisers() {
 	const [allEnergizers, setAllEnergizers] = useState([]);
+	console.log(allEnergizers)
 	useEffect(() => {
 		fetch("/api/energizers")
 			.then((res) => {
@@ -17,6 +18,7 @@ function Energisers() {
 			})
 			.then((body) => {
 				setAllEnergizers(body);
+				
 			})
 			.catch((err) => {
 				console.error(err);
