@@ -6,6 +6,7 @@ import "./CreateEnergiser.css";
 const CreateEnergiser = () => {
 	const [energiserName, setEnergiserName] = useState("");
 	const [enrgiserDescription, setEnergiserDescription] = useState("");
+	const [rating, setRating] = useState(1); // Add state for selected rating
 
 	const handleEnergiserAdder = (e) => {
 		e.preventDefault();
@@ -13,6 +14,7 @@ const CreateEnergiser = () => {
 		let energizer = {
 			name: energiserName,
 			description: enrgiserDescription,
+			rating: rating, // Add rating to the energizer object
 		};
 
 		fetch("/api/energizers", {
@@ -29,6 +31,7 @@ const CreateEnergiser = () => {
 			});
 		setEnergiserName("");
 		setEnergiserDescription("");
+		setRating(1); // Reset rating to default value after submission
 	};
 
 	return (
@@ -36,7 +39,7 @@ const CreateEnergiser = () => {
 			<Navbar />
 			<form className="create-form" onSubmit={handleEnergiserAdder}>
 				<section className="flex-sec fullname">
-					<label htmlFor="fullname">Creator’s Name :</label>
+					<label htmlFor="fullname">Energizer’s Name :</label>
 					<input
 						onChange={(e) => setEnergiserName(e.target.value)}
 						type="text"
@@ -46,23 +49,32 @@ const CreateEnergiser = () => {
 					/>
 				</section>
 				<section className="flex-sec url-input">
-					<label htmlFor="url-input">Insert a URL:</label>
+					<label htmlFor="url-input">Image Or Video URL:</label>
 					<input
 						type="text"
-						// value={}
 						placeholder="Insert a URL"
 						name="urlInput"
 					/>
 				</section>
 				<section className="flex-sec description">
-					<label htmlFor="description">Energiser Description:</label>
+					<label htmlFor="description">Energizer Description:</label>
 					<textarea
 						onChange={(e) => setEnergiserDescription(e.target.value)}
 						type="text"
 						value={enrgiserDescription}
-						placeholder="Add some description about this energiser..."
+						placeholder="Add some description about this energizer..."
 						name="enrgiserdescription"
 					/>
+				</section>
+				<section className="flex-sec rating">
+					<label htmlFor="rating">How do you rate this energizer?</label>
+					<select name="rating" value={rating} onChange={(e) => setRating(e.target.value)}>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
 				</section>
 				<button type="submit">Submit</button>
 			</form>

@@ -4,12 +4,12 @@ import Footer from "./components/Footer";
 import { BsStar } from "react-icons/bs";
 import { BsStarHalf } from "react-icons/bs";
 import { BsStarFill } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { FaShare } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./EnergiserDetail.css";
+import EnergizerDeleteButton from "./components/EnergizerDeleteButton";
 
 function EnergiserDetail() {
 	const { id } = useParams();
@@ -54,9 +54,14 @@ function EnergiserDetail() {
 			return localData ? JSON.parse(localData) : [];
 		});
 
+		const [isFavourite, setIsFavourite] = useState(() => {
+			return !!favourite.find((i) => i.id === +id);
+		});
+
 		useEffect(() => {
 			localStorage.setItem("favourite", JSON.stringify(favourite));
-		}, [favourite]);
+			setIsFavourite(!!favourite.find((i) => i.id === +id));
+		}, [ favourite ]);
 
 		const handleClick = (e) => {
 			e.persist();
@@ -70,10 +75,8 @@ function EnergiserDetail() {
 			if (checkIfIsFav) {
 				let newArr = favourite.filter((i) => i.id != id);
 				setFavourite(newArr);
-				alert("Energizer has been removed from your favourites");
 			} else {
 				setFavourite([...favourite, item]);
-				alert("Energizer has been added to your favourites");
 			}
 			localStorage.setItem("favourite", JSON.stringify(favourite));
 		};
@@ -81,7 +84,7 @@ function EnergiserDetail() {
 		return (
 			<div className="favorite-sec">
 				<button className="fav-btn" onClick={(e) => handleClick(e)}>
-					<FaRegHeart />
+					{isFavourite ? <FaHeart /> : <FaRegHeart />}
 				</button>
 				<p>Add To Favourite</p>
 			</div>
@@ -115,6 +118,7 @@ function EnergiserDetail() {
 				<div className="instruction-sec">
 					<h5 className="instruction-title">How to play</h5>
 					<div className="instruction">{item.description}</div>
+					<EnergizerDeleteButton energizerId={item.id} />
 				</div>
 			</section>
 			<Footer />

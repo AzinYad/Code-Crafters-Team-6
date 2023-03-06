@@ -8,20 +8,19 @@
 }
 
 .create-form {
-    padding: 3em;
+	padding: 3em;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	width: 60%;
-	height: 70vh;
+	width: 80%;
+	height: 85vh;
 	margin: 3em auto;
-	background-color: rgb(132, 14, 14);
+	background-color: #f6e6e6;
 	border-radius: 15px;
-	border:1px solid black;
-	
+	border: 2px solid black;
 }
-.flex-sec fullname {
+.flex-sec {
 	width: 70%;
 	margin-top: 2em;
 	display: flex;
@@ -29,36 +28,45 @@
 	align-items: center;
 }
 
-.flex-sec description{
-    align-self:flex-start;
+.description label {
+	align-self: flex-start;
 }
 textarea {
 	height: 15em;
-    border:2px solid black;
+	border: 2px solid black;
 }
 
 form input,
 textarea {
-	padding: .3em;
+	padding: 0.5em;
 	width: 20em;
 	border-radius: 5px;
-	text-indent: .3em;
+	text-indent: 0.3em;
+}
+textarea::placeholder {
+  transform: translateY(20px); /* move the placeholder down */
 }
 
-form button{
-    width: auto;
-	display: flex;
-	justify-content: space-between;
-    font-size: 1.2rem;
-    padding: .10px;
-    border-radius: 10px;
-    margin: 2px;
-    background-color:#6b5096;
-    align-self: flex-start;
-	
-	
+form button {
+	width: auto;
+	font-size: 1.3rem;
+	padding: 0.6em;
+	border-radius: 10px;
+	margin: 3em 1em 1em;
+	background-color: #965050;
+	align-self: flex-start;
 }
+
 form label{
     font-size: 1.3rem;
     font-weight: bold;
+}
+
+select {
+  width: 4em;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  border: 2px solid black;
 }
