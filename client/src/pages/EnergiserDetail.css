@@ -12,34 +12,57 @@
 	font-size: 1.9rem;
 }
 
+.columns-delete-wrapper{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border: 2px solid rgb(19, 79, 36);
+}
 .columns-sec {
-	width: 90%;
+	width: 95%;
 	display: flex;
 	justify-content: center;
 	gap: 1em;
-	height: 70vh;
-	margin: 1em auto 0;
+	height: 85vh;
+	margin: 2em auto 0;
+	border:1px solid blue;
 }
 
 .energizer-preview ,
 .instruction{
 	margin: 1em auto 0;
 	width: 80%;
-	height: 60%;
+	height: 25em;
 	border: 2px solid black;
 	border-radius: 15px;
 }
 
 .episode-sec {
-	width: 35%;
-	height: 50vh;
+	display: flex;
+	flex-direction: column;
+	width: 75%;
+	height:auto;
 	align-self: flex-start;
+	border:1px solid red;
+}
+
+.icons-wrapper{
+	margin: 0 auto;
+	width: 80%;
+	display: flex;
+	justify-content: space-evenly;
+}
+.delete-sec{
+	justify-self: flex-start;
+	align-self: flex-start;
+	border:1px solid violet;
 }
 
 .instruction-sec {
 	width: 30%;
 	height: 57vh;
 	align-self: center;
+	border:1px solid green;
 }
 
 .star-icon,
@@ -52,13 +75,25 @@
 .favorite-sec,
 .share-sec{
 	margin-top: 1em;
-	width:40%;
+	padding: .5em;
+	width:20%;
 	display:flex;
 	justify-content:space-between;
 	align-items: center;
-	margin-left: 3em;
-	gap: 1em;
+	margin-left: .2em;
+	border: 1px solid orangered;
 }
+
+.feedback-rate{
+	width: 70%;
+	height: 2em;
+	margin: 2em auto;
+	display: flex;
+	justify-content:space-between;
+	border: 1px solid lightcoral;
+	justify-self: flex-end;
+}
+
 .stars-sec{
 	display: flex;
 	align-items: center;
