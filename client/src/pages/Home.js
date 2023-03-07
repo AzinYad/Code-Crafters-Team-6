@@ -7,7 +7,7 @@ import "./Home.css";
 
 export function Home() {
 	const [mostRecentEnergizers, setMostRecentEnergizers] = useState([]);
-	const [randomEnergizers, setRandomEnergizers] = useState([]);
+	const [ratedEnergizers, setRatedEnergizers] = useState([]);
 	useEffect(() => {
 		fetch("/api/energizers?sort_by=recent")
 			.then((response) => response.json())
@@ -19,15 +19,13 @@ export function Home() {
 				console.error("Error fetching energizers", error);
 			});
 	}, []);
-	// gets 4 random energizers from api to display as placeholder if there's no faves
+	// gets 4 (random energizers) highest rated energizers from api to display as placeholder if there's no faves
 	useEffect(() => {
-		fetch("/api/energizers?sort_by=desc")
+		fetch("/api/energizers?sort_by=rating")
 			.then((response) => response.json())
 			.then((energizers) => {
-				const randomEnergizers = energizers
-					.sort(() => 0.5 - Math.random())
-					.slice(0, 4);
-				setRandomEnergizers(randomEnergizers);
+				const ratedEnergizers = energizers.slice(0, 4);
+				setRatedEnergizers(ratedEnergizers);
 			})
 			.catch((error) => {
 				console.error("Error fetching energizers", error);
@@ -37,14 +35,15 @@ export function Home() {
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
+	console.log(ratedEnergizers)
 	return (
 		<main className="main-page">
 			<Navbar />
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">
-				{/* renders a list of favourites or a placeholder of 4 random energizers */}
+				{/* renders a list of favourites or a placeholder of 4 rated energizers */}
 				{!favourites_array.length
-					? randomEnergizers.map((item) => {
+					? ratedEnergizers.map((item) => {
 							return (
 								<div key={item.id}>
 									<FavesCard item={item} />
