@@ -1,30 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
-const SearchFilter = ({ energizers }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const filteredEnergizers = energizers.filter((energizer) => {
-    const name = energizer.name.toLowerCase();
-    const description = energizer.description.toLowerCase();
-    const searchTermLower = searchTerm.toLowerCase();
-    return name.includes(searchTermLower) || description.includes(searchTermLower);
-  });
-
-  return (
-    <div>
-      <input type="text" placeholder="Search energizers" onChange={handleSearch} />
-      {filteredEnergizers.map((energizer) => (
-        <div key={energizer.name}>
-          <h3>{energizer.name}</h3>
-          <p>{energizer.description}</p>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-export default SearchFilter;
+function EnergisersCard({ item }) {
+	return (
+		<Link
+			to={`/energizers/${item.id}`}
+			style={{ textDecoration: "none", color: "inherit" }}
+		>
+			<div className="energizer-box">
+				<section className="energizer">{item.description}</section>
+				<section className="energizer-info-sec">
+					<h3 className="info-sec-name">{item.name}</h3>
+					<p>Rate:{item.rating}</p>
+				</section>
+			</div>
+		</Link>
+	);
+}
+export default EnergisersCard;

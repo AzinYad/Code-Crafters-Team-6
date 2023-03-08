@@ -4,6 +4,7 @@ import Footer from "./components/Footer.js";
 import EnergisersCard from "./components/EnergisersCard.js";
 import "./Energisers.css";
 import { useState, useEffect } from "react";
+
 function Energisers() {
 	const [allEnergizers, setAllEnergizers] = useState([]);
 	useEffect(() => {
@@ -24,11 +25,13 @@ function Energisers() {
 	return (
 		<main className="main-page">
 			<Navbar />
+
 			<section className="card-sec">
 				{allEnergizers.map((item) => {
 					return (
 						<div key={item.id}>
 							<EnergisersCard item={item} />
+
 							{/* <EnergizerDeleteButton energizerId={item.id} /> */}
 						</div>
 					);

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
 function SearchEnergizers({ energizers }) {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [query, setQuery] = useState("");
+
 
   const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
+    setQuery(event.target.value);
   };
 
   const filteredEnergizers = energizers.filter(
@@ -12,11 +13,11 @@ function SearchEnergizers({ energizers }) {
    const name = energizer.name.toLowerCase();//.includes(searchTerm.toLowerCase()) ||
 
      const description =  energizer.description.toLowerCase();
-     const includesSearchTerm = name.includes(searchTerm.toLocaleLowerCase()) || description.includes(searchTerm.toLocaleLowerCase());
+     const includesSearchTerm = name.includes(query.toLocaleLowerCase()) || description.includes(query.toLocaleLowerCase());
 
 
      return includesSearchTerm;
-     //.includes(searchTerm.toLowerCase())
+
     });
 
   return (
@@ -24,7 +25,7 @@ function SearchEnergizers({ energizers }) {
       <input
         type="text"
         placeholder="Search energisers by name or description"
-        value={searchTerm}
+        value={query}
         onChange={handleSearch}
       />
       <ul>
@@ -39,5 +40,9 @@ function SearchEnergizers({ energizers }) {
     </div>
   );
 }
+
+
+
+
 
 export default SearchEnergizers;

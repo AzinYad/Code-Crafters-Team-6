@@ -7,10 +7,15 @@ import SearchEnergizers from "../components/SearchEnergizers";
 
 function Navbar({ energizers }) {
 const [showSearch, setShowSearch] = useState(false);
+ const [query, setQuery] = useState("");
 
-const handleSearchClick = () => {
+const handleToggleSearch = () => {
 	setShowSearch(!showSearch);
 };
+
+ const handleSearch = (event) => {
+		setQuery(event.target.value);
+ };
     return (
 			<div>
 				<section className="logo-sec">
@@ -18,8 +23,16 @@ const handleSearchClick = () => {
 				</section>
 				<nav className="nav-bar">
 					<div className="search-wrapper nav-sub-wrapper">
-						<FaSearch className="magnifier" onClick={handleSearchClick} />
-						{showSearch && <SearchEnergizers energizers={energizers} />}
+						<FaSearch className="magnifier" onClick={handleToggleSearch} />
+						{showSearch && (
+							<SearchEnergizers energizers={energizers} query={query} />
+						)}
+						<input
+							type="text"
+							placeholder="Search..."
+							value={query}
+							onChange={handleSearch}
+						/>
 					</div>
 					<div className="pages-wrapper nav-sub-wrapper">
 						<Link className="page" to="/home">
