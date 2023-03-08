@@ -16,7 +16,7 @@ const CreateEnergiser = () => {
 		return;
 	}
 	// check if description has at least 200 characters
-	if (enrgiserDescription.length < 200) {
+	if (enrgiserDescription.length < 100) {
 		alert("The energizer description must have at least 200 characters");
 		return;
 	}
