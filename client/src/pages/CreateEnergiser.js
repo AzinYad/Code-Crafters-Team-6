@@ -10,7 +10,16 @@ const CreateEnergiser = () => {
 
 	const handleEnergiserAdder = (e) => {
 		e.preventDefault();
-
+     // check if any input field is empty
+	if (!energiserName || !enrgiserDescription) {
+		alert("Please fill in all the required fields");
+		return;
+	}
+	// check if description has at least 200 characters
+	if (enrgiserDescription.length < 200) {
+		alert("The energizer description must have at least 200 characters");
+		return;
+	}
 		let energizer = {
 			name: energiserName,
 			description: enrgiserDescription,
