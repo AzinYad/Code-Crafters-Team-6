@@ -61,7 +61,7 @@ function EnergiserDetail() {
 		useEffect(() => {
 			localStorage.setItem("favourite", JSON.stringify(favourite));
 			setIsFavourite(!!favourite.find((i) => i.id === +id));
-		}, [ favourite ]);
+		}, [favourite]);
 
 		const handleClick = (e) => {
 			e.persist();
@@ -118,7 +118,10 @@ function EnergiserDetail() {
 				<div className="instruction-sec">
 					<h5 className="instruction-title">How to play</h5>
 					<div className="instruction">{item.description}</div>
-					<EnergizerDeleteButton energizerId={item.id} />
+					<EnergizerDeleteButton
+						energizerId={item.id}
+						energizerName={item.name}
+					/>
 				</div>
 			</section>
 			<Footer />
