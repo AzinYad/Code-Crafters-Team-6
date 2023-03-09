@@ -7,7 +7,7 @@ import "./Home.css";
 
 export function Home() {
 	const [mostRecentEnergizers, setMostRecentEnergizers] = useState([]);
-
+	const [ratedEnergizers, setRatedEnergizers] = useState([]);
 	useEffect(() => {
 		fetch("/api/energizers?sort_by=recent")
 			.then((response) => response.json())
@@ -19,25 +19,46 @@ export function Home() {
 				console.error("Error fetching energizers", error);
 			});
 	}, []);
+	// gets 4 (random energizers) highest rated energizers from api to display as placeholder if there's no faves
+	useEffect(() => {
+		fetch("/api/energizers?sort_by=rating")
+			.then((response) => response.json())
+			.then((energizers) => {
+				const ratedEnergizers = energizers.slice(0, 4);
+				setRatedEnergizers(ratedEnergizers);
+			})
+			.catch((error) => {
+				console.error("Error fetching energizers", error);
+			});
+	}, []);
 
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
-
+	console.log(ratedEnergizers)
 	return (
 		<main className="main-page">
 			<Navbar />
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">
-				{favourites_array ? favourites_array.slice(0,4).map((item) => {
-					return (
-						<div key={item.id}>
-							<FavesCard item={item} />
-						</div>
-					);
-				}) : <h3>"Add some favourites to your energizers"</h3>}
+				{/* renders a list of favourites or a placeholder of 4 rated energizers */}
+				{!favourites_array.length
+					? ratedEnergizers.map((item) => {
+							return (
+								<div key={item.id}>
+									<FavesCard item={item} />
+								</div>
+							);
+					  })
+					: favourites_array.map((item) => {
+							return (
+								<div key={item.id}>
+									<FavesCard item={item} />
+								</div>
+							);
+					  })}
 			</div>
-			<h1 className="Whats-New-title">What's New</h1>
+			<h1 className="Whats-New-title">What is New</h1>
 			<div className="whats-new">
 				{mostRecentEnergizers.map((energizer) => (
 					<WhatsNewCard

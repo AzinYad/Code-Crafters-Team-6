@@ -125,60 +125,28 @@ function EnergiserDetail() {
 		<main className="main-page">
 			<Navbar />
 			<h1 className="energizer-name">{item.name}</h1>
-			<div className="columns-delete-wrapper">
-				<section className="columns-sec">
-					<div className="episode-sec">
-						<div className="energizer-preview"></div>
-						<section className="icons-wrapper">
-							<div className="rating-sec">
-								<p className="rate">Average rate:</p>
-								<p>{item.average_rate}</p>
-							</div>
-							<FavouriteButton />
-							<ShareButton />
-							<div
-								className="review-sec"
-								onClick={() => setShowFeedback((prevShowFeedback) => !prevShowFeedback)}
-								onKeyDown={(event) => {
-									if (event.key === "Enter" || event.key === " ") {
-										setShowFeedback((prevShowFeedback) => !prevShowFeedback);
-									}
-								}}
-								role="button"
-								tabIndex="0"
-							>
-								Your review
-							</div>
-						</section>
-						{showFeedback && (
-							<section className="feedback-rate" >
-								<h2>How do you like this energizer?</h2>
-								<div className="stars-sec">
-									{stars.map((_, index) => {
-										return (
-											<FaStar
-												key={index}
-												size={24}
-												onClick={() => handleClick(index + 1)}
-												onMouseOver={() => handleMouseOver(index + 1)}
-												onMouseLeave={handleMouseLeave}
-												color={(hoverValue || currentValue) > index ? "#FFBA5A" : "#a9a9a9"}
-											/>
-										);
-									})}
-								</div>
-							</section>
-						)}
+			<section className="columns-sec">
+				<div className="episode-sec">
+					<div className="energizer-preview"></div>
+					<div className="rating-sec">
+						<div className="stars-sec">
+							<BsStarFill />
+							<BsStarFill />
+							<BsStarFill />
+							<BsStarHalf />
+							<BsStar />
+						</div>
+						<p className="rate">{item.average_rate}</p>
 					</div>
-					<div className="instruction-sec">
-						<h5 className="instruction-title">How to play</h5>
-						<div className="instruction">{item.description}</div>
-					</div>
-				</section>
-				<section className="delete-sec" >
-					<EnergizerDeleteButton className="delete-btn" energizerId={item.id} />
-				</section>
-			</div>
+					<FavouriteButton />
+					<ShareButton />
+				</div>
+				<div className="instruction-sec">
+					<h5 className="instruction-title">How to play</h5>
+					<div className="instruction">{item.description}</div>
+					<EnergizerDeleteButton energizerId={item.id} />
+				</div>
+			</section>
 			<Footer />
 		</main>
 	);
