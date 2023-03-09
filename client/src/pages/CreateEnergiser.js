@@ -20,9 +20,14 @@ const CreateEnergiser = () => {
 			alert("Please enter an energizer description");
 			return;
 		}
+		// check if name has at most 50 characters
+		if (energiserName.length > 50) {
+			alert("The energizer name must have at most 50 characters");
+			return;
+		}
 		// check if description has at least 200 characters
-		if (enrgiserDescription.length < 200) {
-			alert("The energizer description must have at least 200 characters");
+		if (enrgiserDescription.length < 50) {
+			alert("The energizer description must have at least 50 characters");
 			return;
 		}
 		let energizer = {
@@ -53,13 +58,14 @@ const CreateEnergiser = () => {
 			<Navbar />
 			<form className="create-form" onSubmit={handleEnergiserAdder}>
 				<section className="flex-sec fullname">
-					<label htmlFor="fullname">Energizer’s Name :</label>
+					<label htmlFor="fullname">Energizer’s Name: <span className="required">*</span></label>
 					<input
 						onChange={(e) => setEnergiserName(e.target.value)}
 						type="text"
 						value={energiserName}
 						placeholder="Full Name"
 						name="energisername"
+						required
 					/>
 				</section>
 				<section className="flex-sec url-input">
@@ -74,6 +80,7 @@ const CreateEnergiser = () => {
 						value={enrgiserDescription}
 						placeholder="Add some description about this energizer..."
 						name="enrgiserdescription"
+						required
 					/>
 				</section>
 				<section className="flex-sec rating">

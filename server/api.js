@@ -84,6 +84,9 @@ router.post("/energizers", async (req, res) => {
 			.json({ error: "Name has to be less or equal to 50 characters" });
 	}
 
+	if (description.length < 50) {
+		return res.status(400).json({ error: "Description has to be at least 50 characters" });
+	}
 	const query = `
     INSERT INTO energizers (name, description) 
     VALUES ($1, $2)

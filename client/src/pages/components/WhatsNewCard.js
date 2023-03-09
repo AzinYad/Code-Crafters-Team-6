@@ -5,7 +5,9 @@ function WhatsNewCard(props) {
 
     return (
         <div className="most-recent-new-wrapper">
-            <div className="most-recent-new-energizer">{props.description}</div>
+            <div className="most-recent-new-energizer">
+                <section className="recent-energizr-description">{props.description}</section>
+            </div>
             <Link to={`/energizers/${props.id}`} className="whats-new-name">{props.name}</Link>
         </div>
     );
