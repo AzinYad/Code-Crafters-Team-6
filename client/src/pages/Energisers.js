@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 function Energisers() {
 	const [allEnergizers, setAllEnergizers] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [energizersPerPage] = useState(8);
+	const [energizersPerPage] = useState(10);
 
 	useEffect(() => {
 		fetch("/api/energizers")
