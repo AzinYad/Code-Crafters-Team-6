@@ -131,23 +131,11 @@ router.post("/energizers/:id/rate", async (req, res) => {
 
 		// Update the average rating of the energizer in the energizers table
 		await db.query(
-			"UPDATE energizer_ratings SET average_rate = $1 WHERE id = $2",
+			"UPDATE energizers SET average_rate = $1 WHERE id = $2",
 			[averageRating, energizerId]
 		);
 
-		// Get the updated energizer data
-		const energizerResult = await db.query(
-			`SELECT energizers.id, energizers.name, energizers.description, energizers.submission_date, ROUND(AVG(energizer_ratings.rating), 1) as rating 
-				FROM energizers 
-				LEFT JOIN energizer_ratings ON energizers.id = energizer_ratings.energizer_id
-    			GROUP BY energizers.id
-				WHERE energizers.id = $1`,
-			[energizerId]
-		);
-
-		const energizer = energizerResult.rows[0];
-
-		res.json({ energizer });
+		res.json({ averageRating });
 	} catch (error) {
 		logger.error(error);
 		res.status(500).send("Internal server error");

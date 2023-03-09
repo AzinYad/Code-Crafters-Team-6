@@ -26,7 +26,10 @@ function EnergiserDetail() {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				setItem(data);
+				setItem((prevState) => ({
+					...prevState,
+					rating: data.average_rating,
+				}));
 			})
 			.catch((err) => {
 				console.error(err);
