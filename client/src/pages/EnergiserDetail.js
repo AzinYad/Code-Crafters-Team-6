@@ -18,6 +18,7 @@ function EnergiserDetail() {
 
 	const handleClick = (value) => {
 		setCurrentValue(value);
+		console.log(value);
 		fetch(`/api/energizers/${id}/rate`, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
