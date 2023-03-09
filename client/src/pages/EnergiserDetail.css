@@ -69,7 +69,8 @@
 .rating-sec,
 .favorite-sec,
 .share-sec,
-.vote-icons{
+.vote-icons,
+.review-sec{
 	margin-top: 1em;
 	padding: .5em;
 	width:20%;
@@ -78,6 +79,7 @@
 	align-items: center;
 	margin-left: .2em;
 	background-color: rgb(227, 221, 221);
+	cursor: pointer;
 	border-radius: 15px;
 }
 

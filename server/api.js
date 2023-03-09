@@ -3,7 +3,7 @@ import { Router } from "express";
 import logger from "./utils/logger";
 
 import db from "./db";
-
+const { Energizer, EnergizerRating } = require("../models");
 const router = Router();
 
 router.get("/", (_, res) => {
@@ -110,22 +110,46 @@ router.post("/energizers", async (req, res) => {
 	}
 });
 
+// Update the rating of an energizer
+router.post("/:id/rate", async (req, res) => {
+	try {
+		const energizer = await Energizer.findByPk(req.params.id);
+		if (!energizer) {
+			return res.status(404).json({ message: "Energizer not found" });
+		}
+
+		const ratingValue = req.body.value;
+		if (typeof ratingValue !== "number" || ratingValue < 1 || ratingValue > 5) {
+			return res.status(400).json({ message: "Invalid rating value " });
+		}
+
+		// Create a new energizer rating
+		const energizerRating = await EnergizerRating.create({
+			energizerId: energizer.id,
+			value: ratingValue,
+		});
+
+		res.status(201).json(energizerRating);
+	} catch (error) {
+		res.status(500).json({ message: "Internal server error" });
+	}
+});
 
 router.delete("/energizers/:id", async (req, res) => {
-    const id = req.params.id;
-    try {
-	await db.query("DELETE FROM energizer_ratings WHERE energizer_id=$1", [id]);
-	const result = await db.query("DELETE FROM energizers WHERE id=$1", [id]);
+	const id = req.params.id;
+	try {
+		await db.query("DELETE FROM energizer_ratings WHERE energizer_id=$1", [id]);
+		const result = await db.query("DELETE FROM energizers WHERE id=$1", [id]);
 
-      if (result.rowCount === 0) {
-        res.status(404).send("Energizer not found");
-      } else {
-        res.status(204).json({ message: "Energizer deleted successfully" });
-      }
-    } catch (error) {
-      logger.error(error);
-      res.status(500).send("Internal server error");
-    }
-  });
+		if (result.rowCount === 0) {
+			res.status(404).send("Energizer not found");
+		} else {
+			res.status(204).json({ message: "Energizer deleted successfully" });
+		}
+	} catch (error) {
+		logger.error(error);
+		res.status(500).send("Internal server error");
+	}
+});
 
 export default router;
