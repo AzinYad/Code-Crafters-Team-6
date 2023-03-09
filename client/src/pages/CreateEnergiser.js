@@ -10,7 +10,21 @@ const CreateEnergiser = () => {
 
 	const handleEnergiserAdder = (e) => {
 		e.preventDefault();
-
+		// check if any name field is empty
+		if (!energiserName) {
+			alert("Please enter an energizer name");
+			return;
+		}
+		// check if any description field is empty
+		if (!enrgiserDescription) {
+			alert("Please enter an energizer description");
+			return;
+		}
+		// check if description has at least 200 characters
+		if (enrgiserDescription.length < 200) {
+			alert("The energizer description must have at least 200 characters");
+			return;
+		}
 		let energizer = {
 			name: energiserName,
 			description: enrgiserDescription,
@@ -50,11 +64,7 @@ const CreateEnergiser = () => {
 				</section>
 				<section className="flex-sec url-input">
 					<label htmlFor="url-input">Image Or Video URL:</label>
-					<input
-						type="text"
-						placeholder="Insert a URL"
-						name="urlInput"
-					/>
+					<input type="text" placeholder="Insert a URL" name="urlInput" />
 				</section>
 				<section className="flex-sec description">
 					<label htmlFor="description">Energizer Description:</label>
@@ -68,7 +78,11 @@ const CreateEnergiser = () => {
 				</section>
 				<section className="flex-sec rating">
 					<label htmlFor="rating">How do you rate this energizer?</label>
-					<select name="rating" value={rating} onChange={(e) => setRating(e.target.value)}>
+					<select
+						name="rating"
+						value={rating}
+						onChange={(e) => setRating(e.target.value)}
+					>
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
