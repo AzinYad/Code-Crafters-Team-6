@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 function Energisers() {
 	const [allEnergizers, setAllEnergizers] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
+	//must be a positive integer greater than 0, setting the number of posts per page
 	const [energizersPerPage] = useState(10);
 
 	useEffect(() => {
@@ -27,7 +28,7 @@ function Energisers() {
 			});
 	}, []);
 
-	// get current posts
+	// get current post
 	const indexOfLastEnergizer = currentPage * energizersPerPage;
 	const indexOfFirstEnergizer = indexOfLastEnergizer - energizersPerPage;
 	const currentEnergizer = allEnergizers.slice(
