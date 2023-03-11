@@ -1,14 +1,12 @@
 import React from "react";
-import Logo from "../Logo/logo.png";
+import Logo from "../Logo/CYFlogo.png";
 import { Link } from "react-router-dom";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
 
 function Navbar() {
     return (
         <div>
-            <section className="logo-sec">
-                <img className="logo" src={Logo} alt="logo" />
-            </section>
+            
             <nav className="nav-bar">
                 <div className="search-wrapper nav-sub-wrapper">
                     <FaSearch className="magnifier" />
@@ -21,7 +19,11 @@ function Navbar() {
                 </div>
                 <Link className="login-wrapper nav-sub-wrapper" to="/login">
                     <FaUserCircle className="login-icon" />
-                    Log in</Link>
+                    Log in
+                </Link>
+                <section className="logo-sec">
+                    <img className="logo" src={Logo} alt="logo" />
+                </section>
             </nav>
         </div>
     );

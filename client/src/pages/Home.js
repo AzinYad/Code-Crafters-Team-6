@@ -3,6 +3,11 @@ import Footer from "./components/Footer";
 import FavesCard from "./components/FavesCard";
 import WhatsNewCard from "./components/WhatsNewCard";
 import React, { useState, useEffect } from "react";
+import backgroundImage from "./Logo/bck2.png";
+// import diversityImage from "./Logo/divers1.png";
+// import diversityImage from "./Logo/divers2.png";
+// import diversityImage from "./Logo/divers3.png";
+import diversityImage from "./Logo/Diversity.jpeg";
 import "./Home.css";
 
 export function Home() {
@@ -35,42 +40,47 @@ export function Home() {
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
-	console.log(ratedEnergizers)
+
 	return (
-		<main className="main-page">
-			<Navbar />
-			<h1 className="faves-title">OUR FAVES</h1>
-			<div className="our-faves">
-				{/* renders a list of favourites or a placeholder of 4 rated energizers */}
-				{!favourites_array.length
-					? ratedEnergizers.map((item) => {
+		<div className="root " style={{ backgroundImage: `url(${backgroundImage})` }}>
+			<main className="main-page" >
+				<Navbar />
+				<section className="hero" style={{ backgroundImage: `url(${diversityImage})` }} >
+					<h1 className="greeting" >Hello CYF!</h1>
+				</section>
+				<h1 className="faves-title">OUR FAVES</h1>
+				<div className="our-faves">
+					{/* renders a list of favourites or a placeholder of 4 rated energizers */}
+					{!favourites_array.length
+						? ratedEnergizers.map((item) => {
 							return (
 								<div key={item.id}>
 									<FavesCard item={item} />
 								</div>
 							);
-					  })
-					: favourites_array.map((item) => {
+						})
+						: favourites_array.map((item) => {
 							return (
 								<div key={item.id}>
 									<FavesCard item={item} />
 								</div>
 							);
-					  })}
-			</div>
-			<h1 className="Whats-New-title">What is New</h1>
-			<div className="whats-new">
-				{mostRecentEnergizers.map((energizer) => (
-					<WhatsNewCard
-						key={energizer.id}
-						id={energizer.id}
-						name={energizer.name}
-						description={energizer.description}
-					/>
-				))}
-			</div>
-			<Footer />
-		</main>
+						})}
+				</div>
+				<h1 className="Whats-New-title">What is New</h1>
+				<div className="whats-new">
+					{mostRecentEnergizers.map((energizer) => (
+						<WhatsNewCard
+							key={energizer.id}
+							id={energizer.id}
+							name={energizer.name}
+							description={energizer.description}
+						/>
+					))}
+				</div>
+				<Footer />
+			</main>
+		</div>
 	);
 }
 
