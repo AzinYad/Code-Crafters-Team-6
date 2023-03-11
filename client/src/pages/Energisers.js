@@ -12,6 +12,8 @@ function Energisers() {
 	//must be a positive integer greater than 0, setting the number of posts per page
 	const [energizersPerPage] = useState(10);
 
+	const [initialEnergizers, setInitialAllEnergizers] = useState([]);
+
 	useEffect(() => {
 		fetch("/api/energizers")
 			.then((res) => {
@@ -22,6 +24,7 @@ function Energisers() {
 			})
 			.then((body) => {
 				setAllEnergizers(body);
+				setInitialAllEnergizers(body);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -39,8 +42,8 @@ function Energisers() {
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 	return (
-		<main className="main-page" >
-			<Navbar showSearch={true} />
+		<main className="main-page">
+			<Navbar showSearch={true} energizers={initialEnergizers}  setAllEnergizers={setAllEnergizers} />
 			<section className="card-sec">
 				{currentEnergizer.map((item) => {
 					return (

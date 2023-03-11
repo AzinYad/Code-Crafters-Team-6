@@ -10,12 +10,15 @@ import "./Home.css";
 export function Home() {
 	const [mostRecentEnergizers, setMostRecentEnergizers] = useState([]);
 	const [ratedEnergizers, setRatedEnergizers] = useState([]);
+	const [initialRecentEnergizers, setInitialRecentEnergizers] = useState([]);
+	const [initialRatedEnergizers, setInitialRatedEnergizers] = useState([]);
 	useEffect(() => {
 		fetch("/api/energizers?sort_by=recent")
 			.then((response) => response.json())
 			.then((energizers) => {
 				const mostRecentEnergizers = energizers.slice(0, 2);
 				setMostRecentEnergizers(mostRecentEnergizers);
+				setInitialRecentEnergizers(mostRecentEnergizers);
 			})
 			.catch((error) => {
 				console.error("Error fetching energizers", error);
@@ -28,6 +31,7 @@ export function Home() {
 			.then((energizers) => {
 				const ratedEnergizers = energizers.slice(0, 4);
 				setRatedEnergizers(ratedEnergizers);
+				setInitialRatedEnergizers(ratedEnergizers);
 			})
 			.catch((error) => {
 				console.error("Error fetching energizers", error);
@@ -40,32 +44,41 @@ export function Home() {
 	console.log(ratedEnergizers);
 	return (
 		<main className="main-page">
-			<Navbar showSearch={false} />
-			<section className="hero" >
+			<Navbar
+				showSearch={false}
+				initialRecentEnergizers={initialRecentEnergizers}
+				initialRatedEnergizers={initialRatedEnergizers}
+				setMostRecentEnergizers={setMostRecentEnergizers}
+				setRatedEnergizers={setRatedEnergizers}
+			/>
+			<section className="hero">
 				<section className="carousel-wrapper">
 					<h1>Explore our top-rated energizers !</h1>
 					<HeroCarousel />
 				</section>
-				<section className="hero-bckimg" style={{ backgroundImage: `url(${heroImage})` }} ></section>
+				<section
+					className="hero-bckimg"
+					style={{ backgroundImage: `url(${heroImage})` }}
+				></section>
 			</section>
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">
 				{/* renders a list of favourites or a placeholder of 4 rated energizers */}
 				{favourites_array == null || !favourites_array.length
 					? ratedEnergizers.map((item) => {
-						return (
-							<div key={item.id}>
-								<FavesCard item={item} />
-							</div>
-						);
-					})
+							return (
+								<div key={item.id}>
+									<FavesCard item={item} />
+								</div>
+							);
+					  })
 					: favourites_array.slice(0, 4).map((item) => {
-						return (
-							<div key={item.id}>
-								<FavesCard item={item} />
-							</div>
-						);
-					})}
+							return (
+								<div key={item.id}>
+									<FavesCard item={item} />
+								</div>
+							);
+					  })}
 			</div>
 			<h1 className="Whats-New-title">What is New</h1>
 			<div className="whats-new">
