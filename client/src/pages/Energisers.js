@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 
 function Energisers() {
 	const [allEnergizers, setAllEnergizers] = useState([]);
+	const [initialEnergizers, setInitialAllEnergizers] = useState([]);
 	//console.log(allEnergizers);
 	useEffect(() => {
 		fetch("/api/energizers")
@@ -18,6 +19,7 @@ function Energisers() {
 			})
 			.then((body) => {
 				setAllEnergizers(body);
+				setInitialAllEnergizers(body);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -25,7 +27,8 @@ function Energisers() {
 	}, []);
 	return (
 		<main className="main-page">
-			<Navbar />
+			<Navbar energizers={initialEnergizers}  setAllEnergizers={setAllEnergizers} />
+		
 			<section className="card-sec">
 				{allEnergizers.map((item) => {
 					return (
