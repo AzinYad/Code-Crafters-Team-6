@@ -1,7 +1,5 @@
 import { Router } from "express";
-
 import logger from "./utils/logger";
-
 import db from "./db";
 
 const router = Router();
@@ -79,29 +77,34 @@ router.post("/energizers", async (req, res) => {
 	if (!name || !description || !rating) {
 		return res.status(400).json({ error: "Missing required fields" });
 	}
+
 	if (name.length > 50) {
 		return res
 			.status(400)
 			.json({ error: "Name has to be less or equal to 50 characters" });
 	}
+
+	if (description.length < 50) {
+		return res.status(400).json({ error: "Description has to be at least 50 characters" });
+	}
 	const query = `
-	  INSERT INTO energizers (name, description) 
-	  VALUES ($1, $2)
-	  RETURNING id, name, description
-	`;
+    INSERT INTO energizers (name, description) 
+    VALUES ($1, $2)
+    RETURNING id, name, description
+  `;
+
 	try {
 		// Insert energizer into energizers table
 		const result = await db.query(query, [name, description]);
 
-		// Insert rating into Energizer_ratings table
+		// Insert rating into energizer_ratings table
 		const ratingQuery = `
-		  INSERT INTO Energizer_ratings (energizer_id, rating) 
-		  VALUES ($1, $2)
-		  RETURNING id, energizer_id, rating
-		`;
+      INSERT INTO energizer_ratings (energizer_id, rating) 
+      VALUES ($1, $2)
+      RETURNING id, energizer_id, rating
+    `;
 
-		const ratingResult = await db.query(ratingQuery, [result.rows[0].id, rating,
-		]);
+		const ratingResult = await db.query(ratingQuery, [result.rows[0].id, rating]);
 
 		res.json({ energizer: result.rows[0], rating: ratingResult.rows[0] });
 	} catch (error) {
@@ -110,21 +113,55 @@ router.post("/energizers", async (req, res) => {
 	}
 });
 
-router.delete("/energizers/:id", async (req, res) => {
-    const id = req.params.id;
-    try {
-	await db.query("DELETE FROM energizer_ratings WHERE energizer_id=$1", [id]);
-	const result = await db.query("DELETE FROM energizers WHERE id=$1", [id]);
+router.post("/energizers/:id/rate", async (req, res) => {
+	const energizerId = req.params.id;
+	const rating = req.body.value;
 
-      if (result.rowCount === 0) {
-        res.status(404).send("Energizer not found");
-      } else {
-        res.status(204).json({ message: "Energizer deleted successfully" });
-      }
-    } catch (error) {
-      logger.error(error);
-      res.status(500).send("Internal server error");
-    }
-  });
+	try {
+		// Insert or update rating in the energizer_ratings table
+		await db.query(
+			`INSERT INTO energizer_ratings (energizer_id, rating) 
+				VALUES ($1, $2)`,
+			[energizerId, rating]
+		);
+
+		// Get the average rating of the energizer from the energizer_ratings table
+		const avgRatingResult = await db.query(
+			"SELECT ROUND(AVG(rating), 1) as average_rating FROM energizer_ratings WHERE energizer_id = $1",
+			[energizerId]
+		);
+		const averageRating = avgRatingResult.rows[0].average_rating;
+
+		// Update the average rating of the energizer in the energizers table
+		await db.query(
+			"UPDATE energizers SET average_rate = $1 WHERE id = $2",
+			[averageRating, energizerId]
+		);
+
+		res.json({ averageRating });
+	} catch (error) {
+		logger.error(error);
+		res.status(500).send("Internal server error");
+	}
+});
+
+
+
+router.delete("/energizers/:id", async (req, res) => {
+	const id = req.params.id;
+	try {
+		await db.query("DELETE FROM energizer_ratings WHERE energizer_id=$1", [id]);
+		const result = await db.query("DELETE FROM energizers WHERE id=$1", [id]);
+
+		if (result.rowCount === 0) {
+			res.status(404).send("Energizer not found");
+		} else {
+			res.status(204).json({ message: "Energizer deleted successfully" });
+		}
+	} catch (error) {
+		logger.error(error);
+		res.status(500).send("Internal server error");
+	}
+});
 
 export default router;
