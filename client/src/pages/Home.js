@@ -8,12 +8,16 @@ import "./Home.css";
 export function Home() {
 	const [mostRecentEnergizers, setMostRecentEnergizers] = useState([]);
 	const [ratedEnergizers, setRatedEnergizers] = useState([]);
+	const [initialRecentEnergizers, setInitialRecentEnergizers] = useState([]);
+	const [initialRatedEnergizers, setInitialRatedEnergizers] = useState([]);
 	useEffect(() => {
 		fetch("/api/energizers?sort_by=recent")
 			.then((response) => response.json())
 			.then((energizers) => {
 				const mostRecentEnergizers = energizers.slice(0, 2);
 				setMostRecentEnergizers(mostRecentEnergizers);
+				setInitialRecentEnergizers(mostRecentEnergizers);
+
 			})
 			.catch((error) => {
 				console.error("Error fetching energizers", error);
@@ -26,6 +30,7 @@ export function Home() {
 			.then((energizers) => {
 				const ratedEnergizers = energizers.slice(0, 4);
 				setRatedEnergizers(ratedEnergizers);
+				setInitialRatedEnergizers(ratedEnergizers);
 			})
 			.catch((error) => {
 				console.error("Error fetching energizers", error);
@@ -38,7 +43,12 @@ export function Home() {
 	console.log(ratedEnergizers)
 	return (
 		<main className="main-page">
-			<Navbar />
+			<Navbar
+				initialRecentEnergizers={initialRecentEnergizers}
+				initialRatedEnergizers={initialRatedEnergizers}
+				setMostRecentEnergizers={setMostRecentEnergizers}
+				setRatedEnergizers={setRatedEnergizers}
+			/>
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">
 				{/* renders a list of favourites or a placeholder of 4 rated energizers */}
