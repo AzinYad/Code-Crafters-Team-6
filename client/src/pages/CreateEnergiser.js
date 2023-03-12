@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import backgroundImage from "./Logo/bck2.png";
+import Alert from "./components/Alert";
 import "./CreateEnergiser.css";
 
 const CreateEnergiser = () => {

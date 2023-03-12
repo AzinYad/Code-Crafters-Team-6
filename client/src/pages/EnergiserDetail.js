@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import "./EnergiserDetail.css";
 import EnergizerDeleteButton from "./components/EnergizerDeleteButton";
 import backgroundImage from "./Logo/bck2.png";
+import Alert from "./components/Alert";
 
 function EnergiserDetail() {
 	const { id } = useParams();
@@ -35,6 +36,8 @@ function EnergiserDetail() {
 			.catch((err) => {
 				console.error(err);
 			});
+		// Show alert message when feedback is submitted
+		window.alert("Thank you for your feedback!");
 	};
 
 	const handleMouseOver = (newHoverValue) => {
