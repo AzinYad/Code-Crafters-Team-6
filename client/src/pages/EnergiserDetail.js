@@ -102,7 +102,7 @@ function EnergiserDetail() {
 
 			console.log(checkIfIsFav);
 			if (checkIfIsFav) {
-				let newArr = favourite.filter((i) => i.id !== id);
+				let newArr = favourite.filter((i) => i.id != id);
 				setFavourite(newArr);
 			} else {
 				setFavourite([...favourite, item]);

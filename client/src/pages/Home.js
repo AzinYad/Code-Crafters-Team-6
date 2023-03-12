@@ -35,14 +35,14 @@ export function Home() {
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
-	console.log(ratedEnergizers)
+
 	return (
 		<main className="main-page">
 			<Navbar />
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">
 				{/* renders a list of favourites or a placeholder of 4 rated energizers */}
-				{!favourites_array.length
+				{favourites_array == null || !favourites_array.length
 					? ratedEnergizers.map((item) => {
 							return (
 								<div key={item.id}>
@@ -50,7 +50,7 @@ export function Home() {
 								</div>
 							);
 					  })
-					: favourites_array.map((item) => {
+					: favourites_array.slice(0, 4).map((item) => {
 							return (
 								<div key={item.id}>
 									<FavesCard item={item} />
