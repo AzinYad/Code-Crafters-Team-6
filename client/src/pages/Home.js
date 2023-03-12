@@ -41,8 +41,12 @@ export function Home() {
 	return (
 		<main className="main-page">
 			<Navbar />
-			<section className="hero" style={{ backgroundImage: `url(${diversityImage})` }} >
-				<HeroCarousel />
+			<section className="hero" >
+				<section className="carousel-wrapper">
+					<h1>Explore our top-rated energizers !</h1>
+					<HeroCarousel />
+				</section>
+				<section className="hero-bckimg" style={{ backgroundImage: `url(${diversityImage})` }} ></section>
 			</section>
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">

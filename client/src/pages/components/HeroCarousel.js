@@ -10,7 +10,7 @@ function HeroCarousel() {
         fetch("/api/energizers?sort_by=rating")
             .then((response) => response.json())
             .then((energizers) => {
-                const highestRatedEnergizers = energizers.slice(0, 3);
+                const highestRatedEnergizers = energizers.slice(0, 4);
                 setHighestRatedEnergizers(highestRatedEnergizers);
             })
             .catch((error) => {
@@ -24,15 +24,16 @@ function HeroCarousel() {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
     };
 
     return (
-        <Slider {...settings}>
+        <Slider {...settings} className="slider" >
             {highestRatedEnergizers.map((energizer) => (
                 <div key={energizer.id}>
+                    <section className="carousel-tumbnail" ></section>
                     <h2>{energizer.name}</h2>
-                    <p>{energizer.description}</p>
-                    <p>Rating: {energizer.rating}</p>
                 </div>
             ))}
         </Slider>

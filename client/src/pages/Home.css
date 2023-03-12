@@ -97,7 +97,57 @@ body{
 /* =========================
    Main Section of HomePage
 ============================ */
+/* hero */
+.hero {
+	display: flex;
+	align-items: center;
+	width: 95%;
+	margin: 3em auto;
+	height: 46em;
+	border-radius: 15px;
+	background-color: rgba(237, 67, 68, 0.8);
+}
+.hero-bckimg{
+	width: 40%;
+	height: 45.5em;
+    background-image:url("./Logo/Diversity.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position:center;
+	border-radius: 20px;
+}
 
+.carousel-wrapper{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 55%;
+	height: 45.5em;
+	margin: 1em auto;
+}
+
+.carousel-wrapper h1{
+	color: white;
+	font-size: 2rem;
+	font-weight: 600;
+	margin: 1.5em auto;
+}
+
+.slider{
+	width: 90%;
+	height: 35em;
+	justify-self: center;
+}
+
+.slider h2{
+	font-size: 1.5rem;
+}
+.carousel-tumbnail{
+	margin: 1em auto;
+	width:90% ;
+	height:25em;
+	border:1px solid white;
+}
 /* Titles */
 .faves-title,
 .Whats-New-title {
