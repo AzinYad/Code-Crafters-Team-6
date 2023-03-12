@@ -140,14 +140,18 @@ body{
 	justify-self: center;
 	cursor: pointer;
 }
-
+#slider-title{
+	text-decoration: none;
+}
 .slider h2{
 	text-decoration: none;
 	font-size: 1.5rem;
 	color: #231f20;
 }
+
 .slider h2:hover{
 	color: white;
+	font-size: 1.8rem;
 }
 .carousel-tumbnail{
 	margin: 1em auto;

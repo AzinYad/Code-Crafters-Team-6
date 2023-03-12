@@ -32,10 +32,14 @@ function HeroCarousel() {
     return (
         <Slider {...settings} className="slider">
             {highestRatedEnergizers.map((energizer) => (
-                <Link key={energizer.id} to={`/energizers/${energizer.id}`} style={{ textDecoration: "none !important" }} >
+                <Link
+                    key={energizer.id}
+                    to={`/energizers/${energizer.id}`}
+                    style={{ textDecoration: "none", pointerEvents: "none" }}
+                >
                     <div>
                         <section className="carousel-tumbnail"></section>
-                        <h2 >{energizer.name}</h2>
+                        <h2 id="slider-title" >{energizer.name}</h2>
                     </div>
                 </Link>
             ))}
