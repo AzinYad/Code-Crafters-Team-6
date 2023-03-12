@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
 
 function HeroCarousel() {
     const [highestRatedEnergizers, setHighestRatedEnergizers] = useState([]);
@@ -29,12 +30,14 @@ function HeroCarousel() {
     };
 
     return (
-        <Slider {...settings} className="slider" >
+        <Slider {...settings} className="slider">
             {highestRatedEnergizers.map((energizer) => (
-                <div key={energizer.id}>
-                    <section className="carousel-tumbnail" ></section>
-                    <h2>{energizer.name}</h2>
-                </div>
+                <Link key={energizer.id} to={`/energizers/${energizer.id}`} style={{ textDecoration: "none !important" }} >
+                    <div>
+                        <section className="carousel-tumbnail"></section>
+                        <h2 >{energizer.name}</h2>
+                    </div>
+                </Link>
             ))}
         </Slider>
     );

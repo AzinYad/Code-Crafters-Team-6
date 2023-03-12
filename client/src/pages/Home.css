@@ -109,7 +109,8 @@ body{
 }
 .hero-bckimg{
 	width: 40%;
-	height: 45.5em;
+	height: 45em;
+	margin-right:.5em;
     background-image:url("./Logo/Diversity.jpeg");
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -137,15 +138,22 @@ body{
 	width: 90%;
 	height: 35em;
 	justify-self: center;
+	cursor: pointer;
 }
 
 .slider h2{
+	text-decoration: none;
 	font-size: 1.5rem;
+	color: #231f20;
+}
+.slider h2:hover{
+	color: white;
 }
 .carousel-tumbnail{
 	margin: 1em auto;
 	width:90% ;
 	height:25em;
+	border-radius: 15px;
 	border:1px solid white;
 }
 /* Titles */
