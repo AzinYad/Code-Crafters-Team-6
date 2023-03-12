@@ -72,13 +72,13 @@
 		"webpack-merge": "^5.8.0"
 	},
 	"dependencies": {
-		"@babel/runtime": "^7.20.13",
+		"@babel/runtime": "^7.20.13",		
 		"dotenv": "^16.0.3",
 		"express": "^4.18.2",
 		"helmet": "^6.0.1",
 		"knext": "^0.1.0",
 		"morgan": "^1.10.0",
-		"pg": "^8.9.0",
+		"pg": "^8.9.0",		
 		"react-icons": "^4.7.1",
 		"react-slick": "^0.29.0",
 		"slick-carousel": "^1.8.1",
