@@ -2,6 +2,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FavesCard from "./components/FavesCard";
 import WhatsNewCard from "./components/WhatsNewCard";
+import HeroCarousel from "./components/HeroCarousel";
+import diversityImage from "./Logo/Diversity.jpeg";
 import React, { useState, useEffect } from "react";
 import "./Home.css";
 
@@ -35,28 +37,31 @@ export function Home() {
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
-	console.log(ratedEnergizers)
+	console.log(ratedEnergizers);
 	return (
 		<main className="main-page">
 			<Navbar />
+			<section className="hero" style={{ backgroundImage: `url(${diversityImage})` }} >
+				<HeroCarousel />
+			</section>
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">
 				{/* renders a list of favourites or a placeholder of 4 rated energizers */}
 				{!favourites_array.length
 					? ratedEnergizers.map((item) => {
-							return (
-								<div key={item.id}>
-									<FavesCard item={item} />
-								</div>
-							);
-					  })
+						return (
+							<div key={item.id}>
+								<FavesCard item={item} />
+							</div>
+						);
+					})
 					: favourites_array.map((item) => {
-							return (
-								<div key={item.id}>
-									<FavesCard item={item} />
-								</div>
-							);
-					  })}
+						return (
+							<div key={item.id}>
+								<FavesCard item={item} />
+							</div>
+						);
+					})}
 			</div>
 			<h1 className="Whats-New-title">What is New</h1>
 			<div className="whats-new">
