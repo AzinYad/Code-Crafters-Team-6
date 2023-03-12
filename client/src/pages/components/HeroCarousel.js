@@ -38,7 +38,7 @@ function HeroCarousel() {
                     style={{ textDecoration: "none", pointerEvents: "none" }}
                 >
                     <div>
-                        <section className="carousel-tumbnail"></section>
+                        <section className="carousel-thumbnail"></section>
                         <h2 id="slider-title" >{energizer.name}</h2>
                     </div>
                 </Link>
