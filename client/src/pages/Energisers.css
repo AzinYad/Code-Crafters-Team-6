@@ -91,7 +91,7 @@
 }
 	
 .page-link {
-  background-color: #EA4C89;
+  background-color: #EE4344;
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
@@ -120,5 +120,5 @@
 
 .page-link:hover,
 .page-link:focus {
-  background-color: #F082AC;
+  background-color: #f19a9a;
 }
