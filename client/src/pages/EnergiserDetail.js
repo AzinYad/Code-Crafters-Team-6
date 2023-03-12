@@ -34,6 +34,8 @@ function EnergiserDetail() {
 			.catch((err) => {
 				console.error(err);
 			});
+		// Show alert message when feedback is submitted
+		window.alert("Thank you for your feedback!");
 	};
 
 	const handleMouseOver = (newHoverValue) => {
