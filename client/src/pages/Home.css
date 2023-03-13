@@ -14,15 +14,6 @@
    NAvbar
 =========== */
 
-/* logo of the App */
-.logo {
-	margin-top: 1em;
-	width: 10em;
-}
-.logo-sec {
-	width: 11em;
-	margin: 0 auto;
-}
 
 /* Nav bar Section */
 .nav-bar {
@@ -39,27 +30,40 @@
 	width: 30%;
 }
 
+
+/* logo of the App */
+
+.logo-sec {
+	width: 20%;
+	align-self: center;
+}
+
+.logo {
+	width:90%;
+}
 .pages-wrapper {
+	width: 50%;
 	display: flex;
-	justify-content: center;
+	justify-content:center;
 	align-items: center;
 }
 .page {
-	font-size: 1.3rem;
+	font-size: 1.5rem;
 	font-weight: 700;
 	color: #231f20;
 	text-shadow: 1px 1px 1px #231f20;
 	margin: 0.5em;
 	text-decoration: none;
 }
+.create-energizer{
+	margin-left: 1.2em;
+	margin-right: 1.2em;
+}
 .page:hover,
 .login-icon:hover,
 .magnifier:hover,
 .login-wrapper:hover {
 	color: rgb(238, 67, 68);
-}
-.create-energizer {
-	padding: 0.5em 2em;
 }
 
 .active-page,
@@ -91,6 +95,7 @@
 
 .login-wrapper,
 .search-wrapper {
+	width: 20%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -99,6 +104,9 @@
 	text-shadow: 2px 2px 3px rgb(245, 223, 223);
 }
 
+.login-wrapper{
+	font-weight: bold;
+}
 .login-icon {
 	width: 1.5em;
 	height: 1.5em;

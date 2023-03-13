@@ -39,7 +39,7 @@ export function Home() {
 
 	return (
 		<main className="main-page" >
-			<Navbar />
+			<Navbar showSearch={false} />
 			<section className="hero" style={{ backgroundImage: `url(${diversityImage})` }} >
 				<h1 className="greeting" >Hello CYF!</h1>
 			</section>

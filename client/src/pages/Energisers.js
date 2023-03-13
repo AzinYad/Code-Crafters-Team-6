@@ -25,7 +25,7 @@ function Energisers() {
 	}, []);
 	return (
 		<main className="main-page" >
-			<Navbar />
+			<Navbar showSearch={true} />
 			<section className="card-sec">
 				{allEnergizers.map((item) => {
 					return (

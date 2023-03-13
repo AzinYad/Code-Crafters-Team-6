@@ -132,7 +132,7 @@ function EnergiserDetail() {
 
 	return (
 		<main className="main-page">
-			<Navbar />
+			<Navbar showSearch={false} />
 			{showFeedbackAlert && (
 				<Alert message="Thank you for your feedback!" type="success" onClose={() => setShowFeedbackAlert(false)} />
 			)}
