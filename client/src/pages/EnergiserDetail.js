@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./EnergiserDetail.css";
 import EnergizerDeleteButton from "./components/EnergizerDeleteButton";
+import Alert from "./components/Alert";
 
 function EnergiserDetail() {
 	const { id } = useParams();
@@ -14,6 +15,9 @@ function EnergiserDetail() {
 	const [showFeedback, setShowFeedback] = useState(false);
 	const [currentValue, setCurrentValue] = useState(0);
 	const [hoverValue, setHoverValue] = useState(undefined);
+	const [showFeedbackAlert, setShowFeedbackAlert] = useState(false);
+	const [showShareAlert, setShowShareAlert] = useState(false);
+
 	const stars = Array(5).fill(0);
 
 	const handleClick = (value) => {
@@ -34,6 +38,8 @@ function EnergiserDetail() {
 			.catch((err) => {
 				console.error(err);
 			});
+		// Show alert message when feedback is submitted
+		setShowFeedbackAlert(true);
 	};
 
 	const handleMouseOver = (newHoverValue) => {
@@ -64,7 +70,7 @@ function EnergiserDetail() {
 		const handleShare = () => {
 			const shareUrl = window.location.href;
 			navigator.clipboard.writeText(shareUrl);
-			window.alert("Link copied to clipboard!");
+			setShowShareAlert(true);
 		};
 
 		return (
@@ -113,7 +119,7 @@ function EnergiserDetail() {
 		return (
 			<div className="favorite-sec">
 				<button className="fav-btn" onClick={(e) => handleClick(e)}>
-					{isFavourite ? <FaHeart /> : <FaRegHeart />}
+					{isFavourite ? <FaHeart /> : <FaRegHeart style={{ color: "red !important" }} />}
 				</button>
 				<p>Add To Favourite</p>
 			</div>
@@ -126,7 +132,13 @@ function EnergiserDetail() {
 
 	return (
 		<main className="main-page">
-			<Navbar />
+			<Navbar showSearch={false} />
+			{showFeedbackAlert && (
+				<Alert message="Thank you for your feedback!" type="success" onClose={() => setShowFeedbackAlert(false)} />
+			)}
+			{showShareAlert && (
+				<Alert message="Link copied to clipboard!" type="success" onClose={() => setShowShareAlert(false)} />
+			)}
 			<h1 className="energizer-name">{item.name}</h1>
 			<div className="columns-delete-wrapper">
 				<section className="columns-sec">
@@ -179,7 +191,7 @@ function EnergiserDetail() {
 					</div>
 				</section>
 				<section className="delete-sec" >
-					<EnergizerDeleteButton className="delete-btn" energizerId={item.id} />
+					<EnergizerDeleteButton className="delete-btn" energizerId={item.id} energizerName={item.name} />
 				</section>
 			</div>
 			<Footer />
