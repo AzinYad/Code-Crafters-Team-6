@@ -123,7 +123,18 @@
 	background-color: transparent;
 }
 
-.share-btn:hover,
+.fav-btn{
+	color: #ee4344;
+}
+
+.share-btn{
+	color: #231f20;
+}
+
+.share-btn:hover{
+	color: #a9a9a9 ;
+}
+
 .fav-btn:hover{
 	color:rgb(131, 16, 16);
 }

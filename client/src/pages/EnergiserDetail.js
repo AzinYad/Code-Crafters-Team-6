@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./EnergiserDetail.css";
 import EnergizerDeleteButton from "./components/EnergizerDeleteButton";
-import backgroundImage from "./Logo/bck2.png";
 import Alert from "./components/Alert";
 
 function EnergiserDetail() {
@@ -16,6 +15,9 @@ function EnergiserDetail() {
 	const [showFeedback, setShowFeedback] = useState(false);
 	const [currentValue, setCurrentValue] = useState(0);
 	const [hoverValue, setHoverValue] = useState(undefined);
+	const [showFeedbackAlert, setShowFeedbackAlert] = useState(false);
+	const [showShareAlert, setShowShareAlert] = useState(false);
+
 	const stars = Array(5).fill(0);
 
 	const handleClick = (value) => {
@@ -37,7 +39,7 @@ function EnergiserDetail() {
 				console.error(err);
 			});
 		// Show alert message when feedback is submitted
-		window.alert("Thank you for your feedback!");
+		setShowFeedbackAlert(true);
 	};
 
 	const handleMouseOver = (newHoverValue) => {
@@ -68,7 +70,7 @@ function EnergiserDetail() {
 		const handleShare = () => {
 			const shareUrl = window.location.href;
 			navigator.clipboard.writeText(shareUrl);
-			window.alert("Link copied to clipboard!");
+			setShowShareAlert(true);
 		};
 
 		return (
@@ -106,7 +108,7 @@ function EnergiserDetail() {
 
 			console.log(checkIfIsFav);
 			if (checkIfIsFav) {
-				let newArr = favourite.filter((i) => i.id !== id);
+				let newArr = favourite.filter((i) => i.id != id);
 				setFavourite(newArr);
 			} else {
 				setFavourite([...favourite, item]);
@@ -117,7 +119,7 @@ function EnergiserDetail() {
 		return (
 			<div className="favorite-sec">
 				<button className="fav-btn" onClick={(e) => handleClick(e)}>
-					{isFavourite ? <FaHeart /> : <FaRegHeart />}
+					{isFavourite ? <FaHeart /> : <FaRegHeart style={{ color: "red !important" }} />}
 				</button>
 				<p>Add To Favourite</p>
 			</div>
@@ -129,67 +131,71 @@ function EnergiserDetail() {
 	}
 
 	return (
-		<div className="root " style={{ backgroundImage: `url(${backgroundImage})` }}>
-			<main className="main-page">
-				<Navbar />
-				<h1 className="energizer-name">{item.name}</h1>
-				<div className="columns-delete-wrapper">
-					<section className="columns-sec">
-						<div className="episode-sec">
-							<div className="energizer-preview"></div>
-							<section className="icons-wrapper">
-								<div className="rating-sec">
-									<p className="rate">Average rate:</p>
-									<p>{item.average_rate}</p>
-								</div>
-								<FavouriteButton />
-								<ShareButton />
-								<div
-									className="review-sec"
-									onClick={() => setShowFeedback((prevShowFeedback) => !prevShowFeedback)}
-									onKeyDown={(event) => {
-										if (event.key === "Enter" || event.key === " ") {
-											setShowFeedback((prevShowFeedback) => !prevShowFeedback);
-										}
-									}}
-									role="button"
-									tabIndex="0"
-								>
-									Your review
+		<main className="main-page">
+			<Navbar />
+			{showFeedbackAlert && (
+				<Alert message="Thank you for your feedback!" type="success" onClose={() => setShowFeedbackAlert(false)} />
+			)}
+			{showShareAlert && (
+				<Alert message="Link copied to clipboard!" type="success" onClose={() => setShowShareAlert(false)} />
+			)}
+			<h1 className="energizer-name">{item.name}</h1>
+			<div className="columns-delete-wrapper">
+				<section className="columns-sec">
+					<div className="episode-sec">
+						<div className="energizer-preview"></div>
+						<section className="icons-wrapper">
+							<div className="rating-sec">
+								<p className="rate">Average rate:</p>
+								<p>{item.average_rate}</p>
+							</div>
+							<FavouriteButton />
+							<ShareButton />
+							<div
+								className="review-sec"
+								onClick={() => setShowFeedback((prevShowFeedback) => !prevShowFeedback)}
+								onKeyDown={(event) => {
+									if (event.key === "Enter" || event.key === " ") {
+										setShowFeedback((prevShowFeedback) => !prevShowFeedback);
+									}
+								}}
+								role="button"
+								tabIndex="0"
+							>
+								Your review
+							</div>
+						</section>
+						{showFeedback && (
+							<section className="feedback-rate" >
+								<h2>How do you like this energizer?</h2>
+								<div className="stars-sec">
+									{stars.map((_, index) => {
+										return (
+											<FaStar
+												key={index}
+												size={24}
+												onClick={() => handleClick(index + 1)}
+												onMouseOver={() => handleMouseOver(index + 1)}
+												onMouseLeave={handleMouseLeave}
+												color={(hoverValue || currentValue) > index ? "#FFBA5A" : "#a9a9a9"}
+											/>
+										);
+									})}
 								</div>
 							</section>
-							{showFeedback && (
-								<section className="feedback-rate" >
-									<h2>How do you like this energizer?</h2>
-									<div className="stars-sec">
-										{stars.map((_, index) => {
-											return (
-												<FaStar
-													key={index}
-													size={24}
-													onClick={() => handleClick(index + 1)}
-													onMouseOver={() => handleMouseOver(index + 1)}
-													onMouseLeave={handleMouseLeave}
-													color={(hoverValue || currentValue) > index ? "#FFBA5A" : "#a9a9a9"}
-												/>
-											);
-										})}
-									</div>
-								</section>
-							)}
-						</div>
-						<div className="instruction-sec">
-							<h5 className="instruction-title">How to play</h5>
-							<div className="instruction">{item.description}</div>
-						</div>
-					</section>
-					<section className="delete-sec" >
-						<EnergizerDeleteButton className="delete-btn" energizerId={item.id} />
-					</section>
-				</div>
-				<Footer />
-			</main>
-		</div>
+						)}
+					</div>
+					<div className="instruction-sec">
+						<h5 className="instruction-title">How to play</h5>
+						<div className="instruction">{item.description}</div>
+					</div>
+				</section>
+				<section className="delete-sec" >
+					<EnergizerDeleteButton className="delete-btn" energizerId={item.id} energizerName={item.name} />
+				</section>
+			</div>
+			<Footer />
+		</main>
 	);
 }
 

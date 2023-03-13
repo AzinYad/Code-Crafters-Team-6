@@ -62,6 +62,13 @@
 	padding: 0.5em 2em;
 }
 
+.active-page,
+.page:hover,
+.login-icon:hover,
+.magnifier:hover,
+.login-wrapper:hover {
+	color: rgb(238, 67, 68) !important;
+}
 /* Search Bar */
 
 .magnifier {
