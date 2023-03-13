@@ -3,7 +3,6 @@ import Footer from "./components/Footer";
 import FavesCard from "./components/FavesCard";
 import WhatsNewCard from "./components/WhatsNewCard";
 import HeroCarousel from "./components/HeroCarousel";
-import diversityImage from "./Logo/Diversity.jpeg";
 import React, { useState, useEffect } from "react";
 import heroImage from "./Logo/Diversity.jpeg";
 import "./Home.css";
