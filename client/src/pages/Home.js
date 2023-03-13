@@ -5,6 +5,7 @@ import WhatsNewCard from "./components/WhatsNewCard";
 import HeroCarousel from "./components/HeroCarousel";
 import diversityImage from "./Logo/Diversity.jpeg";
 import React, { useState, useEffect } from "react";
+import heroImage from "./Logo/Diversity.jpeg";
 import "./Home.css";
 
 export function Home() {
@@ -40,32 +41,32 @@ export function Home() {
 	console.log(ratedEnergizers);
 	return (
 		<main className="main-page">
-			<Navbar />
+			<Navbar showSearch={false} />
 			<section className="hero" >
 				<section className="carousel-wrapper">
 					<h1>Explore our top-rated energizers !</h1>
 					<HeroCarousel />
 				</section>
-				<section className="hero-bckimg" style={{ backgroundImage: `url(${diversityImage})` }} ></section>
+				<section className="hero-bckimg" style={{ backgroundImage: `url(${heroImage})` }} ></section>
 			</section>
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">
 				{/* renders a list of favourites or a placeholder of 4 rated energizers */}
 				{favourites_array == null || !favourites_array.length
 					? ratedEnergizers.map((item) => {
-							return (
-								<div key={item.id}>
-									<FavesCard item={item} />
-								</div>
-							);
-					  })
+						return (
+							<div key={item.id}>
+								<FavesCard item={item} />
+							</div>
+						);
+					})
 					: favourites_array.slice(0, 4).map((item) => {
-							return (
-								<div key={item.id}>
-									<FavesCard item={item} />
-								</div>
-							);
-					  })}
+						return (
+							<div key={item.id}>
+								<FavesCard item={item} />
+							</div>
+						);
+					})}
 			</div>
 			<h1 className="Whats-New-title">What is New</h1>
 			<div className="whats-new">

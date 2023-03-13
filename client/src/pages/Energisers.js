@@ -39,8 +39,8 @@ function Energisers() {
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 	return (
-		<main className="main-page">
-			<Navbar />
+		<main className="main-page" >
+			<Navbar showSearch={true} />
 			<section className="card-sec">
 				{currentEnergizer.map((item) => {
 					return (
