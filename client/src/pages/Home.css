@@ -4,9 +4,7 @@
 
 .main-page {
 	margin: 0;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
+	width: 98%;
 }
 
 /* ========
@@ -294,4 +292,77 @@
 .sec2-footer {
 	margin: .4em 1em;
 	padding: 0.2em 2em;
+}
+
+/* ================
+   Smaller Screen
+=================== */
+
+/* For screens smaller than 768px (e.g., mobile devices) */
+@media screen and (max-width: 768px) {
+	.main-page{
+		width: 90%;
+		margin: 0 auto;
+	}
+  .nav-bar {
+    flex-direction: column;
+    height: auto;
+  }
+  .nav-sub-wrapper {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  .logo-sec {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  .pages-wrapper {
+    width: 100%;
+    margin-bottom: 1em;
+    flex-direction: column;
+  }
+  .page {
+    font-size: 1.2rem;
+    margin: 0.3em 0;
+  }
+   .faves-title,
+  .Whats-New-title {
+    font-size: 1.5rem;
+  }
+
+  /* Limit width of content and hero section */
+  .our-faves,
+  .whats-new,
+  .hero {
+    max-width: 100%;
+	justify-content: center;
+	align-items:center;
+  }
+
+  /* Use a vertical layout */
+  .our-faves,
+  .whats-new {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fave-energizer-box{
+	width: 80vw;
+  }
+  
+  /* Simplify the design */
+  .hero {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 300px;
+  }
+}
+
+/* For screens smaller than 576px */
+@media screen and (max-width: 576px) {
+  .page {
+    font-size: 1rem;
+  }
 }
