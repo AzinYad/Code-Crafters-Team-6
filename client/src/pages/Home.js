@@ -2,8 +2,9 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FavesCard from "./components/FavesCard";
 import WhatsNewCard from "./components/WhatsNewCard";
+import HeroCarousel from "./components/HeroCarousel";
 import React, { useState, useEffect } from "react";
-import diversityImage from "./Logo/Diversity.jpeg";
+import heroImage from "./Logo/Diversity.jpeg";
 import "./Home.css";
 
 export function Home() {
@@ -36,12 +37,16 @@ export function Home() {
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
-
+	console.log(ratedEnergizers);
 	return (
-		<main className="main-page" >
+		<main className="main-page">
 			<Navbar showSearch={false} />
-			<section className="hero" style={{ backgroundImage: `url(${diversityImage})` }} >
-				<h1 className="greeting" >Hello CYF!</h1>
+			<section className="hero" >
+				<section className="carousel-wrapper">
+					<h1>Explore our top-rated energizers !</h1>
+					<HeroCarousel />
+				</section>
+				<section className="hero-bckimg" style={{ backgroundImage: `url(${heroImage})` }} ></section>
 			</section>
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">
