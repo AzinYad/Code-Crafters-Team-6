@@ -281,8 +281,13 @@
 	gap: 2em;
 }
 
+.most-recent-container{
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
 .most-recent-new-wrapper {
-	width: 50%;
+	width: 40vw;
 }
 
 .most-recent-new-energizer {
@@ -388,15 +393,30 @@
   }
 
   .fave-energizer-box{
-	width: 80vw;
+	width: 60vw;
   }
-  
-  /* Simplify the design */
-  .hero {
-    background-size: cover;
+    .hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80vh;
+    padding: 0 5%;
+    background-image: url("./Logo/Diversity.jpeg");
     background-repeat: no-repeat;
+    background-size: cover;
     background-position: center;
-    height: 300px;
+  }
+
+  .carousel-wrapper {
+    width: 50%;
+    margin-right: 2%;
+  }
+
+  .hero h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1em;
   }
 }
 
@@ -404,5 +424,30 @@
 @media screen and (max-width: 576px) {
   .page {
     font-size: 1rem;
+  }
+  hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    padding: 0 10%;
+    background-image: url("./Logo/Diversity.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .carousel-wrapper {
+    width: 100%;
+    margin-bottom: 2em;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1em;
+    text-align: center;
   }
 }
