@@ -67,7 +67,10 @@
 .page:hover,
 .login-icon:hover,
 .magnifier:hover,
-.login-wrapper:hover {
+.login-wrapper:hover,
+.nav-bar__buttons:hover,
+.button__login:hover,
+.button__logout:hover {
 	color: rgb(238, 67, 68) !important;
 }
 /* Search Bar */
@@ -334,4 +337,15 @@
 .sec2-footer {
 	margin: .4em 1em;
 	padding: 0.2em 2em;
+}
+
+
+/* login butons */
+.nav-bar__buttons,
+.button__login,
+.button__logout {
+	padding: 0;
+	border: none;
+	background: none;
+	font-weight: 700;
 }

@@ -8,8 +8,10 @@ import { useState, useEffect } from "react";
 import "./EnergiserDetail.css";
 import EnergizerDeleteButton from "./components/EnergizerDeleteButton";
 import Alert from "./components/Alert";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function EnergiserDetail() {
+	const { isAuthenticated } = useAuth0();
 	const { id } = useParams();
 	const [item, setItem] = useState(null);
 	const [showFeedback, setShowFeedback] = useState(false);
@@ -191,7 +193,10 @@ function EnergiserDetail() {
 					</div>
 				</section>
 				<section className="delete-sec" >
-					<EnergizerDeleteButton className="delete-btn" energizerId={item.id} energizerName={item.name} />
+					{isAuthenticated && (
+						<EnergizerDeleteButton className="delete-btn" energizerId={item.id} energizerName={item.name} />
+					)}
+					
 				</section>
 			</div>
 			<Footer />
