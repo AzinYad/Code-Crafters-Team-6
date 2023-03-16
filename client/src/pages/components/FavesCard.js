@@ -8,7 +8,7 @@ function FavesCard({ item }) {
 				<section className="fave-energizer">{item.description}</section>
 				<section className="fave-energizer-info">
 					<h3>{item.name}</h3>
-					<p>Rate:{item.rating}
+					<p className="rate">Rate:{item.rating}
 					</p>
 				</section>
 			</div>

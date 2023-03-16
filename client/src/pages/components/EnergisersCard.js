@@ -11,7 +11,7 @@ function EnergisersCard({ item }) {
 				<section className="energizer">{item.description}</section>
 				<section className="energizer-info-sec">
 					<h3 className="info-sec-name">{item.name}</h3>
-					<p>Rate:{item.rating}</p>
+					<p className="rate" >Rate:{item.rating}</p>
 				</section>
 			</div>
 		</Link>
