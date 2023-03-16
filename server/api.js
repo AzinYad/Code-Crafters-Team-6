@@ -13,7 +13,7 @@ router.get("/energizers", async (req, res) => {
 	const sortBy = req.query.sort_by;
 
 	let query = `
-    SELECT energizers.id, energizers.name, energizers.description, energizers.submission_date, url_address, ROUND(AVG(energizer_ratings.rating), 1) AS rating
+    SELECT energizers.id, energizers.name, energizers.description, energizers.submission_date, image_url, video_url, ROUND(AVG(energizer_ratings.rating), 1) AS rating
     FROM energizers
     LEFT JOIN energizer_ratings ON energizers.id = energizer_ratings.energizer_id
     GROUP BY energizers.id
@@ -51,7 +51,8 @@ router.get("/energizers/:id", async (req, res) => {
 				name: row.name,
 				description: row.description,
 				submission_date: row["submission_date"],
-				url_address: row.url_address,
+				image_url: row.image_url,
+				video_url: row.video_url,
 				ratings: [],
 				average_rate: 0,
 			};
@@ -74,9 +75,9 @@ router.get("/energizers/:id", async (req, res) => {
 });
 
 router.post("/energizers", async (req, res) => {
-	const { name, description, rating, url_address } = req.body;
+	const { name, description, rating } = req.body;
 
-	if (!name || !description || !rating || !url_address) {
+	if (!name || !description || !rating) {
 		return res.status(400).json({ error: "Missing required fields" });
 	}
 
@@ -92,14 +93,14 @@ router.post("/energizers", async (req, res) => {
 			.json({ error: "Description has to be at least 50 characters" });
 	}
 	const query = `
-    INSERT INTO energizers (name, description, url_address ) 
-    VALUES ($1, $2, $3)
-    RETURNING id, name, description, url_address 
+    INSERT INTO energizers (name, description ) 
+    VALUES ($1, $2)
+    RETURNING id, name, description
   `;
 
 	try {
 		// Insert energizer into energizers table
-		const result = await db.query(query, [name, description, url_address]);
+		const result = await db.query(query, [name, description]);
 
 		// Insert rating into energizer_ratings table
 		const ratingQuery = `
