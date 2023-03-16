@@ -121,7 +121,11 @@ function EnergiserDetail() {
 		return (
 			<div className="favorite-sec">
 				<button className="fav-btn" onClick={(e) => handleClick(e)}>
-					{isFavourite ? <FaHeart /> : <FaRegHeart style={{ color: "red !important" }} />}
+					{isFavourite ? (
+						<FaHeart />
+					) : (
+						<FaRegHeart style={{ color: "red !important" }} />
+					)}
 				</button>
 				<p>Add To Favourite</p>
 			</div>
@@ -136,10 +140,18 @@ function EnergiserDetail() {
 		<main className="main-page">
 			<Navbar showSearch={false} />
 			{showFeedbackAlert && (
-				<Alert message="Thank you for your feedback!" type="success" onClose={() => setShowFeedbackAlert(false)} />
+				<Alert
+					message="Thank you for your feedback!"
+					type="success"
+					onClose={() => setShowFeedbackAlert(false)}
+				/>
 			)}
 			{showShareAlert && (
-				<Alert message="Link copied to clipboard!" type="success" onClose={() => setShowShareAlert(false)} />
+				<Alert
+					message="Link copied to clipboard!"
+					type="success"
+					onClose={() => setShowShareAlert(false)}
+				/>
 			)}
 			<h1 className="energizer-name">{item.name}</h1>
 			<div className="columns-delete-wrapper">
@@ -155,7 +167,9 @@ function EnergiserDetail() {
 							<ShareButton />
 							<div
 								className="review-sec"
-								onClick={() => setShowFeedback((prevShowFeedback) => !prevShowFeedback)}
+								onClick={() =>
+									setShowFeedback((prevShowFeedback) => !prevShowFeedback)
+								}
 								onKeyDown={(event) => {
 									if (event.key === "Enter" || event.key === " ") {
 										setShowFeedback((prevShowFeedback) => !prevShowFeedback);
@@ -168,7 +182,7 @@ function EnergiserDetail() {
 							</div>
 						</section>
 						{showFeedback && (
-							<section className="feedback-rate" >
+							<section className="feedback-rate">
 								<h2>How do you like this energizer?</h2>
 								<div className="stars-sec">
 									{stars.map((_, index) => {
@@ -179,7 +193,11 @@ function EnergiserDetail() {
 												onClick={() => handleClick(index + 1)}
 												onMouseOver={() => handleMouseOver(index + 1)}
 												onMouseLeave={handleMouseLeave}
-												color={(hoverValue || currentValue) > index ? "#FFBA5A" : "#a9a9a9"}
+												color={
+													(hoverValue || currentValue) > index
+														? "#FFBA5A"
+														: "#a9a9a9"
+												}
 											/>
 										);
 									})}
@@ -192,11 +210,14 @@ function EnergiserDetail() {
 						<div className="instruction">{item.description}</div>
 					</div>
 				</section>
-				<section className="delete-sec" >
+				<section className="delete-sec">
 					{isAuthenticated && (
-						<EnergizerDeleteButton className="delete-btn" energizerId={item.id} energizerName={item.name} />
+						<EnergizerDeleteButton
+							className="delete-btn"
+							energizerId={item.id}
+							energizerName={item.name}
+						/>
 					)}
-					
 				</section>
 			</div>
 			<Footer />
@@ -205,4 +226,3 @@ function EnergiserDetail() {
 }
 
 export default EnergiserDetail;
-

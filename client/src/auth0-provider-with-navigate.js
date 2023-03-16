@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Auth0ProviderWithNavigate = ({ children }) => {
 	const navigate = useNavigate();
-
+	//had to expose these variables as for some reason process.env was breaking the application
 	const domain = "dev-fu5absjxigoax8c0.eu.auth0.com";
 	const clientId = "UI70osn3wvcwyWz1xLppvrgVLpiU6TCE";
 	const redirectUri = "http://localhost:3000";

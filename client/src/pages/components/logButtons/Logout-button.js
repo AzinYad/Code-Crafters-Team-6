@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
+import { FaUserCircle } from "react-icons/fa";
 
 export const LogoutButton = () => {
 	const { logout } = useAuth0();
@@ -13,7 +14,8 @@ export const LogoutButton = () => {
 	};
 
 	return (
-		<button className="button__logout" onClick={handleLogout}>
+		<button className="login wrapper button__logout" onClick={handleLogout}>
+			<FaUserCircle className="login-icon" />
 			Log Out
 		</button>
 	);

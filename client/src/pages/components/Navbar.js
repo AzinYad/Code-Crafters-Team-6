@@ -1,13 +1,12 @@
 import React from "react";
 import Logo from "../Logo/logo.png";
-import { NavLink, Link } from "react-router-dom";
-import { FaSearch, FaUserCircle } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
 import { NavBarButtons } from "./logButtons/Nav-bar-buttons";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar({ showSearch }) {
 	const { isAuthenticated } = useAuth0();
-    console.log(NavBarButtons)
 	return (
 		<div>
 			<nav className="nav-bar">
@@ -51,10 +50,7 @@ function Navbar({ showSearch }) {
 						Energizers
 					</NavLink>
 				</div>
-				<Link className="login-wrapper nav-sub-wrapper" >
-					<FaUserCircle className="login-icon" />
-					<NavBarButtons />
-				</Link>
+				<NavBarButtons />
 			</nav>
 		</div>
 	);
