@@ -3,10 +3,9 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-    return knex.schema
-        .table("energizers", (table) => {
-            table.timestamp("submission_date").defaultTo(knex.fn.now());
-        });
+	return knex.schema.table("energizers", (table) => {
+		table.timestamp("submission_date").defaultTo(knex.fn.now());
+	});
 };
 
 /**
@@ -14,7 +13,7 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-    return knex.schema.table("energizers",(table)=>{
-        table.dropColumn("submission_date");
-    });
+	return knex.schema.table("energizers", (table) => {
+		table.dropColumn("submission_date");
+	});
 };

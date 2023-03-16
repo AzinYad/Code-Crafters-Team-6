@@ -3,11 +3,16 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer.js";
 import EnergisersCard from "./components/EnergisersCard.js";
 import "./Energisers.css";
+import Pagination from "./components/Pagination";
 import { useState, useEffect } from "react";
 
 function Energisers() {
 	const [allEnergizers, setAllEnergizers] = useState([]);
-	//console.log(allEnergizers);
+	const [currentPage, setCurrentPage] = useState(1);
+	//must be a positive integer greater than 0, setting the number of posts per page
+	const [energizersPerPage] = useState(10);
+	const [query, setQuery] = useState("");
+
 	useEffect(() => {
 		fetch("/api/energizers")
 			.then((res) => {
@@ -23,19 +28,40 @@ function Energisers() {
 				console.error(err);
 			});
 	}, []);
+
+	// get current post
+	const indexOfLastEnergizer = currentPage * energizersPerPage;
+	const indexOfFirstEnergizer = indexOfLastEnergizer - energizersPerPage;
+	const filteredEnergizers = allEnergizers.filter((energizer) => {
+		return (
+			energizer.name.toLowerCase().includes(query) ||
+			energizer.description.toLowerCase().includes(query)
+		);
+	});
+	const currentEnergizer = filteredEnergizers.slice(
+		indexOfFirstEnergizer,
+		indexOfLastEnergizer
+	);
+	// change page
+	const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
 	return (
 		<main className="main-page">
-			<Navbar />
+			<Navbar showSearch={true}  query={query} setQuery={setQuery} />
 			<section className="card-sec">
-				{allEnergizers.map((item) => {
+				{currentEnergizer.map((item) => {
 					return (
 						<div key={item.id}>
 							<EnergisersCard item={item} />
-							{/* <EnergizerDeleteButton energizerId={item.id} /> */}
 						</div>
 					);
 				})}
 			</section>
+			<Pagination
+				postsPerPage={energizersPerPage}
+				totalPosts={allEnergizers.length}
+				paginate={paginate}
+			/>
 			<Footer />
 		</main>
 	);

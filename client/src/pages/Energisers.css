@@ -1,11 +1,7 @@
-* {
-	margin: 0;
-	font-size: 1.1rem;
-}
+
 
 .main-page {
-	text-align: center;
-	margin: 0 3em;
+	margin: 0;
 }
 
 .card-sec {
@@ -27,7 +23,8 @@
 	padding: 1em;
 	border-radius: 15px;
 	cursor: pointer;
-	border: 2px solid black;
+	background-color: rgb(246, 230, 230 , 0.4);
+	box-shadow: 2px 2px 10px rgba(35, 31, 32, 0.3);
 }
 
 .energizer-info-sec {
@@ -37,7 +34,7 @@
 	width: 70%;
 	height: 30%;
 	justify-self: flex-end;
-	border-top: 1px solid black;
+	border-top: 1.5px solid rgb(238, 67, 68);
 }
 
 .energizer {
@@ -80,5 +77,49 @@
 	height: 1em;
 	margin-top: 0.2em;
 	/* bg color = bg color under block */
-	background: white;
+	background:transparent;
+}
+
+.pagination {
+	margin-top: 6em;
+	display: flex;
+	justify-content: center;
+	text-decoration: none;
+	list-style-type: none;
+	display: flex;
+	justify-content: center;
+}
+
+.page-link {
+	background-color: #ee4344;
+	border-radius: 8px;
+	border-style: none;
+	box-sizing: border-box;
+	color: #ffffff;
+	cursor: pointer;
+	display: inline-block;
+	font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
+		sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	height: 40px;
+	line-height: 20px;
+	list-style: none;
+	margin: 0;
+	outline: none;
+	padding: 10px 16px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	transition: color 100ms;
+	vertical-align: baseline;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	margin: 2px;
+}
+
+.page-link:hover,
+.page-link:focus {
+	background-color: #f19a9a;
 }

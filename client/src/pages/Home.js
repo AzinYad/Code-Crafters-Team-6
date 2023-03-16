@@ -2,12 +2,16 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FavesCard from "./components/FavesCard";
 import WhatsNewCard from "./components/WhatsNewCard";
+import HeroCarousel from "./components/HeroCarousel";
 import React, { useState, useEffect } from "react";
+import heroImage from "./Logo/Diversity.jpeg";
 import "./Home.css";
 
 export function Home() {
 	const [mostRecentEnergizers, setMostRecentEnergizers] = useState([]);
 	const [ratedEnergizers, setRatedEnergizers] = useState([]);
+	const [query, setQuery] = useState("");
+
 	useEffect(() => {
 		fetch("/api/energizers?sort_by=recent")
 			.then((response) => response.json())
@@ -31,36 +35,57 @@ export function Home() {
 				console.error("Error fetching energizers", error);
 			});
 	}, []);
-
+	const filteredRatedEnergizers = ratedEnergizers.filter((energizer) => {
+		return (
+			energizer.name.toLowerCase().includes(query) ||
+			energizer.description.toLowerCase().includes(query)
+		);
+	});
+	const filteredRecentEnergizers = mostRecentEnergizers.filter((energizer) => {
+		return (
+			energizer.name.toLowerCase().includes(query) ||
+			energizer.description.toLowerCase().includes(query)
+		);
+	});
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
-	console.log(ratedEnergizers)
+
 	return (
 		<main className="main-page">
-			<Navbar />
+			<Navbar showSearch={false} query={query} setQuery={setQuery} />
+			<section className="hero">
+				<section className="carousel-wrapper">
+					<h1>Explore our top-rated energizers !</h1>
+					<HeroCarousel />
+				</section>
+				<section
+					className="hero-bckimg"
+					style={{ backgroundImage: `url(${heroImage})` }}
+				></section>
+			</section>
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">
 				{/* renders a list of favourites or a placeholder of 4 rated energizers */}
-				{!favourites_array.length
-					? ratedEnergizers.map((item) => {
-							return (
-								<div key={item.id}>
-									<FavesCard item={item} />
-								</div>
-							);
-					  })
-					: favourites_array.map((item) => {
-							return (
-								<div key={item.id}>
-									<FavesCard item={item} />
-								</div>
-							);
-					  })}
+				{favourites_array == null || !favourites_array.length
+					? filteredRatedEnergizers.map((item) => {
+						return (
+							<div key={item.id}>
+								<FavesCard item={item} />
+							</div>
+						);
+					})
+					: favourites_array.slice(0, 4).map((item) => {
+						return (
+							<div key={item.id}>
+								<FavesCard item={item} />
+							</div>
+						);
+					})}
 			</div>
 			<h1 className="Whats-New-title">What is New</h1>
 			<div className="whats-new">
-				{mostRecentEnergizers.map((energizer) => (
+				{filteredRecentEnergizers.map((energizer) => (
 					<WhatsNewCard
 						key={energizer.id}
 						id={energizer.id}

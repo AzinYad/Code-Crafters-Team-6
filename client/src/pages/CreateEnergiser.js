@@ -55,7 +55,7 @@ const CreateEnergiser = () => {
 
 	return (
 		<main className="main-page">
-			<Navbar />
+			<Navbar showSearch={false} />
 			<form className="create-form" onSubmit={handleEnergiserAdder}>
 				<section className="flex-sec fullname">
 					<label htmlFor="fullname">Energizer’s Name: <span className="required">*</span></label>
