@@ -69,19 +69,19 @@ export function Home() {
 				{/* renders a list of favourites or a placeholder of 4 rated energizers */}
 				{favourites_array == null || !favourites_array.length
 					? filteredRatedEnergizers.map((item) => {
-							return (
-								<div key={item.id}>
-									<FavesCard item={item} />
-								</div>
-							);
-					  })
+						return (
+							<div key={item.id}>
+								<FavesCard item={item} />
+							</div>
+						);
+					})
 					: favourites_array.slice(0, 4).map((item) => {
-							return (
-								<div key={item.id}>
-									<FavesCard item={item} />
-								</div>
-							);
-					  })}
+						return (
+							<div key={item.id}>
+								<FavesCard item={item} />
+							</div>
+						);
+					})}
 			</div>
 			<h1 className="Whats-New-title">What is New</h1>
 			<div className="whats-new">
