@@ -37,35 +37,37 @@ export function Home() {
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
-	console.log(ratedEnergizers);
 	return (
 		<main className="main-page">
 			<Navbar showSearch={false} />
-			<section className="hero" >
+			<section className="hero">
 				<section className="carousel-wrapper">
 					<h1>Explore our top-rated energizers !</h1>
 					<HeroCarousel />
 				</section>
-				<section className="hero-bckimg" style={{ backgroundImage: `url(${heroImage})` }} ></section>
+				<section
+					className="hero-bckimg"
+					style={{ backgroundImage: `url(${heroImage})` }}
+				></section>
 			</section>
 			<h1 className="faves-title">OUR FAVES</h1>
 			<div className="our-faves">
 				{/* renders a list of favourites or a placeholder of 4 rated energizers */}
 				{favourites_array == null || !favourites_array.length
 					? ratedEnergizers.map((item) => {
-						return (
-							<div key={item.id}>
-								<FavesCard item={item} />
-							</div>
-						);
-					})
+							return (
+								<div key={item.id}>
+									<FavesCard item={item} />
+								</div>
+							);
+					  })
 					: favourites_array.slice(0, 4).map((item) => {
-						return (
-							<div key={item.id}>
-								<FavesCard item={item} />
-							</div>
-						);
-					})}
+							return (
+								<div key={item.id}>
+									<FavesCard item={item} />
+								</div>
+							);
+					  })}
 			</div>
 			<h1 className="Whats-New-title">What is New</h1>
 			<div className="whats-new">
