@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../Logo/logo.png";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
 
 function Navbar({ showSearch, setQuery, query }) {
@@ -27,28 +27,28 @@ function Navbar({ showSearch, setQuery, query }) {
 					</section>
 				)}
 				<div className="pages-wrapper nav-sub-wrapper">
-					<NavLink
+					<Link
 						className="page"
 						activeClassName="active-page"
 						exact
 						to="/home"
 					>
 						Home
-					</NavLink>
-					<NavLink
+					</Link>
+					<Link
 						className="page create-energizer"
 						activeClassName="active-page"
 						to="/create-energizer"
 					>
 						Create Energizer
-					</NavLink>
-					<NavLink
+					</Link>
+					<Link
 						className="page"
 						activeClassName="active-page"
 						to="/energizers"
 					>
 						Energizers
-					</NavLink>
+					</Link>
 				</div>
 				<Link className="login-wrapper nav-sub-wrapper" to="/login">
 					<FaUserCircle className="login-icon" />
