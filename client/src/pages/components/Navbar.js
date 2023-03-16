@@ -1,53 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Logo from "../Logo/logo.png";
 import { NavLink, Link } from "react-router-dom";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
 
-function Navbar({
-	showSearch,
-	energizers,
-	setAllEnergizers,
-	initialRecentEnergizers,
-	initialRatedEnergizers,
-	setMostRecentEnergizers,
-	setRatedEnergizers,
-}) {
-	const [query, setQuery] = useState("");
-
+function Navbar({ showSearch, setQuery, query }) {
 	const handleSearch = (event) => {
-		setQuery(event.target.value);
-		const searchQuery = event.target.value.toLowerCase();
-		if (setAllEnergizers) {
-			const filteredEnergizers = energizers.filter((energizer) => {
-				return (
-					energizer.name.toLowerCase().includes(searchQuery) ||
-					energizer.description.toLowerCase().includes(searchQuery)
-				);
-			});
-			setAllEnergizers(filteredEnergizers);
-		}
-		if (setMostRecentEnergizers) {
-			const filteredRecentEnergizers = initialRecentEnergizers.filter(
-				(energizer) => {
-					return (
-						energizer.name.toLowerCase().includes(searchQuery) ||
-						energizer.description.toLowerCase().includes(searchQuery)
-					);
-				}
-			);
-			setMostRecentEnergizers(filteredRecentEnergizers);
-		}
-		if (setRatedEnergizers) {
-			const filteredRatedEnergizers = initialRatedEnergizers.filter(
-				(energizer) => {
-					return (
-						energizer.name.toLowerCase().includes(searchQuery) ||
-						energizer.description.toLowerCase().includes(searchQuery)
-					);
-				}
-			);
-			setRatedEnergizers(filteredRatedEnergizers);
-		}
+		setQuery(event.target.value.toLowerCase());
 	};
 	return (
 		<div>

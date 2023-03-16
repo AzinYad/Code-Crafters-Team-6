@@ -10,15 +10,14 @@ import "./Home.css";
 export function Home() {
 	const [mostRecentEnergizers, setMostRecentEnergizers] = useState([]);
 	const [ratedEnergizers, setRatedEnergizers] = useState([]);
-	const [initialRecentEnergizers, setInitialRecentEnergizers] = useState([]);
-	const [initialRatedEnergizers, setInitialRatedEnergizers] = useState([]);
+	const [query, setQuery] = useState("");
+
 	useEffect(() => {
 		fetch("/api/energizers?sort_by=recent")
 			.then((response) => response.json())
 			.then((energizers) => {
 				const mostRecentEnergizers = energizers.slice(0, 2);
 				setMostRecentEnergizers(mostRecentEnergizers);
-				setInitialRecentEnergizers(mostRecentEnergizers);
 			})
 			.catch((error) => {
 				console.error("Error fetching energizers", error);
@@ -31,26 +30,30 @@ export function Home() {
 			.then((energizers) => {
 				const ratedEnergizers = energizers.slice(0, 4);
 				setRatedEnergizers(ratedEnergizers);
-				setInitialRatedEnergizers(ratedEnergizers);
 			})
 			.catch((error) => {
 				console.error("Error fetching energizers", error);
 			});
 	}, []);
-
+	const filteredRatedEnergizers = ratedEnergizers.filter((energizer) => {
+		return (
+			energizer.name.toLowerCase().includes(query) ||
+			energizer.description.toLowerCase().includes(query)
+		);
+	});
+	const filteredRecentEnergizers = mostRecentEnergizers.filter((energizer) => {
+		return (
+			energizer.name.toLowerCase().includes(query) ||
+			energizer.description.toLowerCase().includes(query)
+		);
+	});
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
-	console.log(ratedEnergizers);
+
 	return (
 		<main className="main-page">
-			<Navbar
-				showSearch={false}
-				initialRecentEnergizers={initialRecentEnergizers}
-				initialRatedEnergizers={initialRatedEnergizers}
-				setMostRecentEnergizers={setMostRecentEnergizers}
-				setRatedEnergizers={setRatedEnergizers}
-			/>
+			<Navbar showSearch={false} query={query} setQuery={setQuery} />
 			<section className="hero">
 				<section className="carousel-wrapper">
 					<h1>Explore our top-rated energizers !</h1>
@@ -65,7 +68,7 @@ export function Home() {
 			<div className="our-faves">
 				{/* renders a list of favourites or a placeholder of 4 rated energizers */}
 				{favourites_array == null || !favourites_array.length
-					? ratedEnergizers.map((item) => {
+					? filteredRatedEnergizers.map((item) => {
 							return (
 								<div key={item.id}>
 									<FavesCard item={item} />
@@ -82,7 +85,7 @@ export function Home() {
 			</div>
 			<h1 className="Whats-New-title">What is New</h1>
 			<div className="whats-new">
-				{mostRecentEnergizers.map((energizer) => (
+				{filteredRecentEnergizers.map((energizer) => (
 					<WhatsNewCard
 						key={energizer.id}
 						id={energizer.id}
