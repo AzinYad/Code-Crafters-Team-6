@@ -9,12 +9,11 @@ router.get("/", (_, res) => {
 	res.json({ message: "Hello, world!" });
 });
 
-
 router.get("/energizers", async (req, res) => {
 	const sortBy = req.query.sort_by;
 
 	let query = `
-    SELECT energizers.id, energizers.name, energizers.description, energizers.submission_date, ROUND(AVG(energizer_ratings.rating), 1) AS rating
+    SELECT energizers.id, energizers.name, energizers.description, energizers.submission_date, image_url, video_url, ROUND(AVG(energizer_ratings.rating), 1) AS rating
     FROM energizers
     LEFT JOIN energizer_ratings ON energizers.id = energizer_ratings.energizer_id
     GROUP BY energizers.id
@@ -39,7 +38,6 @@ router.get("/energizers", async (req, res) => {
 	}
 });
 
-
 router.get("/energizers/:id", async (req, res) => {
 	const id = req.params.id;
 	try {
@@ -49,14 +47,19 @@ router.get("/energizers/:id", async (req, res) => {
 		} else {
 			const row = result.rows[0];
 			const energizer = {
-				"id": row.id,
-				"name": row.name,
-				"description": row.description,
-				"submission_date": row["submission_date"],
-				"ratings": [],
-				"average_rate": 0,
+				id: row.id,
+				name: row.name,
+				description: row.description,
+				submission_date: row["submission_date"],
+				image_url: row.image_url,
+				video_url: row.video_url,
+				ratings: [],
+				average_rate: 0,
 			};
-			const result2 = await db.query("SELECT * FROM energizer_ratings WHERE energizer_id=$1", [row.id]);
+			const result2 = await db.query(
+				"SELECT * FROM energizer_ratings WHERE energizer_id=$1",
+				[row.id]
+			);
 			energizer.ratings = result2.rows.map((row) => parseInt(row.rating));
 			energizer.average_rate = (() => {
 				const sum = energizer.ratings.reduce((acc, curr) => acc + curr, 0);
@@ -85,10 +88,12 @@ router.post("/energizers", async (req, res) => {
 	}
 
 	if (description.length < 50) {
-		return res.status(400).json({ error: "Description has to be at least 50 characters" });
+		return res
+			.status(400)
+			.json({ error: "Description has to be at least 50 characters" });
 	}
 	const query = `
-    INSERT INTO energizers (name, description) 
+    INSERT INTO energizers (name, description ) 
     VALUES ($1, $2)
     RETURNING id, name, description
   `;
@@ -104,7 +109,10 @@ router.post("/energizers", async (req, res) => {
       RETURNING id, energizer_id, rating
     `;
 
-		const ratingResult = await db.query(ratingQuery, [result.rows[0].id, rating]);
+		const ratingResult = await db.query(ratingQuery, [
+			result.rows[0].id,
+			rating,
+		]);
 
 		res.json({ energizer: result.rows[0], rating: ratingResult.rows[0] });
 	} catch (error) {
@@ -133,10 +141,10 @@ router.post("/energizers/:id/rate", async (req, res) => {
 		const averageRating = avgRatingResult.rows[0].average_rating;
 
 		// Update the average rating of the energizer in the energizers table
-		await db.query(
-			"UPDATE energizers SET average_rate = $1 WHERE id = $2",
-			[averageRating, energizerId]
-		);
+		await db.query("UPDATE energizers SET average_rate = $1 WHERE id = $2", [
+			averageRating,
+			energizerId,
+		]);
 
 		res.json({ averageRating });
 	} catch (error) {
@@ -144,8 +152,6 @@ router.post("/energizers/:id/rate", async (req, res) => {
 		res.status(500).send("Internal server error");
 	}
 });
-
-
 
 router.delete("/energizers/:id", async (req, res) => {
 	const id = req.params.id;

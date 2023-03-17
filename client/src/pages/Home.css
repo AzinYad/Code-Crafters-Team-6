@@ -264,7 +264,7 @@
 }
 
 .fave-energizer-info {
-	height: 30%;
+	min-height: 30%;
 	border-top: 1.5px solid rgb(238, 67, 68);
 	display: flex;
 	flex-direction: column;
