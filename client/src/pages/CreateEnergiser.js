@@ -6,7 +6,9 @@ import "./CreateEnergiser.css";
 const CreateEnergiser = () => {
 	const [energiserName, setEnergiserName] = useState("");
 	const [enrgiserDescription, setEnergiserDescription] = useState("");
-	const [rating, setRating] = useState(1); // Add state for selected rating
+	const [mediaType, setMediaType] = useState("image");
+	const [mediaUrl, setMediaUrl] = useState("");
+	const [rating, setRating] = useState(3); // Add state for selected rating
 
 	const handleEnergiserAdder = (e) => {
 		e.preventDefault();
@@ -25,15 +27,22 @@ const CreateEnergiser = () => {
 			alert("The energizer name must have at most 50 characters");
 			return;
 		}
-		// check if description has at least 200 characters
+		// check if description has at least 50 characters
 		if (enrgiserDescription.length < 50) {
 			alert("The energizer description must have at least 50 characters");
+			return;
+		}
+		//validate the media url if it is not empty
+		if (mediaUrl && !isValidUrl(mediaUrl)) {
+			alert("Please enter a valid url for the media");
 			return;
 		}
 		let energizer = {
 			name: energiserName,
 			description: enrgiserDescription,
-			rating: rating, // Add rating to the energizer object
+			rating: rating || 3, // Add rating to the energizer object
+			mediaType: mediaType,
+			mediaUrl: mediaUrl,
 		};
 
 		fetch("/api/energizers", {
@@ -41,16 +50,33 @@ const CreateEnergiser = () => {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(energizer),
 		})
-			.then((res) => res.json())
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error("Failed to submit energizer");
+				}
+				return res.json();
+			})
 			.then((data) => {
 				console.log(data);
+				alert("Energizer submitted successfully");
+				setEnergiserName("");
+				setEnergiserDescription("");
+				setMediaType("image");
+				setMediaUrl("");
+				setRating(3); // Reset rating to default value after submission
 			})
 			.catch((error) => {
 				console.warn("internal server error:", error);
+				alert("Failed to submit energizer");
 			});
-		setEnergiserName("");
-		setEnergiserDescription("");
-		setRating(1); // Reset rating to default value after submission
+	};
+	const isValidUrl = (url) => {
+		try {
+			new URL(url);
+			return true;
+		} catch (e) {
+			return false;
+		}
 	};
 
 	return (
@@ -58,7 +84,9 @@ const CreateEnergiser = () => {
 			<Navbar showSearch={false} />
 			<form className="create-form" onSubmit={handleEnergiserAdder}>
 				<section className="flex-sec fullname">
-					<label htmlFor="fullname">Energizer’s Name: <span className="required">*</span></label>
+					<label htmlFor="fullname">
+						Energizer’s Name: <span className="required">*</span>
+					</label>
 					<input
 						onChange={(e) => setEnergiserName(e.target.value)}
 						type="text"
@@ -69,8 +97,23 @@ const CreateEnergiser = () => {
 					/>
 				</section>
 				<section className="flex-sec url-input">
-					<label htmlFor="url-input">Image Or Video URL:</label>
-					<input type="text" placeholder="Insert a URL" name="urlInput" />
+					<label htmlFor="url-input">Image Or Video</label>
+					<select
+						id="url-input"
+						name="media-type"
+						value={mediaType}
+						onChange={(e) => setMediaType(e.target.value)}
+					>
+						<option value="image" className="url-input">Image</option>
+						<option value="video" className="url-input">Video</option>
+					</select>
+					<input
+						type="text"
+						placeholder="Insert a URL"
+						name="urlInput"
+						value={mediaUrl}
+						onChange={(e) => setMediaUrl(e.target.value)}
+					/>
 				</section>
 				<section className="flex-sec description">
 					<label htmlFor="description">Energizer Description:</label>
@@ -82,20 +125,6 @@ const CreateEnergiser = () => {
 						name="enrgiserdescription"
 						required
 					/>
-				</section>
-				<section className="flex-sec rating">
-					<label htmlFor="rating">How do you rate this energizer?</label>
-					<select
-						name="rating"
-						value={rating}
-						onChange={(e) => setRating(e.target.value)}
-					>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select>
 				</section>
 				<button type="submit">Submit</button>
 			</form>

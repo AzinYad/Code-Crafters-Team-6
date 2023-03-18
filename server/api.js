@@ -75,7 +75,7 @@ router.get("/energizers/:id", async (req, res) => {
 });
 
 router.post("/energizers", async (req, res) => {
-	const { name, description, rating } = req.body;
+	const { name, description, rating, image_url, video_url } = req.body;
 
 	if (!name || !description || !rating) {
 		return res.status(400).json({ error: "Missing required fields" });
@@ -93,14 +93,14 @@ router.post("/energizers", async (req, res) => {
 			.json({ error: "Description has to be at least 50 characters" });
 	}
 	const query = `
-    INSERT INTO energizers (name, description ) 
-    VALUES ($1, $2)
-    RETURNING id, name, description
+    INSERT INTO energizers (name, description, image_url, video_url) 
+    VALUES ($1, $2, $3, $4)
+    RETURNING id, name, description, image_url, video_url
   `;
 
 	try {
 		// Insert energizer into energizers table
-		const result = await db.query(query, [name, description]);
+		const result = await db.query(query, [name, description, image_url, video_url]);
 
 		// Insert rating into energizer_ratings table
 		const ratingQuery = `
