@@ -5,7 +5,10 @@ import { FaSearch } from "react-icons/fa";
 import { NavBarButtons } from "./logButtons/Nav-bar-buttons";
 import { useAuth0 } from "@auth0/auth0-react";
 
-function Navbar({ showSearch }) {
+function Navbar({ showSearch, setQuery, query }) {
+	const handleSearch = (event) => {
+		setQuery(event.target.value.toLowerCase());
+	};
 	const { isAuthenticated } = useAuth0();
 	return (
 		<div>
@@ -17,6 +20,8 @@ function Navbar({ showSearch }) {
 							className="search-input"
 							type="search"
 							placeholder="Search..."
+							value={query}
+							onChange={handleSearch}
 						/>
 					</div>
 				) : (

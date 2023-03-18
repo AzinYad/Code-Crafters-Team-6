@@ -11,6 +11,7 @@ function Energisers() {
 	const [currentPage, setCurrentPage] = useState(1);
 	//must be a positive integer greater than 0, setting the number of posts per page
 	const [energizersPerPage] = useState(10);
+	const [query, setQuery] = useState("");
 
 	useEffect(() => {
 		fetch("/api/energizers")
@@ -31,7 +32,13 @@ function Energisers() {
 	// get current post
 	const indexOfLastEnergizer = currentPage * energizersPerPage;
 	const indexOfFirstEnergizer = indexOfLastEnergizer - energizersPerPage;
-	const currentEnergizer = allEnergizers.slice(
+	const filteredEnergizers = allEnergizers.filter((energizer) => {
+		return (
+			energizer.name.toLowerCase().includes(query) ||
+			energizer.description.toLowerCase().includes(query)
+		);
+	});
+	const currentEnergizer = filteredEnergizers.slice(
 		indexOfFirstEnergizer,
 		indexOfLastEnergizer
 	);
@@ -39,8 +46,8 @@ function Energisers() {
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 	return (
-		<main className="main-page" >
-			<Navbar showSearch={true} />
+		<main className="main-page">
+			<Navbar showSearch={true}  query={query} setQuery={setQuery} />
 			<section className="card-sec">
 				{currentEnergizer.map((item) => {
 					return (
