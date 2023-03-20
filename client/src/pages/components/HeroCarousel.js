@@ -38,7 +38,13 @@ function HeroCarousel() {
                     style={{ textDecoration: "none", pointerEvents: "none" }}
                 >
                     <div>
-                        <section className="carousel-thumbnail"></section>
+                        <section className="carousel-thumbnail">
+                            {energizer.image_url ? (
+                                <img src={energizer.image_url} alt="energizer pic" className="carousel-thumbnail-preview" />
+                            ) : (
+                                    energizer.video_url && <iframe src={energizer.video_url} className="carousel-thumbnail-preview" title="energizer video" />
+                            )}
+                        </section>
                         <h2 id="slider-title" >{energizer.name}</h2>
                     </div>
                 </Link>
