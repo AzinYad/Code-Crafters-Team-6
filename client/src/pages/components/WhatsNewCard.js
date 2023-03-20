@@ -7,7 +7,7 @@ function WhatsNewCard(props) {
         <div className="most-recent-container" >
             <div className="most-recent-new-wrapper">
                 <div className="most-recent-new-energizer">
-                    <section className="recent-energizr-description">
+                    <section className="fave-thumbnail">
                         {props.image_url ? (
                             <img src={props.image_url} alt="props pic" className="fave-thumbnail-preview" />
                         ) : (
