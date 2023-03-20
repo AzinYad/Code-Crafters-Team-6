@@ -90,6 +90,8 @@ export function Home() {
 						key={energizer.id}
 						id={energizer.id}
 						name={energizer.name}
+						image_url={energizer.image_url}
+						video_url={energizer.video_url}
 						description={energizer.description}
 					/>
 				))}

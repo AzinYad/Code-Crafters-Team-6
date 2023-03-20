@@ -169,11 +169,24 @@
 	font-size: 1.8rem;
 }
 .carousel-thumbnail{
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	margin: 1em auto;
 	width:90% ;
 	height:25em;
 	border-radius: 15px;
 	border:1px solid white;
+}
+
+.carousel-thumbnail-preview{
+	width: 100%;
+	height: 100%;
+}
+
+#slider-title{
+	margin-top: 1em;
+	text-decoration: none;
 }
 /* Titles */
 .faves-title,
@@ -221,6 +234,7 @@
 }
 
 .fave-energizer {
+	width: 95%;
 	/* hide text if it more than N lines  */
 	overflow: hidden;
 	/* for set '...' in absolute position */
