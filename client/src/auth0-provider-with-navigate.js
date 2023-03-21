@@ -7,13 +7,13 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
 	//had to expose these variables as for some reason process.env was breaking the application
 	const domain = "dev-fu5absjxigoax8c0.eu.auth0.com";
 	const clientId = "UI70osn3wvcwyWz1xLppvrgVLpiU6TCE";
-	const redirectUri = "http://localhost:3000";
+	//const redirectUri = window.location.origin //process.env.REACT_APP_AUTH0_CALLBACK_URL || "http://localhost:3000";
 
 	const onRedirectCallback = (appState) => {
 		navigate(appState?.returnTo || window.location.pathname);
 	};
 
-	if (!(domain && clientId && redirectUri)) {
+	if (!(domain && clientId)) {
 		return null;
 	}
 
@@ -22,7 +22,7 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
 			domain={domain}
 			clientId={clientId}
 			authorizationParams={{
-				redirect_uri: redirectUri,
+				redirect_uri: window.location.origin,
 			}}
 			onRedirectCallback={onRedirectCallback}
 		>
