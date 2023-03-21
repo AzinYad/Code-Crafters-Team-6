@@ -181,7 +181,8 @@
 
 .carousel-thumbnail-preview{
 	width: 100%;
-	height: 100%;
+	height: auto;
+	max-height: 100%;
 }
 
 #slider-title{
@@ -234,8 +235,9 @@
 }
 
 .fave-thumbnail-preview{
-	width: auto;
-	height: 100%;
+	width:95%;
+	height: 95%;
+	max-height:auto;
 	
 }
 .fave-energizer {
@@ -255,32 +257,6 @@
 	padding-right: 1em;
 }
 
-/* create the ... */
-.fave-energizer:before {
-	/* points in the end */
-	content: "...";
-	/* absolute position */
-	position: absolute;
-	/* set position to right bottom corner of block */
-	right: 0;
-	bottom: 0;
-}
-
-/* hide ... if we have text, which is less than or equal to max lines */
-.fave-energizer:after {
-	/* points in the end */
-	content: "";
-	/* absolute position */
-	position: absolute;
-	/* set position to right bottom corner of text */
-	right: 0;
-	/* set width and height */
-	width: 1em;
-	height: 1em;
-	margin-top: 0.2em;
-	/* bg color = bg color under block */
-	background: transparent;
-}
 
 .fave-energizer-info {
 	min-height: 30%;
