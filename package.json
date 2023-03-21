@@ -34,6 +34,7 @@
 	},
 	"homepage": "https://github.com/textbook/starter-kit#readme",
 	"devDependencies": {
+		"@auth0/auth0-react": "^2.0.1",
 		"@babel/cli": "^7.20.7",
 		"@babel/core": "^7.20.12",
 		"@babel/eslint-parser": "^7.19.1",

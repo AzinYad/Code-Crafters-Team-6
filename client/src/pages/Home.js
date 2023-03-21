@@ -10,8 +10,6 @@ import "./Home.css";
 export function Home() {
 	const [mostRecentEnergizers, setMostRecentEnergizers] = useState([]);
 	const [ratedEnergizers, setRatedEnergizers] = useState([]);
-	const [query, setQuery] = useState("");
-
 	useEffect(() => {
 		fetch("/api/energizers?sort_by=recent")
 			.then((response) => response.json())
@@ -35,25 +33,13 @@ export function Home() {
 				console.error("Error fetching energizers", error);
 			});
 	}, []);
-	const filteredRatedEnergizers = ratedEnergizers.filter((energizer) => {
-		return (
-			energizer.name.toLowerCase().includes(query) ||
-			energizer.description.toLowerCase().includes(query)
-		);
-	});
-	const filteredRecentEnergizers = mostRecentEnergizers.filter((energizer) => {
-		return (
-			energizer.name.toLowerCase().includes(query) ||
-			energizer.description.toLowerCase().includes(query)
-		);
-	});
+
 	//retrieves object from the localStorage
 	let favourites_array = localStorage.getItem("favourite");
 	favourites_array = JSON.parse(favourites_array);
-
 	return (
 		<main className="main-page">
-			<Navbar showSearch={false} query={query} setQuery={setQuery} />
+			<Navbar showSearch={false} />
 			<section className="hero">
 				<section className="carousel-wrapper">
 					<h1>Explore our top-rated energizers !</h1>
@@ -68,7 +54,7 @@ export function Home() {
 			<div className="our-faves">
 				{/* renders a list of favourites or a placeholder of 4 rated energizers */}
 				{favourites_array == null || !favourites_array.length
-					? filteredRatedEnergizers.map((item) => {
+					? ratedEnergizers.map((item) => {
 						return (
 							<div key={item.id}>
 								<FavesCard item={item} />
@@ -85,7 +71,7 @@ export function Home() {
 			</div>
 			<h1 className="Whats-New-title">What is New</h1>
 			<div className="whats-new">
-				{filteredRecentEnergizers.map((energizer) => (
+				{mostRecentEnergizers.map((energizer) => (
 					<WhatsNewCard
 						key={energizer.id}
 						id={energizer.id}
