@@ -34,21 +34,20 @@
 	border-radius: 15px;
 }
 
-.energizer-img-preview{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 50%;
-	height:20em;
-}
-
 .episode-sec {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	width: 75%;
 	height:auto;
 	align-self: flex-start;
+}
+
+.energizer-img-preview{
+	margin: 1em auto;
+	align-self: center;
+	max-width: 90%;
+	max-height:95%;
 }
 
 .icons-wrapper{

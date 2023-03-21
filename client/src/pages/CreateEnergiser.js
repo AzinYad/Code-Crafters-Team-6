@@ -33,7 +33,7 @@ const CreateEnergiser = () => {
 			return;
 		}
 		//validate the media url if it is not empty
-		if ((mediaUrl.img || mediaUrl.video )&& !isValidUrl(mediaUrl.img || mediaUrl.video)) {
+		if ((mediaUrl.img || mediaUrl.video) && !isValidUrl(mediaUrl.img || mediaUrl.video)) {
 			alert("Please enter a valid url for the media");
 			return;
 		}
@@ -61,11 +61,6 @@ const CreateEnergiser = () => {
 			.then((data) => {
 				console.log(data);
 				alert("Energizer submitted successfully");
-				// setEnergizerName("");
-				// setEnergizerDescription("");
-				// setMediaType("image");
-				// setMediaUrl("");
-				// setRating(3); // Reset rating to default value after submission
 			})
 			.catch((error) => {
 				console.warn("internal server error:", error);
@@ -87,8 +82,7 @@ const CreateEnergiser = () => {
 			<form className="create-form" onSubmit={handleenergizerAdder}>
 				<section className="flex-sec fullname">
 					<label htmlFor="fullname">
-						Energizer’s Name: <span className="required">*</span>
-					</label>
+						Energizer’s Name: </label>
 					<input
 						onChange={(e) => setEnergizerName(e.target.value)}
 						type="text"
@@ -99,19 +93,19 @@ const CreateEnergiser = () => {
 					/>
 				</section>
 				<section className="flex-sec url-input">
-					<label htmlFor="url-input">Image Or Video</label>
 					<select
+						className="url-selector"
 						id="url-input"
 						name="media-type"
 						value={mediaType}
 						onChange={(e) => setMediaType(e.target.value)}
 					>
-						<option value="image" className="url-input">Image</option>
-						<option value="video" className="url-input">Video</option>
+						<option value="image" className="url-input">Image URL</option>
+						<option value="video" className="url-input">Video URL</option>
 					</select>
 					<input
 						type="text"
-						placeholder="Insert a URL"
+						placeholder="Insert either image or video url"
 						name="urlInput"
 						value={mediaType === "image" ? mediaUrl.img : mediaUrl.video}
 						onChange={(e) => {
