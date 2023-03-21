@@ -26,6 +26,11 @@
 	align-items: center;
 }
 
+.url-selector{
+	width:auto;
+	max-width: 10em;
+}
+
 .description label {
 	align-self: flex-start;
 }
@@ -37,6 +42,7 @@ textarea {
 
 form input,
 textarea {
+	font-size: 1.1rem;
 	padding: 0.5em;
 	width: 20em;
 	border:none;
