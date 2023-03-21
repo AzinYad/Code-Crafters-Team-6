@@ -23,10 +23,6 @@
 	background-color: #f2eff0;
 }
 
-.nav-sub-wrapper {
-	width: 30%;
-}
-
 /* logo of the App */
 
 .logo-sec {
@@ -40,7 +36,7 @@
 .pages-wrapper {
 	width: 50%;
 	display: flex;
-	justify-content: center;
+	justify-content:center;
 	align-items: center;
 }
 .page {
@@ -61,11 +57,13 @@
 	color: rgb(238, 67, 68);
 }
 
-.active-page,
 .page:hover,
 .login-icon:hover,
 .magnifier:hover,
-.login-wrapper:hover {
+.login-wrapper:hover,
+.nav-bar__buttons:hover,
+.button__login:hover,
+.button__logout:hover {
 	color: rgb(238, 67, 68) !important;
 }
 /* Search Bar */
@@ -89,7 +87,8 @@
 }
 
 .login-wrapper,
-.search-wrapper {
+.search-wrapper,
+.login-btn {
 	width: 20%;
 	display: flex;
 	justify-content: center;
@@ -470,4 +469,15 @@
     margin-bottom: 1em;
     text-align: center;
   }
+}
+
+/* login butons */
+.nav-bar__buttons,
+.button__login,
+.button__logout {
+	padding: 0;
+	border: none;
+	background: none;
+	font-weight: 700;
+	cursor: pointer;
 }

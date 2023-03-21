@@ -33,7 +33,7 @@ const CreateEnergiser = () => {
 			return;
 		}
 		//validate the media url if it is not empty
-		if ((mediaUrl.img || mediaUrl.video )&& !isValidUrl(mediaUrl.img || mediaUrl.video)) {
+		if ((mediaUrl.img || mediaUrl.video) && !isValidUrl(mediaUrl.img || mediaUrl.video)) {
 			alert("Please enter a valid url for the media");
 			return;
 		}
@@ -61,11 +61,6 @@ const CreateEnergiser = () => {
 			.then((data) => {
 				console.log(data);
 				alert("Energizer submitted successfully");
-				// setEnergizerName("");
-				// setEnergizerDescription("");
-				// setMediaType("image");
-				// setMediaUrl("");
-				// setRating(3); // Reset rating to default value after submission
 			})
 			.catch((error) => {
 				console.warn("internal server error:", error);
