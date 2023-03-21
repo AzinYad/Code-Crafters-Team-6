@@ -20,15 +20,19 @@
 	display: flex;
 	justify-content: center;
 	gap: 1em;
-	height:auto;
-	margin: 2em auto 0;
+	height: 80vh;
+	max-height:auto;
+	margin: 1em auto 0;
 }
 
 .energizer-preview ,
 .instruction{
-	margin: 1em auto 0;
+	text-align: left;
+	margin: 2em auto;
+	padding: 2em;
 	width: 80%;
-	max-height: 25em;
+	height: 50vh;
+	max-height:auto;
 	background-color: rgb(246, 230, 230 , 0.4);
 	box-shadow: 2px 2px 10px rgba(35, 31, 32, 0.3);
 	border-radius: 15px;
@@ -37,25 +41,17 @@
 .episode-sec {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-self: center;
-	width: 50%;
-	height:20em;
-}
-
-.episode-sec {
-	display: flex;
-	flex-direction: column;
 	width: 75%;
-	height:auto;
-	align-self: flex-start;
 }
 
 .energizer-img-preview{
 	margin: 1em auto;
 	align-self: center;
-	max-width: 90%;
-	max-height:95%;
+	width: 80%;
+	height: 80%;
+	max-width:auto;
+	max-height:auto;
+	border-radius: 20px;
 }
 
 .icons-wrapper{
@@ -70,9 +66,17 @@
 }
 
 .instruction-sec {
-	width: 30%;
-	height: 57vh;
-	align-self: center;
+	font-size: 1.3rem;
+	width: 50%;
+	height:50vh;
+	align-self: flex-start;
+	padding:1em;
+}
+
+.instruction{
+	padding: 3em;
+	height: auto;
+	height: 100%;
 }
 
 .star-icon,

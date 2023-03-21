@@ -6,7 +6,10 @@ https://www.figma.com/file/FBvvVO1VL5GLueK8Z5a6jt?node-id=0%3A1&fuid=10313191033
 Create-Energiser page , Log in and Sign Up page:
 https://www.figma.com/file/3ObG61vnz2xPc8KCzvUjPB/Create-energiser?node-id=0%3A1&t=JhYHYr4Xo33TmHRy-0
 
-
+Our Sources
+We have used the following resources to add content to our application
+https://unsplash.com/
+https://www.sessionlab.com/blog/online-energizers/
 
 # Starter Kit
 
