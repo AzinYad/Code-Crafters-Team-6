@@ -25,7 +25,7 @@ function Navbar({ showSearch, setQuery, query }) {
 						/>
 					</div>
 				) : (
-					<section className="logo-sec">
+					<section className="logo-sec ">
 						<img className="logo" src={Logo} alt="logo" />
 					</section>
 				)}
@@ -42,7 +42,7 @@ function Navbar({ showSearch, setQuery, query }) {
 						Energizers
 					</Link>
 				</div>
-				<NavBarButtons />
+				<NavBarButtons className="login-btn nav-sub-wrapper" />
 			</nav>
 		</div>
 	);

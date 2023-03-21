@@ -157,7 +157,11 @@ function EnergiserDetail() {
 			<div className="columns-delete-wrapper">
 				<section className="columns-sec">
 					<div className="episode-sec">
-						<div className="energizer-preview"></div>
+						{item.image_url ? (
+							<img src={item.image_url} alt="energizer pic" className="energizer-img-preview" />
+						) : (
+							item.video_url && <iframe src={item.video_url} title="energizer video" />
+						)}
 						<section className="icons-wrapper">
 							<div className="rating-sec">
 								<p className="rate">Average rate:</p>

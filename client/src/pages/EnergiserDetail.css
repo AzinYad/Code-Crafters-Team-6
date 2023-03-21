@@ -28,10 +28,19 @@
 .instruction{
 	margin: 1em auto 0;
 	width: 80%;
-	height: 25em;
+	max-height: 25em;
 	background-color: rgb(246, 230, 230 , 0.4);
 	box-shadow: 2px 2px 10px rgba(35, 31, 32, 0.3);
 	border-radius: 15px;
+}
+
+.energizer-img-preview{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-self: center;
+	width: 50%;
+	height:20em;
 }
 
 .episode-sec {

@@ -55,19 +55,19 @@ export function Home() {
 				{/* renders a list of favourites or a placeholder of 4 rated energizers */}
 				{favourites_array == null || !favourites_array.length
 					? ratedEnergizers.map((item) => {
-							return (
-								<div key={item.id}>
-									<FavesCard item={item} />
-								</div>
-							);
-					  })
+						return (
+							<div key={item.id}>
+								<FavesCard item={item} />
+							</div>
+						);
+					})
 					: favourites_array.slice(0, 4).map((item) => {
-							return (
-								<div key={item.id}>
-									<FavesCard item={item} />
-								</div>
-							);
-					  })}
+						return (
+							<div key={item.id}>
+								<FavesCard item={item} />
+							</div>
+						);
+					})}
 			</div>
 			<h1 className="Whats-New-title">What is New</h1>
 			<div className="whats-new">
@@ -76,6 +76,8 @@ export function Home() {
 						key={energizer.id}
 						id={energizer.id}
 						name={energizer.name}
+						image_url={energizer.image_url}
+						video_url={energizer.video_url}
 						description={energizer.description}
 					/>
 				))}
